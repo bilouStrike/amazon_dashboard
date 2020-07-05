@@ -16,7 +16,6 @@ const render = Component => {
     document.getElementById('root')
   );
 };
-
 // Do this once
 registerServiceWorker();
 
