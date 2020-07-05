@@ -48,9 +48,9 @@ const SidebarContent = () => {
             theme={themeType === THEME_TYPE_LITE ? 'lite' : 'dark'}
             mode="inline">
 
-            <Menu.Item key="sample">
-              <Link to="/sample"><i className="icon icon-widgets"/>
-                <span><IntlMessages id="sidebar.samplePage"/></span>
+            <Menu.Item key="service1">
+              <Link to="/service1"><i className="icon icon-widgets"/>
+                <span><IntlMessages id="sidebar.service1"/></span>
               </Link>
             </Menu.Item>
 
