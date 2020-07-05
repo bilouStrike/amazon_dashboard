@@ -55,25 +55,9 @@ const InsideHeader = () => {
 
   return (
     <div className="gx-header-horizontal gx-header-horizontal-dark gx-inside-header-horizontal">
-      <div className="gx-header-horizontal-top">
-        <div className="gx-container">
-          <div className="gx-header-horizontal-top-flex">
-            <div className="gx-header-horizontal-top-left">
-              <i className="icon icon-alert gx-mr-3"/>
-              <p className="gx-mb-0 gx-text-truncate"><IntlMessages id="app.announced"/></p>
-            </div>
-            <ul className="gx-login-list">
-              <li>Login</li>
-              <li>Signup</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-
       <Header
         className="gx-header-horizontal-main">
-        <div className="gx-container">
+        <div className="gx-container gx-wide-width">
           <div className="gx-header-horizontal-main-flex">
             <div className="gx-d-block gx-d-lg-none gx-linebar gx-mr-xs-3 6e">
               <i className="gx-icon-btn icon icon-menu"
