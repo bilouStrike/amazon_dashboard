@@ -12,7 +12,6 @@ const routeMiddleware = routerMiddleware(history);
 
 const middlewares = [thunk, routeMiddleware];
 
-
 export default function configureStore(preloadedState) {
   const store = createStore(
     createRootReducer(history), // root reducer with router state

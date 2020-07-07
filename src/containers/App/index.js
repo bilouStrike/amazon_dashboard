@@ -1,13 +1,13 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import URLSearchParams from 'url-search-params'
-import {Redirect, Route} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import { ConfigProvider } from 'antd';
 import {IntlProvider} from "react-intl";
 
 import AppLocale from "lngProvider";
 import MainApp from "./MainApp";
-import {onLayoutTypeChange, onNavStyleChange, setThemeType} from "../../appRedux/actions/Setting";
+import SignIn from '../SignIn';
 
 import {
   LAYOUT_TYPE_BOXED,
@@ -17,6 +17,20 @@ import {
   NAV_STYLE_INSIDE_HEADER_HORIZONTAL,
   THEME_TYPE_DARK
 } from "../../constants/ThemeSetting";
+
+const RestrictedRoute = ({component: Component, location, token, ...rest}) =>
+  <Route
+    {...rest}
+    render={props =>
+      token != '0'
+        ? <Component {...props} />
+        : <Redirect
+          to={{
+            pathname: '/signin',
+            state: {from: location}
+          }}
+        />}
+  />;
 
 const App = (props) => {
 
@@ -28,19 +42,7 @@ const App = (props) => {
   const navStyle = useSelector(({settings}) => settings.navStyle);
   const themeType = useSelector(({settings}) => settings.themeType);
   const layoutType = useSelector(({settings}) => settings.layoutType);
-
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    if (params.has("theme")) {
-      dispatch(setThemeType(params.get('theme')));
-    }
-    if (params.has("nav-style")) {
-      dispatch(onNavStyleChange(params.get('nav-style')));
-    }
-    if (params.has("layout-type")) {
-      dispatch(onLayoutTypeChange(params.get('layout-type')));
-    }
-  }, [dispatch, location.search]);
+ 
 
 
   const setLayoutType = (layoutType) => {
@@ -89,7 +91,10 @@ const App = (props) => {
       <IntlProvider
         locale={currentAppLocale.locale}
         messages={currentAppLocale.messages}>
-        <Route path={`${match.url}`} component={MainApp}/>
+        <Switch>
+          <Route exact path='/signin' component={SignIn}/>
+          <Route path='/' component={MainApp}/>
+        </Switch>
       </IntlProvider>
     </ConfigProvider>
   )
