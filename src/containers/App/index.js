@@ -1,13 +1,13 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import URLSearchParams from 'url-search-params'
-import {Redirect, Route, Switch} from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import { ConfigProvider } from 'antd';
 import {IntlProvider} from "react-intl";
 
 import AppLocale from "lngProvider";
 import MainApp from "./MainApp";
 import SignIn from '../SignIn';
+import SignUp from "../SignUp";
 
 import {
   LAYOUT_TYPE_BOXED,
@@ -81,6 +81,7 @@ const App = (props) => {
         messages={currentAppLocale.messages}>
         <Switch>
           <Route exact path='/signin' component={SignIn}/>
+          <Route exact path='/signup' component={SignUp}/>
           <RestrictedRoute path={`${match.url}`} isAuthenticated={isAuthenticated}
                            component={MainApp}/>
         </Switch>

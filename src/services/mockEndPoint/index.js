@@ -1,4 +1,8 @@
-import { message } from "antd";
+const mockusersemails = [
+    'bilal@mail.com',
+    'bilal2@mail.com',
+    'bilal3@mail.com',
+];
 
 export const signin = ( userData ) => {
     const { email, password } = userData;
@@ -23,18 +27,19 @@ export const signin = ( userData ) => {
     }
 }
  
-export const signup = (useData) => {
-    /*const { name, email, password } = useData;
-    let status, message;
-    if( email == '' || name == '' || password == '') {
-        status = 'error';
-        message = 'Invalid data'
-    } else {
-        status = 'error';
-        message = 'Invalid data'
+export const signup = (userData) => {
+    // if email exist return "email exist"
+    // else return success
+    const { username, email,  password } = userData;
+    if (mockusersemails.includes(email)) {
+        return {
+            status: 'error',
+            message: 'Email exist',
+        }
     }
     return {
-        status,
-        message
-    }*/
+        status: 'success',
+        message: 'email validation has been sent to activate your account',
+    }
 }
+
