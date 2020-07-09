@@ -3,10 +3,14 @@ import {Avatar, Popover} from "antd";
 
 const UserInfo = () => {
 
+  const onLogout = () => {
+    console.log('logout')
+  }
+  
   const userMenuOptions = (
     <ul className="gx-user-popover">
       <li>My Account</li>
-      <li>Connections</li>
+      <li onClick={onLogout}>Logout</li>
     </ul>
   );
 
@@ -18,6 +22,5 @@ const UserInfo = () => {
     </Popover>
   )
 };
-
 
 export default UserInfo;

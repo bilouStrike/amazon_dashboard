@@ -3,7 +3,7 @@ import { Redirect, Route } from "react-router-dom";
 
 const ServiceRoles = {
     'Service1': [
-        'agency_admin1',
+        'agency_admin',
         'role2',
     ],
     'Service2': [
@@ -27,8 +27,6 @@ export const RestrictedRoute = ({component: Component, isAuthenticated, ...rest}
 
 export const RouteMiddlware = ({component: Component, role, service, ...rest}) => {
     const rolesOfservice = ServiceRoles[service];
-    console.log(rolesOfservice);
-    console.log(rolesOfservice[role] );
     return (
         <Route
             {...rest}

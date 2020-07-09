@@ -47,7 +47,13 @@ const HorizontalNav = () => {
           <Link to="/service1"><i className="icon icon-shopping-cart "/>
             <IntlMessages id="sidebar.service1"/></Link>
         </Menu.Item>
-
+      </SubMenu>
+      <SubMenu className={getNavStyleSubMenuClass(navStyle)} key="service2"
+               title={<IntlMessages id="sidebar.service2"/>}>
+        <Menu.Item key="service2">
+          <Link to="/service2"><i className="icon icon-shopping-cart "/>
+            <IntlMessages id="sidebar.service2"/></Link>
+        </Menu.Item>
       </SubMenu>
     </Menu>
   );

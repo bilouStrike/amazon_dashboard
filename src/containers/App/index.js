@@ -84,6 +84,7 @@ const App = (props) => {
           <Route exact path='/signup' component={SignUp}/>
           <RestrictedRoute path={`${match.url}`} isAuthenticated={isAuthenticated}
                            component={MainApp}/>
+          
         </Switch>
       </IntlProvider>
     </ConfigProvider>
