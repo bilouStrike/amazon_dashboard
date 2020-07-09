@@ -1,14 +1,23 @@
-import React from "react";
-import {Route, Switch} from "react-router-dom";
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import asyncComponent from 'util/asyncComponent';
+import { RouteMiddlware } from 'middlware';
 
-import asyncComponent from "util/asyncComponent";
-
-const App = ({match}) => (
+const App = ({match}) => {
+  const { role } = useSelector(state => state.auth);
+  return (
   <div className="gx-main-content-wrapper">
     <Switch>
-      <Route path={`${match.url}service1`} component={asyncComponent(() => import('./Service1'))}/>
+      <RouteMiddlware 
+        path={`${match.url}service1`}
+        component={asyncComponent(() => import('./Service1'))}
+        role={role}
+        service='Service1'
+      />
+      <Route path={`${match.url}notAuthorized`} component={asyncComponent(() => import('components/Error404'))}/>
     </Switch>
   </div>
-);
+)};
 
 export default App;

@@ -18,23 +18,12 @@ import {
   THEME_TYPE_DARK
 } from "../../constants/ThemeSetting";
 
-const RestrictedRoute = ({component: Component, location, token, ...rest}) =>
-  <Route
-    {...rest}
-    render={props =>
-      token != '0'
-        ? <Component {...props} />
-        : <Redirect
-          to={{
-            pathname: '/signin',
-            state: {from: location}
-          }}
-        />}
-  />;
+import { RestrictedRoute } from 'middlware';
 
 const App = (props) => {
 
   const {match, location} = props;
+  const { isAuthenticated } = useSelector(state => state.auth)
 
   const dispatch = useDispatch();
 
@@ -43,8 +32,6 @@ const App = (props) => {
   const themeType = useSelector(({settings}) => settings.themeType);
   const layoutType = useSelector(({settings}) => settings.layoutType);
  
-
-
   const setLayoutType = (layoutType) => {
     if (layoutType === LAYOUT_TYPE_FULL) {
       document.body.classList.remove('boxed-layout');
@@ -76,9 +63,10 @@ const App = (props) => {
   if (themeType === THEME_TYPE_DARK) {
     document.body.classList.add('dark-theme');
   }
-  if (location.pathname === '/') {
+
+  /*if (location.pathname === '/') {
     return (<Redirect to={'/sample'}/>);
-  }
+  }*/
 
   setLayoutType(layoutType);
 
@@ -93,7 +81,8 @@ const App = (props) => {
         messages={currentAppLocale.messages}>
         <Switch>
           <Route exact path='/signin' component={SignIn}/>
-          <Route path='/' component={MainApp}/>
+          <RestrictedRoute path={`${match.url}`} isAuthenticated={isAuthenticated}
+                           component={MainApp}/>
         </Switch>
       </IntlProvider>
     </ConfigProvider>

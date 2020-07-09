@@ -1,8 +1,21 @@
 import React from "react";
-import {Button, Checkbox, Input, Form} from "antd";
+import {Button, Checkbox, Input, Alert, Form} from "antd";
 import IntlMessages from "util/IntlMessages";
+import { signInStart } from 'appRedux/actions/Auth';
+import { Redirect } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 
 const SignIn =()=> {
+    const dispatch = useDispatch();
+    const { loading, isAuthenticated, error } = useSelector(state => state.auth)
+    const onSignIn = (values) => {
+      dispatch(signInStart(values));
+    }
+
+    if (isAuthenticated) {
+      return <Redirect to='/' />;
+    }
+
     return (
       <div className="gx-app-login-wrap">
         <div className="gx-app-login-container">
@@ -19,12 +32,13 @@ const SignIn =()=> {
             </div>
             <div className="gx-app-login-content">
               <Form
+                onFinish={onSignIn}
                 initialValues={{ remember: true }}
                 name="basic"
                 className="gx-signin-form gx-form-row0">
                 <Form.Item
                   initialValue="demo@example.com"
-                  rules={[{ required: true, message: 'The input is not valid E-mail!' }]} name="email">
+                  rules={[{ required: true, message: 'The input is not valid E-mail!' }, { type: 'email', message: 'This is not valid email!' }]} name="email">
                   <Input placeholder="Email"/>
                 </Form.Item>
                 <Form.Item
@@ -38,11 +52,18 @@ const SignIn =()=> {
                     id="appModule.termAndCondition"/></span>
                 </Form.Item>
                 <Form.Item>
-                  <Button type="primary" className="gx-mb-0" htmlType="submit">
+                  <Button type="primary" className="gx-mb-0" loading={loading} htmlType="submit">
                     <IntlMessages id="app.userAuth.signIn"/>
                   </Button>
                 </Form.Item>
               </Form>
+              { error !== null ? <Alert
+                message="Failed"
+                description={error}
+                type="error"
+                showIcon
+              /> : null }
+              
             </div>
           </div>
         </div>

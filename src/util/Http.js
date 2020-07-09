@@ -1,7 +1,8 @@
 import axios from 'axios';
+import { BASE_API_URL } from 'constants/Common';
 
 export default axios.create({
-  baseURL: "http://g-axon.work/jwtauth/api",
+  baseURL: BASE_API_URL,
   headers: {
     'Content-Type': 'application/json',
   }

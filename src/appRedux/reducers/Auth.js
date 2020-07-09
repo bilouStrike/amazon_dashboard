@@ -1,0 +1,41 @@
+import {
+   SIGNIN_FAILED,
+   SIGNIN_SUCCESS,
+   SIGNIN_START
+} from '../../constants/ActionTypes';
+
+const INITIAL_STATE = {
+  isAuthenticated: false,
+  role: null,
+  user: null,
+  error: null,
+  loading: false,
+};
+
+const authReducer = (state = INITIAL_STATE, action) => {
+  switch (action.type) {
+    case SIGNIN_START:
+      return {
+        ...state,
+        loading: true,
+      };
+    case SIGNIN_FAILED:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
+    case SIGNIN_SUCCESS:
+      return {
+        ...state,
+        user: action.payload.username,
+        role: action.payload.role,
+        isAuthenticated: true,
+        error: null,
+        loading: false,
+      };
+    default:
+      return state;
+  }
+};
+export default authReducer;
