@@ -1,15 +1,28 @@
-import React from "react";
-import {Button, Checkbox, Input, Alert, Form} from "antd";
+import React, {useState} from "react";
+import {Button, Input, Alert, Form} from "antd";
 import IntlMessages from "util/IntlMessages";
-import { signInStart } from 'appRedux/actions/Auth';
+import { signInSuccess } from 'appRedux/actions/Auth';
 import { Redirect, Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
+import { signIn } from 'services/auth';
 
 const SignIn =()=> {
     const dispatch = useDispatch();
-    const { loading, isAuthenticated, error } = useSelector(state => state.auth)
-    const onSignIn = (values) => {
-      dispatch(signInStart(values));
+    const [ loadStart, setLoadStart ] = useState(false);
+    const [ responseData, setResponseData ] = useState({
+      status: null,
+      message: null
+    });
+    const { isAuthenticated } = useSelector(state => state.auth)
+    const onSignIn = async (values) => {
+      setLoadStart(true);
+      const { status, message, data } = await signIn(values);
+      setLoadStart(false);
+      if ( status == 'success') {
+        dispatch(signInSuccess(data));
+        return;
+      }
+      setResponseData({...responseData, status, message });
     }
 
     if (isAuthenticated) {
@@ -47,21 +60,16 @@ const SignIn =()=> {
                     <Input type="password" placeholder="Password"/>
                 </Form.Item>
                 <Form.Item>
-                    <Checkbox><IntlMessages id="appModule.iAccept"/></Checkbox>
-                  <span className="gx-signup-form-forgot gx-link"><IntlMessages
-                    id="appModule.termAndCondition"/></span>
-                </Form.Item>
-                <Form.Item>
-                  <Button type="primary" className="gx-mb-0" loading={loading} htmlType="submit">
+                  <Button type="primary" className="gx-mb-0" loading={loadStart} htmlType="submit">
                     <IntlMessages id="app.userAuth.signIn"/>
                   </Button>
                   <span><IntlMessages id="app.userAuth.or"/></span> <Link to="/signup"><IntlMessages
                   id="app.userAuth.signUp"/></Link>
                 </Form.Item>
               </Form>
-              { error !== null ? <Alert
+              { responseData.status == 'error' ? <Alert
                 message="Failed"
-                description={error}
+                description={responseData.message}
                 type="error"
                 showIcon
               /> : null }

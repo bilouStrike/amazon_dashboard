@@ -17,7 +17,7 @@ export const signin = ( userData ) => {
           message = null;
     } else {
         status = 'error';
-        message = 'invalid Data';
+        message = 'Invalid Credentials';
         data = '';
     }
     return {

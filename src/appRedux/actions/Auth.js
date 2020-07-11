@@ -1,7 +1,8 @@
 import {
     SIGNIN_START,
     SIGNIN_SUCCESS,
-    SIGNIN_FAILED
+    SIGNIN_FAILED,
+    SIGNOUT,
 } from "../../constants/ActionTypes";
 
 export const signInStart = (credentials) => ({
@@ -17,4 +18,8 @@ export const signInSuccess = (userData) => ({
 export const signInFailed = (error) => ({
     type: SIGNIN_FAILED,
     payload: error,
+});
+
+export const signOut = () => ({
+    type: SIGNOUT,
 });

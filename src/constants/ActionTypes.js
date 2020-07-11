@@ -16,7 +16,7 @@ export const ON_HIDE_LOADER = 'ON_HIDE_LOADER';
 export const SIGNIN_START = 'SIGNIN_START';
 export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
 export const SIGNIN_FAILED = 'SIGNIN_FAILED';
-
+export const SIGNOUT = 'SIGNOUT';
 export const SIGNOUT_USER = 'SIGNOUT_USER';
 export const SIGNOUT_USER_SUCCESS = 'SIGNOUT_USER_SUCCESS';
 export const INIT_URL = 'INIT_URL';

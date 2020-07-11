@@ -1,10 +1,13 @@
 import React from "react";
-import {Avatar, Popover} from "antd";
+import { Avatar, Popover } from "antd";
+import { signOut } from 'appRedux/actions/Auth';
+import { useDispatch } from 'react-redux';
 
 const UserInfo = () => {
 
+  const dispatch = useDispatch();
   const onLogout = () => {
-    console.log('logout')
+    dispatch(signOut());
   }
   
   const userMenuOptions = (

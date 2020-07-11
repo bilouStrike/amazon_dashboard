@@ -1,8 +1,8 @@
 import React from "react";
-import {useDispatch, useSelector} from "react-redux";
+import { useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { ConfigProvider } from 'antd';
-import {IntlProvider} from "react-intl";
+import { IntlProvider } from "react-intl";
 
 import AppLocale from "lngProvider";
 import MainApp from "./MainApp";
@@ -22,11 +22,7 @@ import { RestrictedRoute } from 'middlware';
 
 const App = (props) => {
 
-  const {match, location} = props;
   const { isAuthenticated } = useSelector(state => state.auth)
-
-  const dispatch = useDispatch();
-
   const locale = useSelector(({settings}) => settings.locale);
   const navStyle = useSelector(({settings}) => settings.navStyle);
   const themeType = useSelector(({settings}) => settings.themeType);
@@ -64,10 +60,6 @@ const App = (props) => {
     document.body.classList.add('dark-theme');
   }
 
-  /*if (location.pathname === '/') {
-    return (<Redirect to={'/sample'}/>);
-  }*/
-
   setLayoutType(layoutType);
 
   setNavStyle(navStyle);
@@ -82,7 +74,7 @@ const App = (props) => {
         <Switch>
           <Route exact path='/signin' component={SignIn}/>
           <Route exact path='/signup' component={SignUp}/>
-          <RestrictedRoute path={`${match.url}`} isAuthenticated={isAuthenticated}
+          <RestrictedRoute path='/' isAuthenticated={isAuthenticated}
                            component={MainApp}/>
           
         </Switch>

@@ -1,7 +1,8 @@
 import {
    SIGNIN_FAILED,
    SIGNIN_SUCCESS,
-   SIGNIN_START
+   SIGNIN_START,
+   SIGNOUT
 } from '../../constants/ActionTypes';
 
 const INITIAL_STATE = {
@@ -33,6 +34,13 @@ const authReducer = (state = INITIAL_STATE, action) => {
         isAuthenticated: true,
         error: null,
         loading: false,
+      };
+    case SIGNOUT:
+      return {
+        ...state,
+        user: null,
+        role: null,
+        isAuthenticated: false,
       };
     default:
       return state;
