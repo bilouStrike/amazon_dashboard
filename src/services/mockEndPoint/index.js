@@ -28,13 +28,11 @@ export const signin = ( userData ) => {
 }
  
 export const signup = (userData) => {
-    // if email exist return "email exist"
-    // else return success
-    const { username, email,  password } = userData;
+    const { email } = userData;
     if (mockusersemails.includes(email)) {
         return {
             status: 'error',
-            message: 'Email exist',
+            message: 'An exist account is related with this email',
         }
     }
     return {
