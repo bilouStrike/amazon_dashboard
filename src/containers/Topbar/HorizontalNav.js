@@ -1,6 +1,8 @@
 import React from "react";
 import {useSelector} from "react-redux";
 import {Menu} from "antd";
+import { DownOutlined } from '@ant-design/icons';
+
 import {Link} from "react-router-dom";
 import IntlMessages from "../../util/IntlMessages";
 import {
@@ -41,18 +43,19 @@ const HorizontalNav = () => {
       selectedKeys={[selectedKeys]}
       mode="horizontal">
 
-      <SubMenu className={getNavStyleSubMenuClass(navStyle)} key="service1"
-               title={<IntlMessages id="sidebar.service1"/>}>
-        <Menu.Item key="service1">
-          <Link to="/service1"><i className="icon icon-shopping-cart "/>
-            <IntlMessages id="sidebar.service1"/></Link>
+      <SubMenu className={getNavStyleSubMenuClass(navStyle)} key="sales"
+        title={<><span><IntlMessages id="sidebar.sales"/></span> <DownOutlined /></> }
+      >
+        <Menu.Item key="sales">
+          <Link to="/sales"><i className="icon icon-shopping-cart"/>
+            <IntlMessages id="sidebar.sales"/></Link>
         </Menu.Item>
       </SubMenu>
-      <SubMenu className={getNavStyleSubMenuClass(navStyle)} key="service2"
-               title={<IntlMessages id="sidebar.service2"/>}>
-        <Menu.Item key="service2">
-          <Link to="/service2"><i className="icon icon-shopping-cart "/>
-            <IntlMessages id="sidebar.service2"/></Link>
+      <SubMenu className={getNavStyleSubMenuClass(navStyle)} key="inventory"
+        title={<><span><IntlMessages id="sidebar.inventory"/></span><DownOutlined style={{ marginLeft: '5px' }} /></>}>
+        <Menu.Item key="inventory">
+          <Link to="/inventory"><i className="icon icon-shopping-cart"/>
+            <IntlMessages id="sidebar.inventory"/></Link>
         </Menu.Item>
       </SubMenu>
     </Menu>

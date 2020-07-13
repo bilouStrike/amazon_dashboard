@@ -10,16 +10,23 @@ const App = ({match}) => {
   <div className="gx-main-content-wrapper">
     <Switch>
       <RouteMiddlware 
-        path={`${match.url}service1`}
-        component={asyncComponent(() => import('./Service1'))}
+        path={`${match.url}`}
+        component={asyncComponent(() => import('./Dashboard'))}
         role={role}
-        service='Service1'
+        exact
+        service='dashboard'
       />
       <RouteMiddlware 
-        path={`${match.url}service2`}
-        component={asyncComponent(() => import('./Service2'))}
+        path={`${match.url}sales`}
+        component={asyncComponent(() => import('./Sales'))}
         role={role}
-        service='Service2'
+        service='Sales'
+      />
+      <RouteMiddlware 
+        path={`${match.url}inventory`}
+        component={asyncComponent(() => import('./Inventory'))}
+        role={role}
+        service='Inventory'
       />
       <Route path={`${match.url}notAuthorized`} component={asyncComponent(() => import('components/Error404'))}/>
     </Switch>

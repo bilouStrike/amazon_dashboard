@@ -93,7 +93,7 @@
       }
 
       .@{class-prefix}-inside-header-horizontal & {
-        margin-right: 20px;
+        margin-right: 40px;
       }
 
       @media screen and (max-width: @screen-md-max) {
@@ -152,8 +152,8 @@
 
 .@{class-prefix}-header-horizontal-main .@{class-prefix}-header-notifications li {
   & > span {
-    color: @text-color;
-
+    color: @grey-9;
+    font-size: 20px;
     .@{class-prefix}-header-horizontal-dark & {
       color: @secondary-color;
     }
@@ -237,7 +237,7 @@
   position: relative;
   color: @secondary-color;
   background-color: @white-color;
-
+  border-bottom: 1px solid @grey-6;
   &-dark {
     position: relative;
     background-color: @nav-dark-bg;

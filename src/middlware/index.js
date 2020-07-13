@@ -2,11 +2,15 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 
 const ServiceRoles = {
-    'Service1': [
+    'dashboard': [
+      'agency_admin',
+      'role2',
+    ],
+    'Sales': [
         'agency_admin',
         'role2',
     ],
-    'Service2': [
+    'Inventory': [
         'role1',
         'role2',
     ]

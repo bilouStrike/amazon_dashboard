@@ -1,57 +1,33 @@
-import React, {useState} from "react";
-import {Button, Dropdown, Layout, Menu, message, Popover} from 'antd';
+import React from "react";
+import { Layout, Popover, List} from 'antd';
 import {connect, useDispatch, useSelector} from "react-redux";
-import CustomScrollbars from "util/CustomScrollbars";
-import languageData from "../languageData";
-import SearchBox from "components/SearchBox";
 import UserInfo from "components/UserInfo";
 import AppNotification from "components/AppNotification";
-import MailNotification from "components/MailNotification";
 import HorizontalNav from "../HorizontalNav";
 import {Link} from "react-router-dom";
 import {switchLanguage, toggleCollapsedSideNav} from "../../../appRedux/actions/Setting";
-import IntlMessages from "../../../util/IntlMessages";
-import DownOutlined from "@ant-design/icons/lib/icons/DownOutlined";
 
 const {Header} = Layout;
 
-const menu = (
-  <Menu onClick={handleMenuClick}>
-    <Menu.Item key="1">Products</Menu.Item>
-    <Menu.Item key="2">Apps</Menu.Item>
-    <Menu.Item key="3">Blogs</Menu.Item>
-  </Menu>
-);
-
-function handleMenuClick(e) {
-  message.info('Click on menu item.');
-}
-
 const InsideHeader = () => {
 
+  const data = [
+    {
+      title: 'Manage companies',
+    },
+    {
+      title: 'Manage chanels',
+    },
+    {
+      title: 'Agency settings',
+    },
+    {
+      title: 'Manage employers'
+    }
+  ];
   const dispatch = useDispatch();
 
-  const [searchText, setSearchText] = useState('');
-  const locale = useSelector(({settings}) => settings.locale);
   const navCollapsed = useSelector(({settings}) => settings.navCollapsed);
-
-  const languageMenu = () => (
-    <CustomScrollbars className="gx-popover-lang-scroll">
-      <ul className="gx-sub-popover">
-        {languageData.map(language =>
-          <li className="gx-media gx-pointer" key={JSON.stringify(language)} onClick={(e) =>
-            dispatch(switchLanguage(language))
-          }>
-            <i className={`flag flag-24 gx-mr-2 flag-${language.icon}`}/>
-            <span className="gx-language-text">{language.name}</span>
-          </li>
-        )}
-      </ul>
-    </CustomScrollbars>);
-
-  const updateSearchChatUser = (evt) => {
-    setSearchText(evt.target.value)
-  };
 
   return (
     <div className="gx-header-horizontal gx-header-horizontal-dark gx-inside-header-horizontal">
@@ -76,21 +52,23 @@ const InsideHeader = () => {
             </div>
             <ul className="gx-header-notifications gx-ml-auto">
               <li className="gx-notify gx-notify-search">
-                <Popover overlayClassName="gx-popover-horizantal"
-                         placement="bottomRight" content={
-                  <div className="gx-d-flex"><Dropdown overlay={menu}>
-                    <Button>
-                      Category <DownOutlined />
-                    </Button>
-                  </Dropdown>
-                    <SearchBox styleName="gx-popover-search-bar"
-                               placeholder="Search in app..."
-                               onChange={updateSearchChatUser}
-                               value={searchText}/></div>
+                <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight" 
+                  content={
+                    <div className="gx-popover-setting-scroll">
+                        <List
+                          itemLayout="horizontal"
+                          dataSource={data}
+                          renderItem={item => (
+                            <List.Item>
+                              <List.Item.Meta
+                                title={<a href="#">{item.title}</a>}
+                              />
+                            </List.Item>
+                          )}
+                        />
+                    </div>
                 } trigger="click">
-
-                  <span className="gx-pointer gx-d-block"><i className="icon icon-search-new"/></span>
-
+                  <span className="gx-pointer gx-d-block"><i className="icon icon-setting"/></span>
                 </Popover>
               </li>
 
@@ -98,24 +76,6 @@ const InsideHeader = () => {
                 <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight" content={<AppNotification/>}
                          trigger="click">
                   <span className="gx-pointer gx-d-block"><i className="icon icon-notification"/></span>
-                </Popover>
-              </li>
-
-              <li className="gx-msg">
-                <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight"
-                         content={<MailNotification/>} trigger="click">
-                <span className="gx-pointer gx-status-pos gx-d-block">
-                <i className="icon icon-chat-new"/>
-                <span className="gx-status gx-status-rtl gx-small gx-orange"/>
-                </span>
-                </Popover>
-              </li>
-              <li className="gx-language">
-                <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight"
-                         content={languageMenu()} trigger="click">
-              <span className="gx-pointer gx-flex-row gx-align-items-center"><i
-                className={`flag flag-24 flag-${locale.icon}`}/>
-              </span>
                 </Popover>
               </li>
               <li className="gx-user-nav"><UserInfo/></li>
