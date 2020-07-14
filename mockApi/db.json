@@ -26,6 +26,17 @@
         "widget_sells"
       ],
       "id": 3
+    },
+    {
+      "name": "fdsfsdf fsfsdf",
+      "permissions": [
+        "manage_sells",
+        "manage users",
+        "permission01",
+        "widget_sells",
+        "permission02"
+      ],
+      "id": 4
     }
   ],
   "permissions": [
