@@ -1,29 +1,58 @@
 {
-  "posts": [
+  "roles": [
     {
       "id": 1,
-      "title": "hai-server",
-      "author": "sumn2u"
+      "name": "role1",
+      "permissions": [
+        "permission01",
+        "permission02",
+        "permission03",
+        "permission04"
+      ]
     },
     {
-      "email": "demo@example.com",
-      "password": "demo#123",
-      "id": 2
+      "id": 2,
+      "name": "role2",
+      "permissions": [
+        "permission01",
+        "permission04"
+      ]
     },
     {
-      "email": "demo@example.com",
-      "password": "demo#123",
+      "name": "fdsfdsfsdf",
+      "permissions": [
+        "manage_sells",
+        "manage users",
+        "widget_sells"
+      ],
       "id": 3
     }
   ],
-  "comments": [
+  "permissions": [
     {
       "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "name": "manage_sells",
+      "service": "sells"
+    },
+    {
+      "id": 2,
+      "name": "manage users",
+      "service": "sells"
+    },
+    {
+      "id": 3,
+      "name": "widget_sells",
+      "service": "sells"
+    },
+    {
+      "id": 4,
+      "name": "permission01",
+      "service": "sells"
+    },
+    {
+      "id": 5,
+      "name": "permission02",
+      "service": "sells"
     }
-  ],
-  "profile": {
-    "name": "sumn2u"
-  }
+  ]
 }

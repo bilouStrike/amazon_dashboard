@@ -14,15 +14,23 @@ const InsideHeader = () => {
   const data = [
     {
       title: 'Manage companies',
+      link: '/',
     },
     {
       title: 'Manage chanels',
+      link: '/',
     },
     {
       title: 'Agency settings',
+      link: '/',
     },
     {
-      title: 'Manage employers'
+      title: 'Manage employers',
+      link: '/',
+    },
+    {
+      title: 'Manage roles',
+      link: '/roles',
     }
   ];
   const dispatch = useDispatch();
@@ -59,11 +67,11 @@ const InsideHeader = () => {
                           itemLayout="horizontal"
                           dataSource={data}
                           renderItem={item => (
-                            <List.Item>
-                              <List.Item.Meta
-                                title={<a href="#">{item.title}</a>}
-                              />
-                            </List.Item>
+                            <Link to={item.link}>
+                              <List.Item>
+                                <List.Item.Meta title={item.title}/>
+                              </List.Item>
+                            </Link>
                           )}
                         />
                     </div>

@@ -13,6 +13,10 @@ const ServiceRoles = {
     'Inventory': [
         'role1',
         'role2',
+    ],
+    'Roles': [
+      'agency_admin',
+      'role2',
     ]
 }
 

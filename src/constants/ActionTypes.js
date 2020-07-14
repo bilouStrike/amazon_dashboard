@@ -18,8 +18,22 @@ export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';
 export const SIGNIN_FAILED = 'SIGNIN_FAILED';
 export const SIGNOUT = 'SIGNOUT';
 export const SIGNOUT_USER = 'SIGNOUT_USER';
-export const SIGNOUT_USER_SUCCESS = 'SIGNOUT_USER_SUCCESS';
-export const INIT_URL = 'INIT_URL';
+
+// Roles
+export const ADD_ROLE_START = 'ADD_ROLE_START';
+export const ADD_ROLE_SUCCESS = 'ADD_ROLE_SUCCESS';
+export const ADD_ROLE_FAILED = 'ADD_ROLE_FAILED';
+
+export const GET_ROLE_START = 'GET_ROLE_START';
+export const GET_ROLE_SUCCESS = 'GET_ROLE_SUCCESS';
+export const GET_ROLE_FAILED = 'GET_ROLE_FAILED';
+
+// Permissions
+export const GET_PERMISSIONS_START = 'GET_PERMISSIONS_START';
+export const GET_PERMISSIONS_SUCCESS = 'GET_PERMISSIONS_SUCCESS';
+export const GET_PERMISSIONS_FAILED = 'GET_PERMISSIONS_FAILED';
+
+//
 export const USER_DATA = 'user_data';
 export const USER_TOKEN_SET = 'user_token_set';
 

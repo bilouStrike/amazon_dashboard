@@ -1,6 +1,6 @@
-import React from "react";
-import {Layout} from "antd";
-
+import React, { useEffect } from "react";
+import { Layout } from "antd";
+import { useDispatch } from 'react-redux';
 import Sidebar from "../Sidebar/index";
 import InsideHeader from "../Topbar/InsideHeader/index";
 
@@ -18,6 +18,12 @@ import {
   TAB_SIZE 
 } from "../../constants/ThemeSetting";
 import NoHeaderNotification from "../Topbar/NoHeaderNotification/index";
+
+// Initialise roles for store
+import { getRolesStart } from 'appRedux/actions/Roles';
+
+// Initialise permissions for store
+import { getPermissionsStart } from 'appRedux/actions/Permissions';
 
 const {Content, Footer} = Layout;
 
@@ -71,6 +77,12 @@ const MainApp = (props) => {
         return null;
     }
   };
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getRolesStart());
+    dispatch(getPermissionsStart());
+  }, []);
 
   const {match} = props;
 

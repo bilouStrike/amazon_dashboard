@@ -1,11 +1,12 @@
-import {combineReducers} from "redux";
+import { combineReducers } from "redux";
 import Settings from "./Settings";
 import Common from "./Common";
 import authReducer from "./Auth";
+import rolesReducer from "./Roles";
+import permissionsReducer from "./Permissions";
+
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-
-import {connectRouter} from 'connected-react-router'
 
 const persistConfig = {
   key: 'root',
@@ -16,7 +17,9 @@ const persistConfig = {
 const rootReducer = combineReducers({
   settings: Settings,
   commonData: Common,
-  auth: authReducer
+  auth: authReducer,
+  roles: rolesReducer,
+  permissions: permissionsReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);
