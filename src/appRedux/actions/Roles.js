@@ -4,7 +4,8 @@ import {
     GET_ROLE_FAILED,
     ADD_ROLE_START,
     ADD_ROLE_SUCCESS,
-    ADD_ROLE_FAILED
+    ADD_ROLE_FAILED,
+    EDIT_ROLE_SUCCESS
 } from "../../constants/ActionTypes";
 
 export const getRolesStart = () => ({
@@ -35,3 +36,9 @@ export const addRoleFailed = (error) => ({
     type: ADD_ROLE_FAILED,
     payload: error,
 });
+
+export const editRoleSuccess = (role) => ({
+    type: EDIT_ROLE_SUCCESS,
+    payload: role,
+});
+

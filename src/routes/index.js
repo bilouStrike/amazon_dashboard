@@ -14,7 +14,7 @@ const App = ({match}) => {
         component={asyncComponent(() => import('./Dashboard'))}
         role={role}
         exact
-        service='dashboard'
+        service='Dashboard'
       />
       <RouteMiddlware 
         path={`${match.url}sales`}
@@ -33,6 +33,13 @@ const App = ({match}) => {
         component={asyncComponent(() => import('./Roles'))}
         role={role}
         service='Roles'
+        exact
+      />
+      <RouteMiddlware 
+        path={`${match.url}permissions`}
+        component={asyncComponent(() => import('./Permissions'))}
+        role={role}
+        service='Permissions'
         exact
       />
       <Route path={`${match.url}notAuthorized`} component={asyncComponent(() => import('components/Error404'))}/>

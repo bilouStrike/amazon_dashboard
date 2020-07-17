@@ -48,11 +48,16 @@ const SidebarContent = () => {
             theme={themeType === THEME_TYPE_LITE ? 'lite' : 'dark'}
             mode="inline">
 
-            <Menu.Item key="service1">
-              <Link to="/service1"><i className="icon icon-widgets"/>
-                <span><IntlMessages id="sidebar.service1"/></span>
+            <Menu.Item key="sales">
+              <Link to="/sales"><i className="icon icon-widgets"/>
+                <span><IntlMessages id="sidebar.sales"/></span>
               </Link>
             </Menu.Item>
+            <Menu.Item key="inventory">
+              <Link to="/inventory"><i className="icon icon-widgets"/>
+                <span><IntlMessages id="sidebar.inventory"/></span>
+              </Link>
+            </Menu.Item> 
 
           </Menu>
         </CustomScrollbars>

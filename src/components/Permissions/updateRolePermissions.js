@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import { Button, Modal, Form, Input, Checkbox, Row, Col, Alert } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { SettingOutlined } from '@ant-design/icons';
+import { updateRole } from 'services/roles';
+import { editRoleSuccess } from 'appRedux/actions/Roles';
 
 const FormItem = Form.Item;
 
@@ -28,15 +30,14 @@ const UpdateRolePermissions = ({roleId, roleName, permissionsList}) =>  {
   };
 
   const handleUpdate = async (values) => {
-      console.log(values);
-    /*setLoading(true);
-    const { status, message, data } = await addRole(values);
+    const roleData = await {
+        name: roleName,
+        permissions: values.permissions
+    }
+    setLoading(true);
+    const { status, message, data } = await updateRole(roleData, roleId);
     setLoading(false);
     setResponseData({...responseData, status, message });
-    if ( status === 'success') {
-      dispatch(addRoleSuccess(data));
-      return;
-    }*/
   }
 
   return (

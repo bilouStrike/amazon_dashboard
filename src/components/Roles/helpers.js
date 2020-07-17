@@ -7,6 +7,7 @@ export default function roles_data_format(data) {
   
   data.map(role => result.push({
     key: role.id,
+    id: role.id,
     name: role.name,
     permissions: role.permissions
   }));

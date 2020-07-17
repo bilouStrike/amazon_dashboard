@@ -20,3 +20,17 @@ export const addRole = async (role) => {
   }
   return { data, status, message };
 };
+
+/** Edit role */
+export const updateRole = async (roleData, id) => {
+  let message, status;
+  const { data, statusText } = await Http.put(`/roles/${id}`, roleData);
+  if( statusText === 'OK' ) {
+    status = 'success';
+    message = 'Permissions updated';
+  } else {
+    status = 'error';
+    message = 'Something wrong';
+  }
+  return { data, status, message };
+}

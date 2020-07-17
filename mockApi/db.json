@@ -1,69 +1,82 @@
 {
   "roles": [
     {
-      "id": 1,
-      "name": "role1",
+      "name": "agency_admin",
       "permissions": [
-        "permission01",
-        "permission02",
-        "permission03",
-        "permission04"
-      ]
+        "manage_dashboard",
+        "manage_roles",
+        "manage_permissions",
+        "manage_Sells"
+      ],
+      "id": 1
     },
     {
-      "id": 2,
       "name": "role2",
       "permissions": [
-        "permission01",
-        "permission04"
-      ]
-    },
-    {
-      "name": "fdsfdsfsdf",
-      "permissions": [
-        "manage_sells",
-        "manage users",
-        "widget_sells"
-      ],
-      "id": 3
-    },
-    {
-      "name": "fdsfsdf fsfsdf",
-      "permissions": [
-        "manage_sells",
-        "manage users",
-        "permission01",
         "widget_sells",
-        "permission02"
+        "manage_dashboard",
+        "manage_Sells",
+        "manage_roles"
       ],
-      "id": 4
+      "id": 2
+    },
+    {
+      "name": "bilal manager",
+      "permissions": [
+        "manage_Sells",
+        "manage_dashboard",
+        "manage_permissions"
+      ],
+      "id": 5
     }
   ],
   "permissions": [
     {
       "id": 1,
-      "name": "manage_sells",
-      "service": "sells"
+      "name": "manage_Sells",
+      "service": "Sales"
     },
     {
       "id": 2,
-      "name": "manage users",
-      "service": "sells"
+      "name": "manage_dashboard",
+      "service": "Dashboard"
     },
     {
       "id": 3,
-      "name": "widget_sells",
-      "service": "sells"
+      "name": "manage_permissions",
+      "service": "Permissions"
     },
     {
       "id": 4,
-      "name": "permission01",
-      "service": "sells"
+      "name": "manage_roles",
+      "service": "Roles"
     },
     {
-      "id": 5,
-      "name": "permission02",
-      "service": "sells"
+      "name": "gdfgdfgdfg",
+      "service": "Dashboard",
+      "id": 5
+    }
+  ],
+  "services": [
+    {
+      "id": 1,
+      "name": "Dashboard",
+      "type": "service"
+    },
+    {
+      "id": 2,
+      "name": "Roles",
+      "type": "service"
+    },
+    {
+      "id": 3,
+      "name": "Sales",
+      "type": "widget"
+    },
+    {
+      "id": 4,
+      "name": "Permissions",
+      "type": "service"
     }
   ]
 }
