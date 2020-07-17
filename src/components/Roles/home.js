@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Card, Table, Tag } from 'antd';
 import { useSelector } from 'react-redux';
 import roles_data_format from './helpers';
@@ -28,14 +28,17 @@ const columns = [
   {
     title: 'Manage permissions',
     key: 'action',
-    render: (role) => 
-      <UpdateRolePermissions
-          key={role.id}
-          roleId={role.id}
-          roleName={role.name}
-          permissionsList={role.permissions}
-      />
-    
+    render: (role) => {
+      console.log(role.name)
+      return <UpdateRolePermissions
+      key={role.id}
+      roleId={role.id}
+      roleName={role.name}
+      permissionsList={role.permissions}
+  />
+
+    }
+      
   }
 ];
 

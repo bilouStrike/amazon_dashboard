@@ -1,6 +1,5 @@
-import React from "react";
-
-import IntlMessages from "util/IntlMessages";
+import React from 'react';
+import IntlMessages from 'util/IntlMessages';
 
 const Sales = () => {
   return (

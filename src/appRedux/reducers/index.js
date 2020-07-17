@@ -4,6 +4,7 @@ import Common from "./Common";
 import authReducer from "./Auth";
 import rolesReducer from "./Roles";
 import permissionsReducer from "./Permissions";
+import servicesReducer from "./Services";
 
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   commonData: Common,
   auth: authReducer,
   roles: rolesReducer,
-  permissions: permissionsReducer
+  permissions: permissionsReducer,
+  services: servicesReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);

@@ -19,11 +19,10 @@ import {
 } from "../../constants/ThemeSetting";
 import NoHeaderNotification from "../Topbar/NoHeaderNotification/index";
 
-// Initialise roles for store
+// Initialise roles, permission and services of the system
 import { getRolesStart } from 'appRedux/actions/Roles';
-
-// Initialise permissions for store
 import { getPermissionsStart } from 'appRedux/actions/Permissions';
+import { getServicesStart } from 'appRedux/actions/Services';
 
 const {Content, Footer} = Layout;
 
@@ -82,6 +81,7 @@ const MainApp = (props) => {
   useEffect(() => {
     dispatch(getRolesStart());
     dispatch(getPermissionsStart());
+    dispatch(getServicesStart());
   }, []);
 
   const {match} = props;
