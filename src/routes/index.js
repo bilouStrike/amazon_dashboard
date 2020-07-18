@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import asyncComponent from 'util/asyncComponent';
 import { RouteMiddlware } from 'middlware';
-
+import Users from './Users';
 const App = ({match}) => {
   const { role } = useSelector(state => state.auth);
   return (
@@ -41,6 +41,12 @@ const App = ({match}) => {
         role={role}
         service='Permissions'
         exact
+      />
+     <RouteMiddlware 
+        path={`${match.url}users`}
+        component={Users}
+        role={role}
+        service='Users'
       />
       <Route path={`${match.url}notAuthorized`} component={asyncComponent(() => import('components/Error404'))}/>
     </Switch>

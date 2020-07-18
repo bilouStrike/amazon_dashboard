@@ -6,6 +6,10 @@ export const getRoles = async () => {
   return { data, statusText };
 };
 
+export const getRolesByField = async (field, value) => {
+  const { data, statusText } = await Http.get(`/roles?${field}=${value}`);
+  return { data, statusText };
+}
 
 /** Add new role */
 export const addRole = async (role) => {

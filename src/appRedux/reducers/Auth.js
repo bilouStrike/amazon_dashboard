@@ -10,6 +10,7 @@ const INITIAL_STATE = {
   role: null,
   user: null,
   error: null,
+  agencyId: null,
   loading: false,
 };
 
@@ -31,6 +32,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         ...state,
         user: action.payload.username,
         role: action.payload.role,
+        agencyId: action.payload.agencyId,
         isAuthenticated: true,
         error: null,
         loading: false,
