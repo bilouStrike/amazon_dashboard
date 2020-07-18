@@ -1,21 +1,20 @@
 import React, {useState} from 'react';
 import { Button, Modal, Form, Input, Checkbox, Row, Col, Alert } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { addRole } from 'services/roles';
-import { addRoleSuccess } from '../../appRedux/actions/Roles';
+import { addUser } from 'services/users';
 
 const FormItem = Form.Item;
 
-const AddRole = () =>  {
+const AddUser = () =>  {
   const [visible, setVisible] = useState(false);
-  const dispatch = useDispatch();
-  const { permissions } = useSelector(state => state.permissions);
-  const { agencyId, companyId } = useSelector(state => state.auth);
   const [ loading, setLoading ] = useState(false);
   const [ responseData, setResponseData ] = useState({
     status: null,
     message: null
   });
+
+  const { roles } = useSelector(state => state.roles);
+  const { agencyId, companyId } = useSelector(state => state.auth);
 
   const showModal = () => {
     setVisible(true);
@@ -29,23 +28,19 @@ const AddRole = () =>  {
     setVisible(false);
   };
 
-  const handleAddRole = async (values) => {
+  const handleAddUser = async (values) => {
     setLoading(true);
-    const role = agencyId != 0 ? {...values, agencyId, companyId:0} : {...values, companyId};
-    const { status, message, data } = await addRole(role);
+    const user = { ...values, agencyId, companyId };
+    const { status, message, data } = await addUser(user);
     setLoading(false);
     setResponseData({...responseData, status, message });
-    if ( status === 'success') {
-      dispatch(addRoleSuccess(data));
-      return;
-    }
   }
 
   return (
     <>
-        <Button type="primary" onClick={showModal}>Add new role</Button>
+        <Button type="primary" onClick={showModal}>New User</Button>
         <Modal
-            title="Add new role"
+            title="New User"
             visible={visible}
             onOk={handleOk}
             onCancel={handleCancel}
@@ -53,33 +48,45 @@ const AddRole = () =>  {
         >
             <Form 
                 initialValues={{ remember: true }}
-                name="Add role"
-                onFinish={handleAddRole}
+                name="Add user"
+                onFinish={handleAddUser}
             >
                 <Form.Item
                     name="name"
-                    label="Role Name"
+                    label="Name"
                     rules={[
                         {
                             required: true,
-                            message: 'Please input the role name!',
+                            message: 'Please input the name!',
                         },
                     ]}
                 >
                     <Input />
                 </Form.Item>
-                <Form.Item name="permissions" label="Permissions:">
+                <Form.Item
+                    name="password"
+                    label="Password"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input the password!',
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item name="roles" label="Roles:">
                     <Checkbox.Group style={{width:'100%'}}>
                     <Row>
-                        { permissions != null ? permissions.map(permission => (
-                            <Col span={24} key={permission.id}>
+                        { roles != null ? roles.map(role => (
+                            <Col span={24} key={role.id}>
                                 <Checkbox
-                                    value={permission.name}
+                                    value={role.name}
                                     style={{
                                     lineHeight: '32px',
                                     }}
                                 >
-                                    {permission.name}
+                                    {role.name}
                                 </Checkbox>
                             </Col>
                         )) : null}
@@ -107,4 +114,4 @@ const AddRole = () =>  {
     );
 }
 
-export default AddRole;
+export default AddUser;

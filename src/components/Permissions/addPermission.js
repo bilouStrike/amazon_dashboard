@@ -22,7 +22,6 @@ const AddPermission = () =>  {
     setVisible(true);
   };
   
-  console.log(services);
   const handleOk = (e) => {
     setVisible(false);
     setResponseData({status: null,
@@ -36,7 +35,6 @@ const AddPermission = () =>  {
   };
 
   const handleAddRole = async (values) => {
-      console.log(values);
     setLoading(true);
     const { status, message, data } = await addPermission(values);
     setLoading(false);

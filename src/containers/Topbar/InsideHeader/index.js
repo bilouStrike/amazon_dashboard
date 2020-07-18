@@ -25,12 +25,16 @@ const InsideHeader = () => {
       link: '/',
     },
     {
-      title: 'Manage employers',
-      link: '/',
+      title: 'Manage Users',
+      link: '/users',
     },
     {
       title: 'Manage roles',
       link: '/roles',
+    },
+    {
+      title: 'Manage Permissions',
+      link: '/permissions',
     }
   ];
   const dispatch = useDispatch();

@@ -1,9 +1,10 @@
-import React from 'react';
+import React,{ useState, useEffect } from 'react';
 import { Card, Table, Tag } from 'antd';
 import { useSelector } from 'react-redux';
-import roles_data_format from './helpers';
 import AddRole from './addRole';
 import UpdateRolePermissions from 'components/Permissions/updateRolePermissions';
+import { AddKeyToArrayOfObject } from 'helpers/dataFormat';
+import { getRolesByField } from 'services/roles';
 
 const columns = [
   {
@@ -17,11 +18,11 @@ const columns = [
     key: 'permissions',
     render: permissions => (
       <>
-        { permissions.map(permission => (
+        { permissions ? permissions.map(permission => (
           <Tag color='green' key={permission}>
             {permission.toUpperCase()}
           </Tag>
-        ) )}
+        ) ) : null}
       </>
       )
   },
@@ -29,22 +30,31 @@ const columns = [
     title: 'Manage permissions',
     key: 'action',
     render: (role) => {
-      console.log(role.name)
       return <UpdateRolePermissions
       key={role.id}
       roleId={role.id}
       roleName={role.name}
       permissionsList={role.permissions}
-  />
-
+    />
     }
-      
   }
 ];
 
-const Home = () => { 
-    const { roles } = useSelector(state => state.roles);
-    const dataview = roles_data_format(roles);
+const Home = () => {
+    const { agencyId, companyId } = useSelector(state => state.auth);
+    const [roles, setRoles] = useState([]);
+
+    useEffect(() => {
+      const getAgencyRoles = async () => {
+        const field = agencyId != 0 ? 'agencyId' : 'companyId';
+        const value = agencyId != 0 ? agencyId : companyId;
+        const { data } = await getRolesByField(field, value);
+        setRoles(data);
+      }
+      getAgencyRoles();
+    }, []);
+
+    const dataview = AddKeyToArrayOfObject(roles);
     return (
       <>
         <AddRole />

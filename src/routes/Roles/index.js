@@ -9,7 +9,7 @@ const Roles = ({match}) => {
   <div className="gx-main-content-wrapper">
     <Switch>
       <Route path={`${match.url}`} exact component={asyncComponent(() => import('components/Roles/home'))}/>
-      <Route path={`${match.url}new`} component={asyncComponent(() => import('components/Roles/home'))}/>
+      <Route path={`${match.url}/new`} component={asyncComponent(() => import('components/Roles/addRole'))}/>
     </Switch>
   </div>
 )};

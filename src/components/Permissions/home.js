@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Table } from 'antd';
 import { useSelector } from 'react-redux';
-import permissions_data_format from './helper';
+import { AddKeyToArrayOfObject } from 'helpers/dataFormat';
 import AddPermission from './addPermission';
 
 const columns = [
@@ -24,8 +24,7 @@ const columns = [
 
 const Home = () => { 
     const { permissions } = useSelector(state => state.permissions);
-    console.log(permissions);
-    const dataview = permissions_data_format(permissions);
+    const dataview = AddKeyToArrayOfObject(permissions);
     return (
       <>
         <AddPermission />

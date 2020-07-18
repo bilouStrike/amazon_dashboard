@@ -76,8 +76,9 @@ const MainApp = (props) => {
         return null;
     }
   };
-
+  
   const dispatch = useDispatch();
+  
   useEffect(() => {
     dispatch(getRolesStart());
     dispatch(getPermissionsStart());

@@ -1,22 +1,21 @@
 import React, {useState} from 'react';
 import { Button, Modal, Form, Input, Checkbox, Row, Col, Alert } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import { addRole } from 'services/roles';
-import { addRoleSuccess } from '../../appRedux/actions/Roles';
+import { SettingOutlined } from '@ant-design/icons';
+import { updateRole } from 'services/roles';
+import { editRoleSuccess } from 'appRedux/actions/Roles';
 
 const FormItem = Form.Item;
 
-const AddRole = () =>  {
+const UpdateUserRoles = ({userId, userName, rolesList}) =>  {
   const [visible, setVisible] = useState(false);
-  const dispatch = useDispatch();
-  const { permissions } = useSelector(state => state.permissions);
-  const { agencyId, companyId } = useSelector(state => state.auth);
   const [ loading, setLoading ] = useState(false);
   const [ responseData, setResponseData ] = useState({
     status: null,
     message: null
   });
 
+  const { roles } = useSelector(state => state.roles)
   const showModal = () => {
     setVisible(true);
   };
@@ -29,57 +28,54 @@ const AddRole = () =>  {
     setVisible(false);
   };
 
-  const handleAddRole = async (values) => {
-    setLoading(true);
-    const role = agencyId != 0 ? {...values, agencyId, companyId:0} : {...values, companyId};
-    const { status, message, data } = await addRole(role);
-    setLoading(false);
-    setResponseData({...responseData, status, message });
-    if ( status === 'success') {
-      dispatch(addRoleSuccess(data));
-      return;
+  const handleUpdate = async (values) => {
+      console.log(values);
+    /*const roleData = await {
+        name: roleName,
+        permissions: values.permissions
     }
+    setLoading(true);
+    const { status, message, data } = await updateRole(roleData, roleId);*/
+    setLoading(false);
+    //setResponseData({...responseData, status, message });
   }
 
   return (
     <>
-        <Button type="primary" onClick={showModal}>Add new role</Button>
+        <Button 
+            type="primary"
+            onClick={showModal}
+            icon={<SettingOutlined />}
+        > 
+            Update Roles
+        </Button>
         <Modal
-            title="Add new role"
+            title={`Update Roles For: ${userName}`}
             visible={visible}
             onOk={handleOk}
             onCancel={handleCancel}
             footer={null}
         >
             <Form 
-                initialValues={{ remember: true }}
+                initialValues={{
+                    remember: true,
+                    ['roles']: rolesList,
+                }}
                 name="Add role"
-                onFinish={handleAddRole}
+                onFinish={handleUpdate}
             >
-                <Form.Item
-                    name="name"
-                    label="Role Name"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input the role name!',
-                        },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item name="permissions" label="Permissions:">
+                <Form.Item name="roles" label="Roles:">
                     <Checkbox.Group style={{width:'100%'}}>
                     <Row>
-                        { permissions != null ? permissions.map(permission => (
-                            <Col span={24} key={permission.id}>
+                        { roles != null ? roles.map(role => (
+                            <Col span={24} key={role.id}>
                                 <Checkbox
-                                    value={permission.name}
+                                    value={role.name}
                                     style={{
                                     lineHeight: '32px',
                                     }}
                                 >
-                                    {permission.name}
+                                    {role.name}
                                 </Checkbox>
                             </Col>
                         )) : null}
@@ -92,7 +88,7 @@ const AddRole = () =>  {
                         htmlType="submit"
                         loading={loading}
                     >
-                        ADD
+                        UPDATE
                     </Button>
                 </FormItem>
             </Form>
@@ -107,4 +103,4 @@ const AddRole = () =>  {
     );
 }
 
-export default AddRole;
+export default UpdateUserRoles;
