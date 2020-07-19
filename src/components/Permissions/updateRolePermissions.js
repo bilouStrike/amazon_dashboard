@@ -29,10 +29,14 @@ const UpdateRolePermissions = ({roleId, roleName, permissionsList}) =>  {
     setVisible(false);
   };
 
+  const { agencyId, companyId } = useSelector(state => state.auth);
+
   const handleUpdate = async (values) => {
     const roleData = await {
         name: roleName,
-        permissions: values.permissions
+        permissions: values.permissions,
+        agencyId: agencyId,
+        comapnyId: companyId
     }
     setLoading(true);
     const { status, message, data } = await updateRole(roleData, roleId);

@@ -1,13 +1,9 @@
 import {
-    ADD_ROLE_SUCCESS,
-    GET_ROLE_SUCCESS,
-    ADD_ROLE_START,
-    EDIT_ROLE_SUCCESS
+   
 } from '../../constants/ActionTypes';
  
 const INITIAL_STATE = {
-   roles: null,
-   loading: false,
+   companies: null
 };
  
 const rolesReducer = (state = INITIAL_STATE, action) => {
@@ -27,7 +23,7 @@ const rolesReducer = (state = INITIAL_STATE, action) => {
       case EDIT_ROLE_SUCCESS:
          return {
           ...state, 
-          roles: [...state.roles, action.payload]
+          roles: action.payload
          };
      default:
        return state;

@@ -50,9 +50,9 @@ const SignIn =()=> {
                 name="basic"
                 className="gx-signin-form gx-form-row0">
                 <Form.Item
-                  initialValue="demo@example.com"
-                  rules={[{ required: true, message: 'The input is not valid E-mail!' }, { type: 'email', message: 'This is not valid email!' }]} name="email">
-                  <Input placeholder="Email"/>
+                  initialValue="joseph"
+                  rules={[{ required: true, message: 'Please enter your username' }]} name="username">
+                  <Input placeholder="Username"/>
                 </Form.Item>
                 <Form.Item
                   initialValue="demo#123"

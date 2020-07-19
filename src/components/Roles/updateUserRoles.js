@@ -29,7 +29,7 @@ const UpdateUserRoles = ({userId, userName, rolesList}) =>  {
   };
 
   const handleUpdate = async (values) => {
-      console.log(values);
+     // console.log(values);
     /*const roleData = await {
         name: roleName,
         permissions: values.permissions

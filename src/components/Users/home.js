@@ -70,7 +70,7 @@ const Home = ({match}) => {
             }
         }
         getUsers();
-    }, [agencyId]);
+    }, []);
 
     const dataview = AddKeyToArrayOfObject(users);
     return (

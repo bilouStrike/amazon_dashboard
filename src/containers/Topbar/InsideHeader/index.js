@@ -11,10 +11,11 @@ const {Header} = Layout;
 
 const InsideHeader = () => {
 
+  const { user } = useSelector(state => state.auth);
   const data = [
     {
       title: 'Manage companies',
-      link: '/',
+      link: '/companies',
     },
     {
       title: 'Manage chanels',
@@ -63,6 +64,7 @@ const InsideHeader = () => {
               <HorizontalNav/>
             </div>
             <ul className="gx-header-notifications gx-ml-auto">
+              <li>  Hi: { user }   </li>
               <li className="gx-notify gx-notify-search">
                 <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight" 
                   content={
@@ -83,7 +85,6 @@ const InsideHeader = () => {
                   <span className="gx-pointer gx-d-block"><i className="icon icon-setting"/></span>
                 </Popover>
               </li>
-
               <li className="gx-notify">
                 <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight" content={<AppNotification/>}
                          trigger="click">

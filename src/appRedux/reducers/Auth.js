@@ -7,14 +7,16 @@ import {
 
 const INITIAL_STATE = {
   isAuthenticated: false,
-  role: null,
+  userRoles: [],
   user: null,
   error: null,
   agencyId: null,
+  companyId: null,
   loading: false,
 };
 
 const authReducer = (state = INITIAL_STATE, action) => {
+  console.log(action.payload)
   switch (action.type) {
     case SIGNIN_START:
       return {
@@ -30,9 +32,9 @@ const authReducer = (state = INITIAL_STATE, action) => {
     case SIGNIN_SUCCESS:
       return {
         ...state,
-        user: action.payload.username,
-        role: action.payload.role,
-        agencyId: action.payload.agencyId,
+        user: action.payload[0].name,
+        userRoles: action.payload[0].roles,
+        agencyId: action.payload[0].agencyId,
         isAuthenticated: true,
         error: null,
         loading: false,
@@ -41,7 +43,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         user: null,
-        role: null,
+        userRoles: null,
         isAuthenticated: false,
       };
     default:
