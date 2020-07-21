@@ -7,66 +7,66 @@
         "manage_roles",
         "manage_permissions",
         "manage_Sells",
-        "manage_users"
+        "manage_users",
+        "manage_companies",
+        "manage_inventory"
       ],
       "id": 1,
-      "agencyId": 123456,
-      "companyId": 0
+      "agencyId": 123456
     },
     {
-      "name": "role2",
+      "name": "agency_admin",
       "permissions": [
-        "widget_sells",
         "manage_dashboard",
+        "manage_roles",
+        "manage_permissions",
         "manage_Sells",
-        "manage_roles"
+        "manage_users",
+        "manage_companies",
+        "manage_inventory"
       ],
       "id": 2,
-      "agencyId": 123456,
-      "companyId": 0
+      "agencyId": 999
     },
     {
-      "name": "bilal manager",
+      "name": "Manage_users",
       "permissions": [
-        "manage_Sells",
         "manage_dashboard",
-        "manage_permissions"
+        "manage_users",
+        "manage_Sells"
       ],
-      "id": 5,
       "agencyId": 123456,
-      "companyId": 0
+      "comapnyId": null,
+      "id": 2
     },
     {
-      "name": "companyBilal",
+      "name": "manage dashboard",
       "permissions": [
-        "manage_Sells",
-        "manage_dashboard",
-        "manage_permissions",
-        "manage_roles",
-        "manage_users"
+        "manage_dashboard"
       ],
-      "id": 6
+      "agencyId": 999,
+      "companyId": 0,
+      "id": 3
     },
     {
-      "name": "role_for_companyA",
+      "name": "manage salles",
+      "permissions": [
+        "manage_dashboard",
+        "manage_Sells"
+      ],
+      "agencyId": 999,
+      "companyId": 0,
+      "id": 4
+    },
+    {
+      "name": "Visitor",
       "permissions": [
         "manage_Sells",
         "manage_dashboard"
       ],
       "agencyId": 123456,
       "companyId": 0,
-      "id": 10
-    },
-    {
-      "name": "bilalm",
-      "permissions": [
-        "manage_dashboard",
-        "manage_permissions",
-        "manage_Sells"
-      ],
-      "agencyId": 123,
-      "companyId": 0,
-      "id": 11
+      "id": 6
     }
   ],
   "permissions": [
@@ -94,6 +94,16 @@
       "name": "manage_users",
       "service": "Users",
       "id": 5
+    },
+    {
+      "name": "manage_companies",
+      "service": "Companies",
+      "id": 6
+    },
+    {
+      "name": "manage_inventory",
+      "service": "Inventory",
+      "id": 7
     }
   ],
   "services": [
@@ -118,84 +128,123 @@
       "type": "service"
     },
     {
-      "id": 4,
+      "id": 7,
       "name": "Users",
+      "type": "service"
+    },
+    {
+      "id": 5,
+      "name": "Companies",
+      "type": "service"
+    },
+    {
+      "id": 6,
+      "name": "Inventory",
       "type": "service"
     }
   ],
   "users": [
     {
       "id": 1,
-      "name": "Michiel",
+      "name": "bilal",
       "password": 123,
-      "agencyId": 123456,
+      "agencyId": 999,
+      "companyId": 123,
       "roles": [
-        "agency_admin",
-        "role2"
+        "agency_admin"
       ]
     },
     {
-      "id": 2,
-      "name": "Mulders",
-      "password": 123,
-      "agencyId": 123456,
+      "name": "joseph",
+      "password": "123456",
       "roles": [
-        "agency_admin",
-        "role2"
-      ]
-    },
-    {
-      "id": 3,
-      "name": "bilou89",
-      "password": 123,
-      "agencyId": 123456,
-      "role": "companyC owner"
-    },
-    {
-      "id": 4,
-      "name": "Mul589",
-      "password": 123,
-      "agencyId": 123456,
-      "roles": [
-        "agency_admin",
-        "role2"
-      ]
-    },
-    {
-      "id": 5,
-      "name": "OtherMulders",
-      "password": 123,
-      "agencyId": 123,
-      "roles": [
-        "agency_admin",
-        "role2"
-      ]
-    },
-    {
-      "id": 6,
-      "name": "Michiel25",
-      "password": 123,
-      "agencyId": 123456,
-      "roles": [
-        "agency_admin",
-        "role2"
-      ]
-    },
-    {
-      "name": "bcvbcvbvcb",
-      "password": "vcbcvb",
-      "roles": [
-        "agency_admin",
-        "role2"
+        "agency_admin"
       ],
       "agencyId": 123456,
-      "id": 7
+      "companyId": null,
+      "id": 9
+    },
+    {
+      "name": "Admin",
+      "password": "123456",
+      "roles": [
+        "Manage_users"
+      ],
+      "agencyId": 123456,
+      "companyId": null,
+      "id": 10
+    },
+    {
+      "name": "dashboard manager",
+      "password": "123",
+      "roles": [
+        "manage dashboard"
+      ],
+      "agencyId": 999,
+      "companyId": null,
+      "id": 11
+    },
+    {
+      "name": "sales manager",
+      "password": "123",
+      "roles": [
+        "manage salles"
+      ],
+      "agencyId": 999,
+      "companyId": null,
+      "id": 12
+    },
+    {
+      "name": "bilal99",
+      "password": "ghgh",
+      "roles": [
+        "Manage_users"
+      ],
+      "agencyId": 123456,
+      "companyId": null,
+      "id": 13
+    },
+    {
+      "name": "Amin",
+      "password": "123",
+      "roles": [
+        "Visitor"
+      ],
+      "agencyId": 123456,
+      "companyId": [],
+      "id": 15
     }
   ],
   "agencies": [
     {
       "id": 123456,
       "name": "Agency One"
+    },
+    {
+      "id": 999,
+      "name": "Agency Alpha"
+    }
+  ],
+  "companies": [
+    {
+      "id": 123,
+      "name": "Company A",
+      "agencyId": 123456
+    },
+    {
+      "id": 456,
+      "name": "Company B",
+      "agencyId": 123456
+    },
+    {
+      "id": 56,
+      "name": "Company C",
+      "agencyId": 999
+    },
+    {
+      "id": 87,
+      "name": "Company D",
+      "agencyId": 999
     }
   ]
 }

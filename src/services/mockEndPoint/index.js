@@ -30,6 +30,7 @@ export const signin = ( userData ) => {
  
 export const signup = (userData) => {
     const { email } = userData;
+    
     if (mockusersemails.includes(email)) {
         return {
             status: 'error',

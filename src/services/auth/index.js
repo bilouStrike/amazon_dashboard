@@ -7,8 +7,16 @@ export const signIn = async (usercredentials) => {
   await new Promise((resolve) => {
     setTimeout(resolve, 2000);
   });
-  const result = await signin(usercredentials);
-  return result
+  const { data } = await Http.get(`/users?name=${usercredentials.username}`);
+  //console.log(data);
+  let status, message;
+  if ( data.length != 0 ) {
+    status = 'success';
+  } else {
+    status = 'error';
+    message = 'Incorrect data';
+  }
+  return { data, status, message }
 };
 
 /** Sign up */

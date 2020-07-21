@@ -1,7 +1,7 @@
 import React from "react";
 import {Area, AreaChart, ResponsiveContainer, Tooltip, XAxis} from "recharts";
 import {Select} from "antd";
-
+import { useSelector } from 'react-redux';
 import Widget from "components/Widget/index";
 
 const data = [
@@ -28,11 +28,12 @@ const BalanceHistory = () => {
     console.log(`selected ${value}`);
   }
 
+  const { currentCompany } = useSelector(state => state.companies);
   return (
     <Widget styleName="gx-card-full">
 
       <div className="ant-row-flex gx-px-4 gx-pt-4">
-        <h2 className="h4 gx-mb-3">Sales overview</h2>
+        <h2 className="h4 gx-mb-3">Sales overview for : {currentCompany}</h2>
         <div className="gx-ml-auto">
           <Select className="gx-mb-2 gx-select-sm" defaultValue="10" onChange={handleChange}>
             <Option value="10">Last 10 days</Option>

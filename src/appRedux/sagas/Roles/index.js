@@ -17,9 +17,9 @@ import {
     addRoleFailed,
 } from 'appRedux/actions/Roles';
 
-function* getRolesProccess() {
+function* getRolesProccess({payload}) {
     try {
-        const { statusText, data } = yield call(getRoles);
+        const { statusText, data } = yield call(getRoles, payload);
         yield put(getRolesSuccess(data));
     } catch (error) {
         yield put(getRolesFailed(error.message));

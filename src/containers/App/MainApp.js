@@ -78,9 +78,11 @@ const MainApp = (props) => {
   };
   
   const dispatch = useDispatch();
-  
+  const { agencyId, companyId } = useSelector(state => state.auth);
+
   useEffect(() => {
-    dispatch(getRolesStart());
+
+    dispatch(getRolesStart(agencyId));
     dispatch(getPermissionsStart());
     dispatch(getServicesStart());
   }, []);

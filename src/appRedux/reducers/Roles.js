@@ -27,7 +27,7 @@ const rolesReducer = (state = INITIAL_STATE, action) => {
       case EDIT_ROLE_SUCCESS:
          return {
           ...state, 
-          roles: action.payload
+          roles: [...state.roles, action.payload]
          };
      default:
        return state;

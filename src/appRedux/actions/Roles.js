@@ -8,8 +8,9 @@ import {
     EDIT_ROLE_SUCCESS
 } from "../../constants/ActionTypes";
 
-export const getRolesStart = () => ({
+export const getRolesStart = (agencyId) => ({
     type: GET_ROLE_START,
+    payload: agencyId
 });
   
 export const getRolesSuccess = (roles) => ({
@@ -26,7 +27,7 @@ export const addRoleStart = (role) => ({
     type: ADD_ROLE_START,
     payload: role
 });
-  
+
 export const addRoleSuccess = (role) => ({
     type: ADD_ROLE_SUCCESS,
     payload: role,

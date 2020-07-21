@@ -41,19 +41,7 @@ const columns = [
 ];
 
 const Home = () => {
-    const { agencyId, companyId } = useSelector(state => state.auth);
-    const [roles, setRoles] = useState([]);
-
-    useEffect(() => {
-      const getAgencyRoles = async () => {
-        const field = agencyId != 0 ? 'agencyId' : 'companyId';
-        const value = agencyId != 0 ? agencyId : companyId;
-        const { data } = await getRolesByField(field, value);
-        setRoles(data);
-      }
-      getAgencyRoles();
-    }, []);
-
+    const { roles } = useSelector(state => state.roles);
     const dataview = AddKeyToArrayOfObject(roles);
     return (
       <>
