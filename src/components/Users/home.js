@@ -15,8 +15,8 @@ const columns = [
   },
   {
     title: 'User',
-    dataIndex: 'name',
-    key: 'user',
+    dataIndex: 'username',
+    key: 'username',
   },
   {
     title: 'Password',

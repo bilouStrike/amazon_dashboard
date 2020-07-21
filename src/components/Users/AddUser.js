@@ -53,7 +53,7 @@ const AddUser = () =>  {
                 onFinish={handleAddUser}
             >
                 <Form.Item
-                    name="name"
+                    name="username"
                     label="Name"
                     rules={[
                         {

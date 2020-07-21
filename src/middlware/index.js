@@ -19,7 +19,7 @@ function isAuth(servicePermissions, rolePermissions) {
   }
 }
 
-function useCheckPermission (services, permissions, userRoles, roles, service) {
+function CheckPermission (services, permissions, userRoles, roles, service) {
   let auth = true;
   let rolePermissions = [];
   
@@ -58,12 +58,12 @@ export const RouteMiddlware = ({component: Component, userRoles, service, ...res
     const { roles } = useSelector(state => state.roles);
     const { services } = useSelector(state => state.services);
     const { permissions } = useSelector(state => state.permissions);
-    let isAuthorised = useCheckPermission(services, permissions, userRoles, roles, service);
+    let isAuthorised = userRoles[0] === 'agency_owner' ? true : CheckPermission(services, permissions, userRoles, roles, service);
     return (
         <Route
             {...rest}
             render={props => {
-              if ( roles != null && roles.length != 0 && permissions != null && services != null ) {
+              if ( permissions != null && services != null ) {
                   if (isAuthorised) {
                     return <Component {...props} />
                   } else {

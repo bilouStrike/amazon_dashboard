@@ -31,7 +31,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
     case SIGNIN_SUCCESS:
       return {
         ...state,
-        user: action.payload[0].name,
+        user: action.payload[0].username,
         userRoles: action.payload[0].roles,
         agencyId: action.payload[0].agencyId,
         isAuthenticated: true,

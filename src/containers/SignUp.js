@@ -4,6 +4,7 @@ import IntlMessages from "util/IntlMessages";
 import { Link, Redirect } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { signUp } from 'services/auth';
+import { randomInteger } from 'helpers';
 
 const SignUp = () => {
 
@@ -11,20 +12,23 @@ const SignUp = () => {
     const [ loadStart, setLoadStart ] = useState(false);
 
     const [ responseData, setResponseData ] = useState({
-        status: null,
-        message: null
+      status: null,
+      message: null
     });
 
     const onSignUp = async (values) => {
-        setLoadStart(true);
-        const { status, message } = await signUp(values);
-        setLoadStart(false);
-        setResponseData({...responseData, status, message });
+      const agencyId = randomInteger(9999, 9999999);
+      const userData = { ...values, 'agencyId':agencyId, 'companyId': 0, roles:['agency_owner'] }
+      setLoadStart(true);
+      const { status, message } = await signUp(userData);
+      setLoadStart(false);
+      setResponseData({...responseData, status, message });
     }
 
     if (isAuthenticated) {
-        return <Redirect to='/' />;
+      return <Redirect to='/' />;
     }
+
     return (
       <div className="gx-app-login-wrap">
         <div className="gx-app-login-container">
@@ -46,12 +50,20 @@ const SignUp = () => {
                 name="basic"
                 className="gx-signin-form gx-form-row0">
                 <Form.Item rules={[
-                    { required: true, message: 'Please input your full name!'},
-                    { pattern: new RegExp(/^[A-Za-z ]+$/), message: 'Full name should be alphabetic'}]
+                    { required: true, message: 'Please input your First Name!'},
+                    { pattern: new RegExp(/^[A-Za-z ]+$/), message: 'First Name should be alphabetic'}]
                   } 
-                    name="fullName"
+                    name="FirstName"
                 >
-                  <Input placeholder="Full Name"/>
+                  <Input placeholder="First Name"/>
+                </Form.Item>
+                <Form.Item rules={[
+                    { required: true, message: 'Please input your Last Name!'},
+                    { pattern: new RegExp(/^[A-Za-z ]+$/), message: 'Last Name should be alphabetic'}]
+                  } 
+                    name="LastName"
+                >
+                  <Input placeholder="Last Name"/>
                 </Form.Item>
                 <Form.Item
                   rules={[{ required: true, message: 'Please input your email!' }, { type: 'email', message: 'This is not valid email!' }]} name="email">
