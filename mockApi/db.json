@@ -57,6 +57,16 @@
       "agencyId": 999,
       "companyId": 0,
       "id": 4
+    },
+    {
+      "name": "Visitor",
+      "permissions": [
+        "manage_Sells",
+        "manage_dashboard"
+      ],
+      "agencyId": 123456,
+      "companyId": 0,
+      "id": 6
     }
   ],
   "permissions": [
@@ -183,6 +193,26 @@
       "agencyId": 999,
       "companyId": null,
       "id": 12
+    },
+    {
+      "name": "bilal99",
+      "password": "ghgh",
+      "roles": [
+        "Manage_users"
+      ],
+      "agencyId": 123456,
+      "companyId": null,
+      "id": 13
+    },
+    {
+      "name": "Amin",
+      "password": "123",
+      "roles": [
+        "Visitor"
+      ],
+      "agencyId": 123456,
+      "companyId": [],
+      "id": 15
     }
   ],
   "agencies": [
@@ -205,6 +235,16 @@
       "id": 456,
       "name": "Company B",
       "agencyId": 123456
+    },
+    {
+      "id": 56,
+      "name": "Company C",
+      "agencyId": 999
+    },
+    {
+      "id": 87,
+      "name": "Company D",
+      "agencyId": 999
     }
   ]
 }

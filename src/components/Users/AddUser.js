@@ -34,6 +34,7 @@ const AddUser = () =>  {
     const { status, message, data } = await addUser(user);
     setLoading(false);
     setResponseData({...responseData, status, message });
+    
   }
 
   return (

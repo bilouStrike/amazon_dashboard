@@ -1,33 +1,21 @@
 import {
-   
+  SET_CURRENT_COMPANY
 } from '../../constants/ActionTypes';
  
 const INITIAL_STATE = {
-   companies: null
+   currentCompany: null
 };
- 
-const rolesReducer = (state = INITIAL_STATE, action) => {
+
+const companiesReducer = (state = INITIAL_STATE, action) => {
    switch (action.type) {
-     case GET_ROLE_SUCCESS:
+      case SET_CURRENT_COMPANY:
         return {
           ...state,
-          loading: false,
-          roles: action.payload,
-        };
-      case ADD_ROLE_START:
-        return {
-          ...state,
-          loading: true,
-        };
-      case ADD_ROLE_SUCCESS:
-      case EDIT_ROLE_SUCCESS:
-         return {
-          ...state, 
-          roles: action.payload
-         };
-     default:
+          currentCompany: action.payload
+        }
+      default:
        return state;
    }
 };
-export default rolesReducer;
+export default companiesReducer;
  

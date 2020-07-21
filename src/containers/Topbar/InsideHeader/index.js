@@ -1,13 +1,19 @@
-import React from "react";
-import { Layout, Popover, List} from 'antd';
+import React,{useEffect, useState} from "react";
+import { Layout, Popover, List, Select, Menu, Dropdown } from 'antd';
 import {connect, useDispatch, useSelector} from "react-redux";
 import UserInfo from "components/UserInfo";
 import AppNotification from "components/AppNotification";
 import HorizontalNav from "../HorizontalNav";
+import CustomScrollbars from "util/CustomScrollbars";
 import {Link} from "react-router-dom";
 import {switchLanguage, toggleCollapsedSideNav} from "../../../appRedux/actions/Setting";
+import { getCompaniesAgency } from 'services/company';
+import { setCurrentCompany } from 'appRedux/actions/Companies';
+import { DownOutlined } from '@ant-design/icons';
+
 
 const {Header} = Layout;
+const { Option } = Select;
 
 const InsideHeader = () => {
 
@@ -41,6 +47,33 @@ const InsideHeader = () => {
   const dispatch = useDispatch();
 
   const navCollapsed = useSelector(({settings}) => settings.navCollapsed);
+  const [companies, setcompanies] = useState([]);
+  const { agencyId } = useSelector(state => state.auth);
+
+  useEffect(() => {
+    const getCompanies = async () => {
+      const { data } = await getCompaniesAgency(agencyId);
+      setcompanies(data);
+      if (data[0]) {
+        dispatch(setCurrentCompany(data[0].name))
+      }
+    }
+    getCompanies();
+  }, []);
+
+  const { currentCompany } = useSelector(state => state.companies);
+  const menu = (
+    <Menu>
+       { companies.map(company =>
+          <Menu.Item className="gx-media gx-pointer" key={company.id} onClick={(e) =>
+            dispatch(setCurrentCompany(company.name))
+          }>
+            {company.name}
+          </Menu.Item>
+        )}
+    </Menu>
+  );
+  console.log(companies);
 
   return (
     <div className="gx-header-horizontal gx-header-horizontal-dark gx-inside-header-horizontal">
@@ -64,7 +97,13 @@ const InsideHeader = () => {
               <HorizontalNav/>
             </div>
             <ul className="gx-header-notifications gx-ml-auto">
-              <li>  Hi: { user }   </li>
+              <li>
+                <Dropdown overlay={menu} trigger={['click']}>
+                  <a className="ant-dropdown-link" onClick={e => e.preventDefault()} style={{fontSize: '16px'}}>
+                    { currentCompany ? currentCompany : <span> No company </span> } <DownOutlined />
+                  </a>
+                </Dropdown>
+              </li>
               <li className="gx-notify gx-notify-search">
                 <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight" 
                   content={

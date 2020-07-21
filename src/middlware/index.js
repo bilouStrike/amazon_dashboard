@@ -32,12 +32,7 @@ function useCheckPermission (services, permissions, userRoles, roles, service) {
       })
     });
   }
- 
 
-
-  /*const rolePermissions = roles != null ? roles.filter((itm) => 
-    itm.name == role
-  ): null;*/
   const servicePermissions =  permissions != null ? permissions.filter((itm) => 
   itm.service == service
   ): null;
@@ -68,7 +63,7 @@ export const RouteMiddlware = ({component: Component, userRoles, service, ...res
         <Route
             {...rest}
             render={props => {
-              if ( roles != null && permissions != null && services != null ) {
+              if ( roles != null && roles.length != 0 && permissions != null && services != null ) {
                   if (isAuthorised) {
                     return <Component {...props} />
                   } else {

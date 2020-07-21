@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {Button, Input, Alert, Form} from "antd";
 import IntlMessages from "util/IntlMessages";
 import { signInSuccess } from 'appRedux/actions/Auth';
+import { setCurrentCompany } from 'appRedux/actions/Companies';
 import { Redirect, Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { signIn } from 'services/auth';
@@ -20,6 +21,11 @@ const SignIn =()=> {
       setLoadStart(false);
       if ( status == 'success') {
         dispatch(signInSuccess(data));
+        if (data.companyId) {
+          dispatch(setCurrentCompany(data.companyId));
+        } else {
+          dispatch(setCurrentCompany(null));
+        }
         return;
       }
       setResponseData({...responseData, status, message });

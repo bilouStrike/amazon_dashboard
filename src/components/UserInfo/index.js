@@ -1,7 +1,8 @@
 import React from "react";
 import { Avatar, Popover } from "antd";
 import { signOut } from 'appRedux/actions/Auth';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { DownOutlined } from '@ant-design/icons';
 
 const UserInfo = () => {
 
@@ -9,6 +10,8 @@ const UserInfo = () => {
   const onLogout = () => {
     dispatch(signOut());
   }
+
+  const { user } = useSelector(state => state.auth);
   
   const userMenuOptions = (
     <ul className="gx-user-popover">
@@ -18,10 +21,14 @@ const UserInfo = () => {
   );
 
   return (
-    <Popover overlayClassName="gx-popover-horizantal" placement="bottomRight" content={userMenuOptions}
-             trigger="click">
-      <Avatar src='https://via.placeholder.com/150x150'
-              className="gx-avatar gx-pointer" alt=""/>
+    <Popover 
+        overlayClassName="gx-popover-horizantal"
+        placement="bottomRight"
+        content={userMenuOptions}
+        trigger="click"
+    >
+      <span style={{fontSize:'18px', cursor:'pointer'}}> {user} </span>
+      <DownOutlined style={{fontSize:'12px', cursor:'pointer'}} />
     </Popover>
   )
 };

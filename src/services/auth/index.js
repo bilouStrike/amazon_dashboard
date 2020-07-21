@@ -8,7 +8,7 @@ export const signIn = async (usercredentials) => {
     setTimeout(resolve, 2000);
   });
   const { data } = await Http.get(`/users?name=${usercredentials.username}`);
-  console.log(data);
+  //console.log(data);
   let status, message;
   if ( data.length != 0 ) {
     status = 'success';

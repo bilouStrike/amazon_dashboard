@@ -11,12 +11,11 @@ const INITIAL_STATE = {
   user: null,
   error: null,
   agencyId: null,
-  companyId: null,
+  companyId: [],
   loading: false,
 };
 
 const authReducer = (state = INITIAL_STATE, action) => {
-  console.log(action.payload)
   switch (action.type) {
     case SIGNIN_START:
       return {
@@ -42,9 +41,12 @@ const authReducer = (state = INITIAL_STATE, action) => {
     case SIGNOUT:
       return {
         ...state,
-        user: null,
-        userRoles: null,
         isAuthenticated: false,
+        userRoles: [],
+        user: null,
+        error: null,
+        agencyId: null,
+        companyId: [],
       };
     default:
       return state;
