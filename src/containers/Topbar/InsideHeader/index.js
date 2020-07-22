@@ -7,7 +7,7 @@ import HorizontalNav from "../HorizontalNav";
 import CustomScrollbars from "util/CustomScrollbars";
 import {Link} from "react-router-dom";
 import {switchLanguage, toggleCollapsedSideNav} from "../../../appRedux/actions/Setting";
-import { getCompaniesAgency } from 'services/company';
+import { getCompanyOfUsers } from 'services/company';
 import { setCurrentCompany } from 'appRedux/actions/Companies';
 import { DownOutlined } from '@ant-design/icons';
 
@@ -47,33 +47,38 @@ const InsideHeader = () => {
   const dispatch = useDispatch();
 
   const navCollapsed = useSelector(({settings}) => settings.navCollapsed);
-  const [companies, setcompanies] = useState([]);
-  const { agencyId } = useSelector(state => state.auth);
-
+  //const [companies, setcompanies] = useState([]);
+  const { agencyId, id } = useSelector(state => state.auth);
+  const { currentCompany } = useSelector(state => state.companies);
+  const { companies } = useSelector(state => state.auth);
+  
   useEffect(() => {
-    const getCompanies = async () => {
-      const { data } = await getCompaniesAgency(agencyId);
+    /*const getCompanies = async () => {
+      // const { data } = await getCompaniesAgency(agencyId);
+      const { data } = await getCompanyOfUsers(id);
       setcompanies(data);
       if (data[0]) {
         dispatch(setCurrentCompany(data[0].name))
       }
     }
-    getCompanies();
+    getCompanies();*/
+    if (companies[0]) {
+      dispatch(setCurrentCompany(companies[0]))
+    }
   }, []);
 
-  const { currentCompany } = useSelector(state => state.companies);
+
   const menu = (
     <Menu>
        { companies.map(company =>
-          <Menu.Item className="gx-media gx-pointer" key={company.id} onClick={(e) =>
-            dispatch(setCurrentCompany(company.name))
+          <Menu.Item className="gx-media gx-pointer" key={company} onClick={(e) =>
+            dispatch(setCurrentCompany(company))
           }>
-            {company.name}
+            {company}
           </Menu.Item>
         )}
     </Menu>
   );
-  console.log(companies);
 
   return (
     <div className="gx-header-horizontal gx-header-horizontal-dark gx-inside-header-horizontal">

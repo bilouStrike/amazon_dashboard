@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import AddRole from './addRole';
 import UpdateRolePermissions from 'components/Permissions/updateRolePermissions';
 import { AddKeyToArrayOfObject } from 'helpers/dataFormat';
-import { getRolesByField } from 'services/roles';
+import { getCompanyRoles } from 'services/company';
 
 const columns = [
   {
@@ -41,7 +41,16 @@ const columns = [
 ];
 
 const Home = () => {
-    const { roles } = useSelector(state => state.roles);
+    const [roles, setRoles] = useState([]);
+    const { currentCompany } = useSelector(state => state.companies);
+
+    useEffect(() => {
+        const getRoles = async () => {
+          const { data } = await getCompanyRoles(currentCompany);
+          setRoles(data);
+        }
+        getRoles();
+    }, [currentCompany]);
     const dataview = AddKeyToArrayOfObject(roles);
     return (
       <>

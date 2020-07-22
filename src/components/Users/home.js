@@ -31,8 +31,8 @@ const columns = [
       return (
       <>
         { roles && roles.length != null ? roles.map(role => (
-          <Tag color='green' key={role}>
-            {role.toUpperCase()}
+          <Tag color='green' key={role.roleId}>
+            {role.name.toUpperCase()}
           </Tag>
         )): null}
       </>
@@ -54,24 +54,18 @@ const columns = [
   }
 ];
 
-const Home = ({match}) => {
+const Home = () => {
 
     const [users, setUsers] = useState([]);  
-    const { agencyId, companyId } = useSelector(state => state.auth);
-
+    const { currentCompany } = useSelector(state => state.companies);
     useEffect(() => {
         const getUsers = async () => {
-            if (match.path === '/users') {
-                const { data } = await getAgencyUsers(agencyId);
-                setUsers(data);
-            } else {
-                const { data } = await getCompanyUsers(companyId);
-                setUsers(data);
-            }
+          const { data } = await getCompanyUsers(currentCompany);
+          setUsers(data);
         }
         getUsers();
-    }, []);
-
+    }, [currentCompany]);
+    console.log(users);
     const dataview = AddKeyToArrayOfObject(users);
     return (
       <>

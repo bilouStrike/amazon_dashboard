@@ -19,14 +19,16 @@ function isAuth(servicePermissions, rolePermissions) {
   }
 }
 
-function CheckPermission (services, permissions, userRoles, roles, service) {
+function CheckPermission (services, permissions, userRoles, roles, service, currentCompany) {
   let auth = true;
   let rolePermissions = [];
-  
+  const rolesOfCurrentCompany = userRoles.filter( (item) => item.companyId === currentCompany );
+  console.log(rolesOfCurrentCompany);
   if( roles != null ) {
-    userRoles.map((userrole) => {
+    rolesOfCurrentCompany.map((userrole) => {
+      //console.log(roles.);
       Object.values(roles).map((role) => {
-        if ( role.name === userrole ) {
+        if ( role.name === userrole.name ) {
           rolePermissions.push.apply(rolePermissions, role.permissions);
         }
       })
@@ -57,8 +59,9 @@ export const RestrictedRoute = ({component: Component, isAuthenticated, ...rest}
 export const RouteMiddlware = ({component: Component, userRoles, service, ...rest}) => {
     const { roles } = useSelector(state => state.roles);
     const { services } = useSelector(state => state.services);
+    const { currentCompany } = useSelector(state => state.companies);
     const { permissions } = useSelector(state => state.permissions);
-    let isAuthorised = userRoles[0] === 'agency_owner' ? true : CheckPermission(services, permissions, userRoles, roles, service);
+    let isAuthorised = userRoles[0] === 'agency_owner' ? true : CheckPermission(services, permissions, userRoles, roles, service, currentCompany);
     return (
         <Route
             {...rest}
