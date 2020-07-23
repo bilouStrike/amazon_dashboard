@@ -44,7 +44,7 @@ const App = ({match}) => {
         service='Permissions'
         exact
       />
-     <RouteMiddlware 
+     <RouteMiddlware
         path={[`${match.url}users`]}
         component={asyncComponent(() => import('./Users'))}
         userRoles={userRoles}
@@ -56,7 +56,19 @@ const App = ({match}) => {
         userRoles={userRoles}
         service='Companies'
       />
-
+      <RouteMiddlware
+        path={[`${match.url}company/users`]}
+        component={asyncComponent(() => import('./Users'))}
+        userRoles={userRoles}
+        service='Company/Users'
+      />
+      <RouteMiddlware 
+        path={`${match.url}company/roles`}
+        component={asyncComponent(() => import('./Roles'))}
+        userRoles={userRoles}
+        service='Company/Roles'
+        exact
+      />
       <Route path={`${match.url}notAuthorized`} component={asyncComponent(() => import('components/Error404'))}/>
     </Switch>
   </div>

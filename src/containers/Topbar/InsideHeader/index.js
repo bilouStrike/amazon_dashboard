@@ -1,13 +1,13 @@
-import React,{useEffect, useState} from "react";
+import React,{ useEffect, useState } from "react";
 import { Layout, Popover, List, Select, Menu, Dropdown } from 'antd';
-import {connect, useDispatch, useSelector} from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import UserInfo from "components/UserInfo";
 import AppNotification from "components/AppNotification";
 import HorizontalNav from "../HorizontalNav";
 import CustomScrollbars from "util/CustomScrollbars";
-import {Link} from "react-router-dom";
-import {switchLanguage, toggleCollapsedSideNav} from "../../../appRedux/actions/Setting";
-import { getCompanyOfUsers } from 'services/company';
+import { Link } from "react-router-dom";
+import { switchLanguage, toggleCollapsedSideNav } from "../../../appRedux/actions/Setting";
+import { getCompaniesByAgency } from 'services/company';
 import { setCurrentCompany } from 'appRedux/actions/Companies';
 import { DownOutlined } from '@ant-design/icons';
 
@@ -33,11 +33,11 @@ const InsideHeader = () => {
     },
     {
       title: 'Manage Users',
-      link: '/users',
+      link: 'company/users',
     },
     {
       title: 'Manage roles',
-      link: '/roles',
+      link: 'company/roles',
     },
     {
       title: 'Manage Permissions',
@@ -47,12 +47,24 @@ const InsideHeader = () => {
   const dispatch = useDispatch();
 
   const navCollapsed = useSelector(({settings}) => settings.navCollapsed);
-  //const [companies, setcompanies] = useState([]);
-  const { agencyId, id } = useSelector(state => state.auth);
+  const [companies, setcompanies] = useState([]);
   const { currentCompany } = useSelector(state => state.companies);
-  const { companies } = useSelector(state => state.auth);
+  const { userRoles, companyId, agencyId } = useSelector(state => state.auth);
   
   useEffect(() => {
+
+    if ( companyId === 0 ) {
+      const getCompanies = async () => {
+        const { data } = await getCompaniesByAgency(agencyId);
+        setcompanies(data);
+        if (data[0]) {
+          dispatch(setCurrentCompany(data[0].id))
+        }
+      }
+      getCompanies();
+    } else {
+      dispatch(setCurrentCompany(userRoles[0].companyId));
+    }
     /*const getCompanies = async () => {
       // const { data } = await getCompaniesAgency(agencyId);
       const { data } = await getCompanyOfUsers(id);
@@ -62,21 +74,33 @@ const InsideHeader = () => {
       }
     }
     getCompanies();*/
-    if (companies[0]) {
+    /*if (companies[0]) {
       dispatch(setCurrentCompany(companies[0]))
-    }
+    }*/
   }, []);
 
+   console.log(companies);
 
   const menu = (
     <Menu>
-       { companies.map(company =>
-          <Menu.Item className="gx-media gx-pointer" key={company} onClick={(e) =>
-            dispatch(setCurrentCompany(company))
+       {
+        companyId === 0 ? 
+        companies.map((company) => 
+            <Menu.Item className="gx-media gx-pointer" key={company.id} onClick={(e) =>
+              dispatch(setCurrentCompany(company.id))
+            }>
+              {company.id}
+            </Menu.Item>
+          )        
+        :
+        userRoles.map((role) => 
+          <Menu.Item className="gx-media gx-pointer" key={role.companyId} onClick={(e) =>
+            dispatch(setCurrentCompany(role.companyId))
           }>
-            {company}
+            {role.companyId}
           </Menu.Item>
-        )}
+        )
+      }
     </Menu>
   );
 

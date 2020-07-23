@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Card, Table, Tag } from 'antd';
-import { getAgencyUsers } from 'services/agency';
+import { getUsersByAgency } from 'services/users';
 import { getCompanyUsers } from 'services/company';
 import { useSelector } from 'react-redux';
 import { AddKeyToArrayOfObject } from 'helpers/dataFormat';
@@ -54,18 +54,26 @@ const columns = [
   }
 ];
 
-const Home = () => {
+const Home = ({match}) => {
 
     const [users, setUsers] = useState([]);  
     const { currentCompany } = useSelector(state => state.companies);
+    const { agencyId } = useSelector(state => state.auth);
+
     useEffect(() => {
         const getUsers = async () => {
-          const { data } = await getCompanyUsers(currentCompany);
+          if ( match.path === '/company/users' ) {
+            const { data } = await getCompanyUsers(currentCompany);
+            setUsers(data);
+            return;
+          } 
+          const { data } = await getUsersByAgency(agencyId);
           setUsers(data);
         }
         getUsers();
     }, [currentCompany]);
-    console.log(users);
+
+     console.log(users);
     const dataview = AddKeyToArrayOfObject(users);
     return (
       <>

@@ -22,7 +22,6 @@
         "manage_Sells",
         "manage_dashboard",
         "manage_company_roles",
-        "manage_company_users",
         "manage_users",
         "manage_roles",
         "manage_companies",
@@ -47,8 +46,9 @@
       "permissions": [
         "manage_Sells",
         "manage_dashboard",
-        "manage_roles",
         "manage_users",
+        "manage_roles",
+        "manage_company_roles",
         "manage_companies",
         "manage_inventory"
       ],
@@ -106,6 +106,29 @@
       "agencyId": 9457982,
       "companyId": 2,
       "id": 8
+    },
+    {
+      "name": "company_bilal_B_client",
+      "permissions": [
+        "manage_Sells",
+        "manage_dashboard"
+      ],
+      "agencyId": 5170439,
+      "companyId": 41,
+      "id": 9
+    },
+    {
+      "name": "company_CC_owner",
+      "permissions": [
+        "manage_Sells",
+        "manage_dashboard",
+        "manage_inventory",
+        "manage_company_users",
+        "manage_company_roles"
+      ],
+      "agencyId": 5170439,
+      "companyId": 7,
+      "id": 10
     }
   ],
   "users": [
@@ -118,24 +141,49 @@
       "confirm": "12121212",
       "agreement": true,
       "agencyId": 9457982,
-      "companies": [
-        1,
-        2,
-        3
-      ],
+      "companyId": 0,
       "roles": [
-        "agency_owner"
+        {
+          "roleId": 1,
+          "companyId": 0,
+          "type": "agency",
+          "name": "agency_owner"
+        }
       ],
       "id": 4
+    },
+    {
+      "FirstName": "bilal",
+      "LastName": "bilal",
+      "email": "bilal@mail.com",
+      "username": "bilal",
+      "password": "12121212",
+      "confirm": "12121212",
+      "companyId": 0,
+      "agreement": true,
+      "agencyId": 5170439,
+      "roles": [
+        {
+          "roleId": 1,
+          "companyId": 0,
+          "type": "agency",
+          "name": "agency_owner"
+        }
+      ],
+      "id": 5
     },
     {
       "username": "berardi",
       "password": "121212",
       "roles": [
-        {"roleId":4, "type": "agency", "name":"agency_admin", "companyId": 0}
+        {
+          "roleId": 4,
+          "type": "agency",
+          "name": "agency_admin",
+          "companyId": 0
+        }
       ],
       "agencyId": 9457982,
-      "companies": [],
       "companyId": 0,
       "id": 7
     },
@@ -143,27 +191,66 @@
       "username": "oussama",
       "password": "1212",
       "roles": [
-        {"roleId":5, "type": "company", "name":"company_A_owner", "companyId": 1},
-        {"roleId":8, "type": "company", "name":"company_B_client", "companyId": 2}
+        {
+          "roleId": 5,
+          "type": "company",
+          "name": "company_A_owner",
+          "companyId": 1
+        },
+        {
+          "roleId": 8,
+          "type": "company",
+          "name": "company_B_client",
+          "companyId": 2
+        }
       ],
       "agencyId": 9457982,
-      "companies": [
-        1,
-        2
-      ],
-      "companyId": 1,
       "id": 8
     },
     {
       "username": "ayoub",
       "password": "1212",
       "roles": [
-        {"roleId":6, "type": "company", "name":"company_B_owner", "companyId": 2}
+        {
+          "roleId": 6,
+          "type": "company",
+          "name": "company_B_owner",
+          "companyId": 2
+        }
       ],
       "agencyId": 9457982,
-      "companies": [],
       "companyId": 2,
       "id": 9
+    },
+    {
+      "username": "OfBilal",
+      "password": "jkjk",
+      "roles": [
+        {
+          "roleId": 9,
+          "type": "company",
+          "name": "company_bilal_B_client",
+          "companyId": 41
+        }
+      ],
+      "agencyId": 5170439,
+      "companyId": 41,
+      "id": 10
+    },
+    {
+      "username": "akram",
+      "password": "dfdf",
+      "roles": [
+        {
+          "roleId": 10,
+          "type": "company",
+          "name": "company_CC_owner",
+          "companyId": 7
+        }
+      ],
+      "agencyId": 5170439,
+      "companyId": 7,
+      "id": 11
     }
   ],
   "companies": [
@@ -181,6 +268,21 @@
       "name": "compny C",
       "agencyId": 9457982,
       "id": 3
+    },
+    {
+      "name": "compny BB",
+      "agencyId": 5170439,
+      "id": 41
+    },
+    {
+      "name": "compny AA",
+      "agencyId": 5170439,
+      "id": 5
+    },
+    {
+      "name": "compny CC",
+      "agencyId": 5170439,
+      "id": 7
     }
   ],
   "permissions": [
@@ -218,6 +320,16 @@
       "name": "manage_inventory",
       "service": "Inventory",
       "id": 7
+    },
+    {
+      "id": 8,
+      "name": "manage_company_roles",
+      "service": "Company/Roles"
+    },
+    {
+      "name": "manage_company_users",
+      "service": "Company/Users",
+      "id": 9
     }
   ],
   "services": [

@@ -5,6 +5,7 @@ import AddRole from './addRole';
 import UpdateRolePermissions from 'components/Permissions/updateRolePermissions';
 import { AddKeyToArrayOfObject } from 'helpers/dataFormat';
 import { getCompanyRoles } from 'services/company';
+import { getRolesByAgency } from 'services/roles';
 
 const columns = [
   {
@@ -40,14 +41,21 @@ const columns = [
   }
 ];
 
-const Home = () => {
+const Home = ({match}) => {
     const [roles, setRoles] = useState([]);
     const { currentCompany } = useSelector(state => state.companies);
+    const { agencyId } = useSelector(state => state.auth);
+    console.log(match.path);
 
     useEffect(() => {
-        const getRoles = async () => {
-          const { data } = await getCompanyRoles(currentCompany);
-          setRoles(data);
+          const getRoles = async () => {
+          if (match.path === '/company/roles') {
+            const { data } = await getCompanyRoles(currentCompany);
+            setRoles(data);
+          } else {
+            const { data } = await getRolesByAgency(agencyId);
+            setRoles(data);
+          }
         }
         getRoles();
     }, [currentCompany]);

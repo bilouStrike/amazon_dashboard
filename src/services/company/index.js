@@ -7,7 +7,6 @@ export const getCompaniesAgency = async (agencyId) => {
 
 export const getCompanyOfUsers = async (userId) => { 
     const { data } = await Http.get(`/users?id=${userId}`);
-    console.log(data);
     return data;
 }
 
@@ -32,7 +31,11 @@ export const getCompanyUsers = async(companyId) => {
 
 export const getCompanyRoles = async(companyId) => {
   const { data, statusText } = await Http.get(`/roles?companyId=${companyId}`);
-  console.log(data);
+  return { data }
+}
+
+export const getCompaniesByAgency = async(agencyId) => {
+  const { data, statusText } = await Http.get(`/companies?agencyId=${agencyId}`);
   return { data }
 }
 

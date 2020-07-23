@@ -35,6 +35,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         user: action.payload[0].username,
         userRoles: action.payload[0].roles,
         agencyId: action.payload[0].agencyId,
+        companyId: action.payload[0].companyId,
         isAuthenticated: true,
         error: null,
         companies: action.payload[0].companies,

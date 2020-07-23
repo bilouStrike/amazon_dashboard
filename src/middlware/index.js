@@ -19,20 +19,33 @@ function isAuth(servicePermissions, rolePermissions) {
   }
 }
 
-function CheckPermission (services, permissions, userRoles, roles, service, currentCompany) {
+function CheckPermission (services, permissions, userRoles, roles, service, currentCompany, companyId) {
   let auth = true;
   let rolePermissions = [];
   const rolesOfCurrentCompany = userRoles.filter( (item) => item.companyId === currentCompany );
+  const rolesOfCurrentAgency = userRoles;
+
   console.log(rolesOfCurrentCompany);
+
   if( roles != null ) {
-    rolesOfCurrentCompany.map((userrole) => {
-      //console.log(roles.);
-      Object.values(roles).map((role) => {
-        if ( role.name === userrole.name ) {
-          rolePermissions.push.apply(rolePermissions, role.permissions);
-        }
-      })
-    });
+
+    if( companyId === 0 ) {
+      userRoles.map((userrole) => {
+        Object.values(roles).map((role) => {
+          if ( role.name === userrole.name ) {
+            rolePermissions.push.apply(rolePermissions, role.permissions);
+          }
+        })
+      });
+    } else {
+      rolesOfCurrentCompany.map((userrole) => {
+        Object.values(roles).map((role) => {
+          if ( role.name === userrole.name ) {
+            rolePermissions.push.apply(rolePermissions, role.permissions);
+          }
+        })
+      });
+    }   
   }
 
   const servicePermissions =  permissions != null ? permissions.filter((itm) => 
@@ -61,7 +74,8 @@ export const RouteMiddlware = ({component: Component, userRoles, service, ...res
     const { services } = useSelector(state => state.services);
     const { currentCompany } = useSelector(state => state.companies);
     const { permissions } = useSelector(state => state.permissions);
-    let isAuthorised = userRoles[0] === 'agency_owner' ? true : CheckPermission(services, permissions, userRoles, roles, service, currentCompany);
+    const { companyId } = useSelector(state => state.auth);
+    let isAuthorised = userRoles[0].roleId === 1 ? true : CheckPermission(services, permissions, userRoles, roles, service, currentCompany, companyId);
     return (
         <Route
             {...rest}
