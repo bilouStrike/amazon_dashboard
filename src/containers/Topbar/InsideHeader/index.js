@@ -15,7 +15,7 @@ import { DownOutlined } from '@ant-design/icons';
 const {Header} = Layout;
 const { Option } = Select;
 
-const InsideHeader = () => {
+const InsideHeader = ({match}) => {
 
   const { user } = useSelector(state => state.auth);
   const data = [
@@ -52,52 +52,39 @@ const InsideHeader = () => {
   const { userRoles, companyId, agencyId } = useSelector(state => state.auth);
   
   useEffect(() => {
-
     if ( companyId === 0 ) {
       const getCompanies = async () => {
         const { data } = await getCompaniesByAgency(agencyId);
         setcompanies(data);
         if (data[0]) {
-          dispatch(setCurrentCompany(data[0].id))
+          dispatch(setCurrentCompany(data[0]))
         }
       }
       getCompanies();
     } else {
-      dispatch(setCurrentCompany(userRoles[0].companyId));
+      dispatch(setCurrentCompany({id:userRoles[0].companyId, name:userRoles[0].companyName}));
     }
-    /*const getCompanies = async () => {
-      // const { data } = await getCompaniesAgency(agencyId);
-      const { data } = await getCompanyOfUsers(id);
-      setcompanies(data);
-      if (data[0]) {
-        dispatch(setCurrentCompany(data[0].name))
-      }
-    }
-    getCompanies();*/
-    /*if (companies[0]) {
-      dispatch(setCurrentCompany(companies[0]))
-    }*/
   }, []);
-
-   console.log(companies);
 
   const menu = (
     <Menu>
        {
         companyId === 0 ? 
         companies.map((company) => 
-            <Menu.Item className="gx-media gx-pointer" key={company.id} onClick={(e) =>
-              dispatch(setCurrentCompany(company.id))
+            <Menu.Item className="gx-media gx-pointer" key={company.id} onClick={(e) => {
+                const comp = {id:company.id, name:company.name};
+                dispatch(setCurrentCompany(comp))
+            }
             }>
-              {company.id}
+              {company.name}
             </Menu.Item>
           )        
         :
         userRoles.map((role) => 
           <Menu.Item className="gx-media gx-pointer" key={role.companyId} onClick={(e) =>
-            dispatch(setCurrentCompany(role.companyId))
+            dispatch(setCurrentCompany({id:role.companyId, name:role.companyName}))
           }>
-            {role.companyId}
+            {role.companyName}
           </Menu.Item>
         )
       }
@@ -129,7 +116,8 @@ const InsideHeader = () => {
               <li>
                 <Dropdown overlay={menu} trigger={['click']}>
                   <a className="ant-dropdown-link" onClick={e => e.preventDefault()} style={{fontSize: '16px'}}>
-                    { currentCompany ? currentCompany : <span> No company </span> } <DownOutlined />
+                    <span>{ currentCompany ? currentCompany.name : 'No company selcted'}</span>
+                    <DownOutlined />
                   </a>
                 </Dropdown>
               </li>

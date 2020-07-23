@@ -22,6 +22,7 @@
         "manage_Sells",
         "manage_dashboard",
         "manage_company_roles",
+        "manage_company_users",
         "manage_users",
         "manage_roles",
         "manage_companies",
@@ -46,14 +47,15 @@
       "permissions": [
         "manage_Sells",
         "manage_dashboard",
-        "manage_users",
         "manage_roles",
+        "manage_users",
         "manage_company_roles",
-        "manage_companies",
-        "manage_inventory"
+        "manage_company_users",
+        "manage_inventory",
+        "manage_companies"
       ],
       "agencyId": 9457982,
-      "companyId": 0,
+      "comapnyId": 0,
       "id": 4
     },
     {
@@ -63,12 +65,11 @@
         "manage_dashboard",
         "manage_inventory",
         "manage_company_users",
-        "manage_users",
-        "manage_roles",
         "manage_company_roles"
       ],
       "agencyId": 9457982,
       "companyId": 1,
+      "companyName": "company A",
       "id": 5
     },
     {
@@ -195,13 +196,15 @@
           "roleId": 5,
           "type": "company",
           "name": "company_A_owner",
-          "companyId": 1
+          "companyId": 1,
+          "companyName": "company A"
         },
         {
           "roleId": 8,
           "type": "company",
           "name": "company_B_client",
-          "companyId": 2
+          "companyId": 2,
+          "companyName": "company B"
         }
       ],
       "agencyId": 9457982,
@@ -215,7 +218,8 @@
           "roleId": 6,
           "type": "company",
           "name": "company_B_owner",
-          "companyId": 2
+          "companyId": 2,
+          "companyName": "company B"
         }
       ],
       "agencyId": 9457982,
@@ -230,7 +234,8 @@
           "roleId": 9,
           "type": "company",
           "name": "company_bilal_B_client",
-          "companyId": 41
+          "companyId": 41,
+          "companyName": "company BB"
         }
       ],
       "agencyId": 5170439,
@@ -245,12 +250,81 @@
           "roleId": 10,
           "type": "company",
           "name": "company_CC_owner",
-          "companyId": 7
+          "companyId": 7,
+          "companyName": "company CC"
         }
       ],
       "agencyId": 5170439,
       "companyId": 7,
       "id": 11
+    },
+    {
+      "FirstName": "abdreahman",
+      "LastName": "douara",
+      "email": "douara@gmail.com",
+      "username": "abdo",
+      "password": "12121212",
+      "roles": [
+        {
+          "roleId": 2,
+          "companyId": 0,
+          "type": "agency",
+          "name": "agency_admin",
+          "companyName": null
+        }
+      ],
+      "agencyId": 5170439,
+      "companyId": 0,
+      "id": 12
+    },
+    {
+      "FirstName": "ihab",
+      "LastName": "selt",
+      "email": "ff@gg.com",
+      "username": "dfdfdf",
+      "password": "dfdfdfdf",
+      "roles": [],
+      "agencyId": 5170439,
+      "companyId": 41,
+      "id": 13
+    },
+    {
+      "FirstName": "jone",
+      "LastName": "kirry",
+      "email": "kirry@gmail.com",
+      "username": "kirry",
+      "password": "12121212",
+      "roles": [
+        {
+          "roleId": 5,
+          "companyId": 1,
+          "type": "company",
+          "name": "company_A_owner",
+          "companyName": "company A"
+        }
+      ],
+      "agencyId": 9457982,
+      "companyId": 1,
+      "id": 14
+    },
+    {
+      "FirstName": "ahmed",
+      "LastName": "dif",
+      "email": "ahmed@gmail.com",
+      "username": "ahmed",
+      "password": "ghghghgh",
+      "roles": [
+        {
+          "roleId": 5,
+          "companyId": 1,
+          "type": "company",
+          "name": "company_A_owner",
+          "companyName": "company A"
+        }
+      ],
+      "agencyId": 9457982,
+      "companyId": 1,
+      "id": 15
     }
   ],
   "companies": [

@@ -63,7 +63,7 @@ const Home = ({match}) => {
     useEffect(() => {
         const getUsers = async () => {
           if ( match.path === '/company/users' ) {
-            const { data } = await getCompanyUsers(currentCompany);
+            const { data } = await getCompanyUsers(currentCompany.id);
             setUsers(data);
             return;
           } 
@@ -77,7 +77,7 @@ const Home = ({match}) => {
     const dataview = AddKeyToArrayOfObject(users);
     return (
       <>
-        <AddUser />
+        <AddUser {...match}/>
         <Card title="Users List">
           <Table className="gx-table-responsive" columns={columns} dataSource={dataview}/>
         </Card> 

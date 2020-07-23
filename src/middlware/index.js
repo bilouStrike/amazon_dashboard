@@ -22,11 +22,6 @@ function isAuth(servicePermissions, rolePermissions) {
 function CheckPermission (services, permissions, userRoles, roles, service, currentCompany, companyId) {
   let auth = true;
   let rolePermissions = [];
-  const rolesOfCurrentCompany = userRoles.filter( (item) => item.companyId === currentCompany );
-  const rolesOfCurrentAgency = userRoles;
-
-  console.log(rolesOfCurrentCompany);
-
   if( roles != null ) {
 
     if( companyId === 0 ) {
@@ -38,6 +33,8 @@ function CheckPermission (services, permissions, userRoles, roles, service, curr
         })
       });
     } else {
+      console.log('current company:'+ currentCompany);
+      const rolesOfCurrentCompany = currentCompany ? userRoles.filter( (item) => item.companyId === currentCompany.id ) : [];
       rolesOfCurrentCompany.map((userrole) => {
         Object.values(roles).map((role) => {
           if ( role.name === userrole.name ) {
@@ -70,6 +67,7 @@ export const RestrictedRoute = ({component: Component, isAuthenticated, ...rest}
 />;
 
 export const RouteMiddlware = ({component: Component, userRoles, service, ...rest}) => {
+  console.log('render');
     const { roles } = useSelector(state => state.roles);
     const { services } = useSelector(state => state.services);
     const { currentCompany } = useSelector(state => state.companies);

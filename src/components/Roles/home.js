@@ -50,7 +50,7 @@ const Home = ({match}) => {
     useEffect(() => {
           const getRoles = async () => {
           if (match.path === '/company/roles') {
-            const { data } = await getCompanyRoles(currentCompany);
+            const { data } = await getCompanyRoles(currentCompany.id);
             setRoles(data);
           } else {
             const { data } = await getRolesByAgency(agencyId);

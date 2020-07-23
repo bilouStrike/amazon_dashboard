@@ -3,6 +3,7 @@ import { Avatar, Popover } from "antd";
 import { signOut } from 'appRedux/actions/Auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { DownOutlined } from '@ant-design/icons';
+import { setCurrentCompany } from 'appRedux/actions/Companies';
 
 const UserInfo = () => {
 
