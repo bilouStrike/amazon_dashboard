@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Card, Table } from 'antd';
 import { useSelector }  from 'react-redux';
-import { getCompaniesAgency } from 'services/company';
+import { getCompaniesByAgency } from 'services/company';
 import AddCompany from './addCompany';
 import { AddKeyToArrayOfObject } from 'helpers/dataFormat';
 
@@ -14,16 +14,17 @@ const columns = [
 ];
 
 const Home = () => {
-
     const { agencyId } = useSelector(state => state.auth);
     const [companies, setCompanies] = useState([]);
+
     useEffect(() => {
       const getCompanies = async() => {
-        const {data} = await getCompaniesAgency(agencyId);
+        const {data} = await getCompaniesByAgency(agencyId);
         setCompanies(data)
       }
       getCompanies();
-    }, []);
+    }, [companies]);
+
     const DataView = AddKeyToArrayOfObject(companies);
     return (
       <>

@@ -33,7 +33,6 @@ function CheckPermission (services, permissions, userRoles, roles, service, curr
         })
       });
     } else {
-      console.log('current company:'+ currentCompany);
       const rolesOfCurrentCompany = currentCompany ? userRoles.filter( (item) => item.companyId === currentCompany.id ) : [];
       rolesOfCurrentCompany.map((userrole) => {
         Object.values(roles).map((role) => {
@@ -67,7 +66,6 @@ export const RestrictedRoute = ({component: Component, isAuthenticated, ...rest}
 />;
 
 export const RouteMiddlware = ({component: Component, userRoles, service, ...rest}) => {
-  console.log('render');
     const { roles } = useSelector(state => state.roles);
     const { services } = useSelector(state => state.services);
     const { currentCompany } = useSelector(state => state.companies);

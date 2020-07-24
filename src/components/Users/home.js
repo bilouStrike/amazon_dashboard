@@ -71,7 +71,7 @@ const Home = ({match}) => {
           setUsers(data);
         }
         getUsers();
-    }, [currentCompany]);
+    }, [currentCompany, users]);
 
     const dataview = AddKeyToArrayOfObject(users);
     return (

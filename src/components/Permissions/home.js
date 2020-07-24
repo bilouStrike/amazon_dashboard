@@ -23,7 +23,6 @@ const columns = [
 ];
 
 const Home = () => {
-    console.log('render permissions');
     const { permissions } = useSelector(state => state.permissions);
     const dataview = AddKeyToArrayOfObject(permissions);
     return (

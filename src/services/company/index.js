@@ -1,10 +1,5 @@
 import Http from '../../util/Http';
 
-export const getCompaniesAgency = async (agencyId) => {
-    const { data, statusText } = await Http.get(`/companies?agencyId=${agencyId}`);
-    return { data, statusText }; 
-}
-
 export const getCompanyOfUsers = async (userId) => { 
     const { data } = await Http.get(`/users?id=${userId}`);
     return data;

@@ -45,7 +45,6 @@ const Home = ({match}) => {
     const [roles, setRoles] = useState([]);
     const { currentCompany } = useSelector(state => state.companies);
     const { agencyId } = useSelector(state => state.auth);
-    console.log(match.path);
 
     useEffect(() => {
           const getRoles = async () => {
@@ -58,7 +57,8 @@ const Home = ({match}) => {
           }
         }
         getRoles();
-    }, [currentCompany]);
+    }, [currentCompany, roles]);
+
     const dataview = AddKeyToArrayOfObject(roles);
     return (
       <>
