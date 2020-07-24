@@ -12,6 +12,7 @@ const INITIAL_STATE = {
   id: null,
   error: null,
   agencyId: null,
+  companyId: null,
   companies: [],
   loading: false,
 };
