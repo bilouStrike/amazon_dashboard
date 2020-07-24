@@ -24,7 +24,7 @@ function CheckPermission (services, permissions, userRoles, roles, service, curr
   let rolePermissions = [];
   if( roles != null ) {
 
-    if( companyId === 0 ) {
+    if( companyId === null ) {
       userRoles.map((userrole) => {
         Object.values(roles).map((role) => {
           if ( role.name === userrole.name ) {
@@ -71,7 +71,7 @@ export const RouteMiddlware = ({component: Component, userRoles, service, ...res
     const { currentCompany } = useSelector(state => state.companies);
     const { permissions } = useSelector(state => state.permissions);
     const { companyId } = useSelector(state => state.auth);
-    let isAuthorised = userRoles[0].roleId === 1 ? true : CheckPermission(services, permissions, userRoles, roles, service, currentCompany, companyId);
+    let isAuthorised = userRoles.length > 0 && userRoles[0].roleId === 1 ? true : CheckPermission(services, permissions, userRoles, roles, service, currentCompany, companyId);
     return (
         <Route
             {...rest}

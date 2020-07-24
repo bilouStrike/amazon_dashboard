@@ -17,8 +17,17 @@ const SignUp = () => {
     });
 
     const onSignUp = async (values) => {
-      const agencyId = randomInteger(9999, 9999999);
-      const userData = { ...values, 'agencyId':agencyId, 'companyId': 0, roles:['agency_owner'] }
+      const agencyId = randomInteger(9999, 9999999); // agencyId should generte from the server
+      const userData = { 
+        ...values,
+        'agencyId':agencyId,
+        'companyId': null,
+        roles:[{
+          companyId: 0,
+          name: "agency_owner",
+          roleId: 1,
+          type: "agency"}] 
+      }
       setLoadStart(true);
       const { status, message } = await signUp(userData);
       setLoadStart(false);

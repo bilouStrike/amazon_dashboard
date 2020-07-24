@@ -1,9 +1,9 @@
 import React from "react";
-import { Avatar, Popover } from "antd";
+import { Popover } from "antd";
 import { signOut } from 'appRedux/actions/Auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { DownOutlined } from '@ant-design/icons';
-import { setCurrentCompany } from 'appRedux/actions/Companies';
+import { Link } from "react-router-dom";
 
 const UserInfo = () => {
 
@@ -17,6 +17,9 @@ const UserInfo = () => {
   const userMenuOptions = (
     <ul className="gx-user-popover">
       <li>My Account</li>
+      <li><Link to='/users'>Agency users</Link></li>
+      <li><Link to='/roles'>Agency roles</Link></li>
+      <li><Link to='/settings'>Agency settinhg</Link></li>
       <li onClick={onLogout}>Logout</li>
     </ul>
   );

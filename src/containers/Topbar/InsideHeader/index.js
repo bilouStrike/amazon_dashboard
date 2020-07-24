@@ -48,7 +48,7 @@ const InsideHeader = () => {
   const { userRoles, companyId, agencyId } = useSelector(state => state.auth);
   
   useEffect(() => {
-    if ( companyId === 0 ) {
+    if ( companyId === null ) {
       const getCompanies = async () => {
         const { data } = await getCompaniesByAgency(agencyId);
         setcompanies(data);
@@ -65,8 +65,8 @@ const InsideHeader = () => {
   const menu = (
     <Menu>
        {
-        companyId === 0 ? 
-        companies.map((company) => 
+        companyId === null ? 
+        companies ? companies.map((company) => 
             <Menu.Item className="gx-media gx-pointer" key={company.id} onClick={(e) => {
                 const comp = {id:company.id, name:company.name};
                 dispatch(setCurrentCompany(comp))
@@ -74,7 +74,7 @@ const InsideHeader = () => {
             }>
               {company.name}
             </Menu.Item>
-          )        
+          ) : null        
         :
         userRoles.map((role) => {
           return (

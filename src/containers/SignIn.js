@@ -21,7 +21,7 @@ const SignIn =()=> {
       setLoadStart(false);
       if ( status == 'success') {
         dispatch(signInSuccess(data));
-        if (data) {
+        if (data[0].roles.length > 0 && data[0].roles[0].companyName) {
           dispatch(setCurrentCompany({id:data[0].roles[0].companyId, name:data[0].roles[0].companyName }));
         } else {
           dispatch(setCurrentCompany(null));

@@ -30,13 +30,12 @@ const AddUser = ({path}) =>  {
   };
 
   if( path === '/company/users' ) {
-    rolesList = roles != null ? roles.filter((role) => role.companyId === currentCompany.id) : [];
+    rolesList = roles && currentCompany ? roles.filter((role) => role.companyId === currentCompany.id) : [];
   } else {
     rolesList = roles;
   }
-
   const handleAddUser = async (values) => {
-    const userCompany = path === '/company/users' ? currentCompany.id : 0;
+    const userCompany = path === '/company/users' ? currentCompany.id : null;
     const roleType =  path === '/company/users' ? 'company' : 'agency';
     const userRoles = values.roles ? values.roles.map((role) => {
         return {

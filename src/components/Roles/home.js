@@ -45,11 +45,12 @@ const Home = ({match}) => {
     const [roles, setRoles] = useState([]);
     const { currentCompany } = useSelector(state => state.companies);
     const { agencyId } = useSelector(state => state.auth);
+    const companyId = currentCompany ? currentCompany.id : null;
 
     useEffect(() => {
           const getRoles = async () => {
           if (match.path === '/company/roles') {
-            const { data } = await getCompanyRoles(currentCompany.id);
+            const { data } = await getCompanyRoles(companyId);
             setRoles(data);
           } else {
             const { data } = await getRolesByAgency(agencyId);
