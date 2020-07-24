@@ -83,6 +83,7 @@
       ],
       "agencyId": 9457982,
       "companyId": 2,
+      "companyName": "company B",
       "id": 6
     },
     {
@@ -96,6 +97,7 @@
       ],
       "agencyId": 9457982,
       "companyId": 3,
+      "companyName": "company C",
       "id": 7
     },
     {
@@ -106,6 +108,7 @@
       ],
       "agencyId": 9457982,
       "companyId": 2,
+      "companyName": "company B",
       "id": 8
     },
     {
@@ -116,6 +119,7 @@
       ],
       "agencyId": 5170439,
       "companyId": 41,
+      "companyName": "company BB",
       "id": 9
     },
     {
@@ -130,6 +134,27 @@
       "agencyId": 5170439,
       "companyId": 7,
       "id": 10
+    },
+    {
+      "name": "Company A client",
+      "permissions": [
+        "manage_dashboard",
+        "manage_Sells"
+      ],
+      "agencyId": 9457982,
+      "companyId": 1,
+      "companyName": "company A",
+      "id": 11
+    },
+    {
+      "name": "company_A_visitor2",
+      "permissions": [
+        "manage_dashboard"
+      ],
+      "agencyId": 9457982,
+      "companyId": 1,
+      "companyName": "compny A",
+      "id": 12
     }
   ],
   "users": [
@@ -325,6 +350,44 @@
       "agencyId": 9457982,
       "companyId": 1,
       "id": 15
+    },
+    {
+      "FirstName": "new visitor",
+      "LastName": "visit",
+      "email": "vivi@gmail.com",
+      "username": "visitorA",
+      "password": "12121212",
+      "roles": [
+        {
+          "roleId": 11,
+          "companyId": 1,
+          "type": "company",
+          "name": "Company A client",
+          "companyName": "company A"
+        }
+      ],
+      "agencyId": 9457982,
+      "companyId": 1,
+      "id": 16
+    },
+    {
+      "FirstName": "visitorB",
+      "LastName": "visitorB",
+      "email": "visitorB@gg.com",
+      "username": "visitorB",
+      "password": "visitorB",
+      "roles": [
+        {
+          "roleId": 12,
+          "companyId": 1,
+          "type": "company",
+          "name": "company_A_visitor2",
+          "companyName": "compny A"
+        }
+      ],
+      "agencyId": 9457982,
+      "companyId": 1,
+      "id": 17
     }
   ],
   "companies": [

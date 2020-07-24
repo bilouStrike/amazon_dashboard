@@ -38,7 +38,6 @@ const AddUser = ({path}) =>  {
   const handleAddUser = async (values) => {
     const userCompany = path === '/company/users' ? currentCompany.id : 0;
     const roleType =  path === '/company/users' ? 'company' : 'agency';
-    console.log(values.roles);
     const userRoles = values.roles ? values.roles.map((role) => {
         return {
             roleId: role.id,

@@ -6,11 +6,12 @@ import { addRoleSuccess } from '../../appRedux/actions/Roles';
 
 const FormItem = Form.Item;
 
-const AddRole = () =>  {
+const AddRole = ({path}) =>  {
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
   const { permissions } = useSelector(state => state.permissions);
-  const { agencyId, companyId } = useSelector(state => state.auth);
+  const { agencyId } = useSelector(state => state.auth);
+  const { currentCompany } = useSelector(state => state.companies);
   const [ loading, setLoading ] = useState(false);
   const [ responseData, setResponseData ] = useState({
     status: null,
@@ -31,7 +32,9 @@ const AddRole = () =>  {
 
   const handleAddRole = async (values) => {
     setLoading(true);
-    const role = agencyId != 0 ? {...values, agencyId, companyId:0} : {...values, companyId};
+    const companyId = path === '/company/roles' ? currentCompany.id : 0;
+    const companyName = path === '/company/roles' ? currentCompany.name : null;
+    const role = {...values, agencyId, companyId, companyName};
     const { status, message, data } = await addRole(role);
     setLoading(false);
     setResponseData({...responseData, status, message });

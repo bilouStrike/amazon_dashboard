@@ -62,7 +62,7 @@ const Home = ({match}) => {
     const dataview = AddKeyToArrayOfObject(roles);
     return (
       <>
-        <AddRole />
+        <AddRole {...match}/>
         <Card title="Roles List">
           <Table className="gx-table-responsive" columns={columns} dataSource={dataview}/>
         </Card> 

@@ -1,23 +1,19 @@
 import React,{ useEffect, useState } from "react";
-import { Layout, Popover, List, Select, Menu, Dropdown } from 'antd';
+import { Layout, Popover, List, Menu, Dropdown } from 'antd';
 import { connect, useDispatch, useSelector } from "react-redux";
 import UserInfo from "components/UserInfo";
 import AppNotification from "components/AppNotification";
 import HorizontalNav from "../HorizontalNav";
-import CustomScrollbars from "util/CustomScrollbars";
 import { Link } from "react-router-dom";
 import { switchLanguage, toggleCollapsedSideNav } from "../../../appRedux/actions/Setting";
 import { getCompaniesByAgency } from 'services/company';
 import { setCurrentCompany } from 'appRedux/actions/Companies';
 import { DownOutlined } from '@ant-design/icons';
 
-
 const {Header} = Layout;
-const { Option } = Select;
 
-const InsideHeader = ({match}) => {
+const InsideHeader = () => {
 
-  const { user } = useSelector(state => state.auth);
   const data = [
     {
       title: 'Manage companies',
@@ -33,11 +29,11 @@ const InsideHeader = ({match}) => {
     },
     {
       title: 'Manage Users',
-      link: 'company/users',
+      link: '/company/users',
     },
     {
       title: 'Manage roles',
-      link: 'company/roles',
+      link: '/company/roles',
     },
     {
       title: 'Manage Permissions',
@@ -80,12 +76,14 @@ const InsideHeader = ({match}) => {
             </Menu.Item>
           )        
         :
-        userRoles.map((role) => 
+        userRoles.map((role) => {
+          return (
           <Menu.Item className="gx-media gx-pointer" key={role.companyId} onClick={(e) =>
             dispatch(setCurrentCompany({id:role.companyId, name:role.companyName}))
           }>
             {role.companyName}
-          </Menu.Item>
+          </Menu.Item>)
+          }
         )
       }
     </Menu>

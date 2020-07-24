@@ -73,7 +73,6 @@ const Home = ({match}) => {
         getUsers();
     }, [currentCompany]);
 
-     console.log(users);
     const dataview = AddKeyToArrayOfObject(users);
     return (
       <>
