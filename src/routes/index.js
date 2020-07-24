@@ -6,7 +6,6 @@ import { RouteMiddlware } from 'middlware';
 
 const App = ({match}) => {
   const { userRoles } = useSelector(state => state.auth);
-  //const { roles } = useSelector(state => state.roles);
 
   return (
   <div className="gx-main-content-wrapper">
@@ -44,8 +43,8 @@ const App = ({match}) => {
         service='Permissions'
         exact
       />
-     <RouteMiddlware 
-        path={`${match.url}users`}
+     <RouteMiddlware
+        path={[`${match.url}users`]}
         component={asyncComponent(() => import('./Users'))}
         userRoles={userRoles}
         service='Users'
@@ -55,6 +54,19 @@ const App = ({match}) => {
         component={asyncComponent(() => import('./Companies') ) }
         userRoles={userRoles}
         service='Companies'
+      />
+      <RouteMiddlware
+        path={[`${match.url}company/users`]}
+        component={asyncComponent(() => import('./Users'))}
+        userRoles={userRoles}
+        service='Company/Users'
+      />
+      <RouteMiddlware 
+        path={`${match.url}company/roles`}
+        component={asyncComponent(() => import('./Roles'))}
+        userRoles={userRoles}
+        service='Company/Roles'
+        exact
       />
       <Route path={`${match.url}notAuthorized`} component={asyncComponent(() => import('components/Error404'))}/>
     </Switch>

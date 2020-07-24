@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Button, Input, Alert, Form} from "antd";
+import {Button, Input, Alert, Checkbox, Form} from "antd";
 import IntlMessages from "util/IntlMessages";
 import { signInSuccess } from 'appRedux/actions/Auth';
 import { setCurrentCompany } from 'appRedux/actions/Companies';
@@ -21,8 +21,8 @@ const SignIn =()=> {
       setLoadStart(false);
       if ( status == 'success') {
         dispatch(signInSuccess(data));
-        if (data.companyId) {
-          dispatch(setCurrentCompany(data.companyId));
+        if (data[0].roles.length > 0 && data[0].roles[0].companyName) {
+          dispatch(setCurrentCompany({id:data[0].roles[0].companyId, name:data[0].roles[0].companyName }));
         } else {
           dispatch(setCurrentCompany(null));
         }
@@ -39,38 +39,31 @@ const SignIn =()=> {
       <div className="gx-app-login-wrap">
         <div className="gx-app-login-container">
           <div className="gx-app-login-main-content">
-            <div className="gx-app-logo-content">
-              <div className="gx-app-logo-content-bg">
-                <img src={"https://via.placeholder.com/272x395"} alt='Neature'/>
-              </div>
-              <div className="gx-app-logo-wid">
-                <h1><IntlMessages id="app.userAuth.signIn"/></h1>
-                <p><IntlMessages id="app.userAuth.bySigning"/></p>
-                <p><IntlMessages id="app.userAuth.getAccount"/></p>
-              </div>
-            </div>
             <div className="gx-app-login-content">
+              <div className="amazon-tool-login-title">
+                <h1>Hello! <br/> Welcome back.</h1>
+              </div>
               <Form
                 onFinish={onSignIn}
                 initialValues={{ remember: true }}
                 name="basic"
-                className="gx-signin-form gx-form-row0">
+                className="gx-signin-form gx-form-row0 amz-top-margin-10">
                 <Form.Item
-                  initialValue="joseph"
                   rules={[{ required: true, message: 'Please enter your username' }]} name="username">
-                  <Input placeholder="Username"/>
+                  <Input placeholder="Username or email" className="amazon-tool-home-input"/>
                 </Form.Item>
                 <Form.Item
-                  initialValue="demo#123"
                   rules= {[{required: true, message: 'Please input your Password!'}]}  name="password">
-                    <Input type="password" placeholder="Password"/>
+                    <Input type="password" placeholder="Password" className="amazon-tool-home-input"/>
+                </Form.Item>
+                <Form.Item  name="remember" valuePropName="checked">
+                  <Checkbox>Remember me</Checkbox>
+                  <Link className="gx-login-form-forgot" to="#" style={{float:'right'}}>Forgot password</Link>
                 </Form.Item>
                 <Form.Item>
-                  <Button type="primary" className="gx-mb-0" loading={loadStart} htmlType="submit">
+                  <Button type="primary" className="gx-mb-12" style={{height:'48px'}} size="large" block  loading={loadStart} htmlType="submit">
                     <IntlMessages id="app.userAuth.signIn"/>
                   </Button>
-                  <span><IntlMessages id="app.userAuth.or"/></span> <Link to="/signup"><IntlMessages
-                  id="app.userAuth.signUp"/></Link>
                 </Form.Item>
               </Form>
               { responseData.status == 'error' ? <Alert

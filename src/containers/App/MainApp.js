@@ -28,10 +28,10 @@ const {Content, Footer} = Layout;
 
 const MainApp = (props) => {
 
-  const navStyle = useSelector(({settings}) => settings.navStyle);
-  const width = useSelector(({settings}) => settings.width);
+ /* const navStyle = useSelector(({settings}) => settings.navStyle);
+  const width = useSelector(({settings}) => settings.width);*/
 
-  const getContainerClass = (navStyle) => {
+  /*const getContainerClass = (navStyle) => {
     switch (navStyle) {
       case NAV_STYLE_INSIDE_HEADER_HORIZONTAL:
         return "gx-container-wrap";
@@ -75,13 +75,12 @@ const MainApp = (props) => {
       default :
         return null;
     }
-  };
+  };*/
   
   const dispatch = useDispatch();
-  const { agencyId, companyId } = useSelector(state => state.auth);
+  const { agencyId } = useSelector(state => state.auth);
 
   useEffect(() => {
-
     dispatch(getRolesStart(agencyId));
     dispatch(getPermissionsStart());
     dispatch(getServicesStart());
@@ -90,20 +89,14 @@ const MainApp = (props) => {
   const {match} = props;
 
   return (
-    <Layout className="gx-app-layout">
-      {getSidebar(navStyle, width)}
-      <Layout>
-        {getNavStyles(navStyle)}
-        <Content className={`gx-layout-content ${getContainerClass(navStyle)}`}>
-          <App match={match}/>
-          <Footer>
-            <div className="gx-layout-footer-content">
-              {footerText}
-            </div>
-          </Footer>
-        </Content>
-      </Layout>
-    </Layout>
+    <>
+      <App match={match}/>
+        <Footer>
+          <div className="gx-layout-footer-content">
+            {footerText}
+          </div>
+        </Footer>
+    </>
   )
 };
 

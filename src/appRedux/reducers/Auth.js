@@ -9,9 +9,10 @@ const INITIAL_STATE = {
   isAuthenticated: false,
   userRoles: [],
   user: null,
+  id: null,
   error: null,
   agencyId: null,
-  companyId: [],
+  companies: [],
   loading: false,
 };
 
@@ -31,11 +32,14 @@ const authReducer = (state = INITIAL_STATE, action) => {
     case SIGNIN_SUCCESS:
       return {
         ...state,
-        user: action.payload[0].name,
+        user: action.payload[0].username,
         userRoles: action.payload[0].roles,
         agencyId: action.payload[0].agencyId,
+        companyId: action.payload[0].companyId,
         isAuthenticated: true,
         error: null,
+        companies: action.payload[0].companies,
+        id: action.payload[0].id,
         loading: false,
       };
     case SIGNOUT:
@@ -46,7 +50,8 @@ const authReducer = (state = INITIAL_STATE, action) => {
         user: null,
         error: null,
         agencyId: null,
-        companyId: [],
+        id: null,
+        companies: [],
       };
     default:
       return state;

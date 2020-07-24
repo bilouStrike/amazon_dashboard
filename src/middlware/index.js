@@ -19,18 +19,29 @@ function isAuth(servicePermissions, rolePermissions) {
   }
 }
 
-function useCheckPermission (services, permissions, userRoles, roles, service) {
+function CheckPermission (services, permissions, userRoles, roles, service, currentCompany, companyId) {
   let auth = true;
   let rolePermissions = [];
-  
   if( roles != null ) {
-    userRoles.map((userrole) => {
-      Object.values(roles).map((role) => {
-        if ( role.name === userrole ) {
-          rolePermissions.push.apply(rolePermissions, role.permissions);
-        }
-      })
-    });
+
+    if( companyId === null ) {
+      userRoles.map((userrole) => {
+        Object.values(roles).map((role) => {
+          if ( role.name === userrole.name ) {
+            rolePermissions.push.apply(rolePermissions, role.permissions);
+          }
+        })
+      });
+    } else {
+      const rolesOfCurrentCompany = currentCompany ? userRoles.filter( (item) => item.companyId === currentCompany.id ) : [];
+      rolesOfCurrentCompany.map((userrole) => {
+        Object.values(roles).map((role) => {
+          if ( role.name === userrole.name ) {
+            rolePermissions.push.apply(rolePermissions, role.permissions);
+          }
+        })
+      });
+    }   
   }
 
   const servicePermissions =  permissions != null ? permissions.filter((itm) => 
@@ -49,7 +60,7 @@ export const RestrictedRoute = ({component: Component, isAuthenticated, ...rest}
         ? <Component {...props} />
         : <Redirect
           to={{
-            pathname: '/signin',
+            pathname: '/home/signin',
           }}
         />}
 />;
@@ -57,13 +68,15 @@ export const RestrictedRoute = ({component: Component, isAuthenticated, ...rest}
 export const RouteMiddlware = ({component: Component, userRoles, service, ...rest}) => {
     const { roles } = useSelector(state => state.roles);
     const { services } = useSelector(state => state.services);
+    const { currentCompany } = useSelector(state => state.companies);
     const { permissions } = useSelector(state => state.permissions);
-    let isAuthorised = useCheckPermission(services, permissions, userRoles, roles, service);
+    const { companyId } = useSelector(state => state.auth);
+    let isAuthorised = userRoles.length > 0 && userRoles[0].roleId === 1 ? true : CheckPermission(services, permissions, userRoles, roles, service, currentCompany, companyId);
     return (
         <Route
             {...rest}
             render={props => {
-              if ( roles != null && roles.length != 0 && permissions != null && services != null ) {
+              if ( permissions != null && services != null ) {
                   if (isAuthorised) {
                     return <Component {...props} />
                   } else {

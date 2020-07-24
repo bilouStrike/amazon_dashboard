@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Card, Table, Tag } from 'antd';
-import { getAgencyUsers } from 'services/agency';
+import { getUsersByAgency } from 'services/users';
 import { getCompanyUsers } from 'services/company';
 import { useSelector } from 'react-redux';
 import { AddKeyToArrayOfObject } from 'helpers/dataFormat';
@@ -15,8 +15,8 @@ const columns = [
   },
   {
     title: 'User',
-    dataIndex: 'name',
-    key: 'user',
+    dataIndex: 'username',
+    key: 'username',
   },
   {
     title: 'Password',
@@ -31,8 +31,8 @@ const columns = [
       return (
       <>
         { roles && roles.length != null ? roles.map(role => (
-          <Tag color='green' key={role}>
-            {role.toUpperCase()}
+          <Tag color='green' key={role.roleId}>
+            {role.name.toUpperCase()}
           </Tag>
         )): null}
       </>
@@ -57,25 +57,26 @@ const columns = [
 const Home = ({match}) => {
 
     const [users, setUsers] = useState([]);  
-    const { agencyId, companyId } = useSelector(state => state.auth);
-
+    const { currentCompany } = useSelector(state => state.companies);
+    const { agencyId } = useSelector(state => state.auth);
+    const companyId = currentCompany ? currentCompany.id : null;
     useEffect(() => {
         const getUsers = async () => {
-            if (match.path === '/users') {
-                const { data } = await getAgencyUsers(agencyId);
-                setUsers(data);
-            } else {
-                const { data } = await getCompanyUsers(companyId);
-                setUsers(data);
-            }
+          if ( match.path === '/company/users' ) {
+            const { data } = await getCompanyUsers(companyId);
+            setUsers(data);
+            return;
+          } 
+          const { data } = await getUsersByAgency(agencyId);
+          setUsers(data);
         }
         getUsers();
-    }, []);
+    }, [currentCompany, users]);
 
     const dataview = AddKeyToArrayOfObject(users);
     return (
       <>
-        <AddUser />
+        <AddUser {...match}/>
         <Card title="Users List">
           <Table className="gx-table-responsive" columns={columns} dataSource={dataview}/>
         </Card> 

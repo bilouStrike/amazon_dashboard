@@ -1,72 +1,186 @@
 {
   "roles": [
     {
-      "name": "agency_admin",
+      "name": "agency_owner",
       "permissions": [
         "manage_dashboard",
         "manage_roles",
         "manage_permissions",
+        "manage_company_roles",
+        "manage_company_users",
+        "manage_company_permissions",
         "manage_Sells",
         "manage_users",
         "manage_companies",
         "manage_inventory"
       ],
       "id": 1,
-      "agencyId": 123456
+      "companyId": null
     },
     {
       "name": "agency_admin",
       "permissions": [
         "manage_dashboard",
-        "manage_roles",
         "manage_permissions",
-        "manage_Sells",
+        "manage_roles",
         "manage_users",
         "manage_companies",
-        "manage_inventory"
-      ],
-      "id": 2,
-      "agencyId": 999
-    },
-    {
-      "name": "Manage_users",
-      "permissions": [
-        "manage_dashboard",
-        "manage_users",
+        "manage_inventory",
+        "manage_company_roles",
+        "manage_company_users",
         "manage_Sells"
       ],
-      "agencyId": 123456,
-      "comapnyId": null,
+      "agencyId": 5481091,
+      "companyId": 0,
+      "companyName": null,
       "id": 2
     },
     {
-      "name": "manage dashboard",
+      "name": "agency_owner_A",
       "permissions": [
-        "manage_dashboard"
+        "manage_company_roles",
+        "manage_company_users",
+        "manage_dashboard",
+        "manage_Sells",
+        "manage_inventory"
       ],
-      "agencyId": 999,
-      "companyId": 0,
+      "agencyId": 5481091,
+      "companyId": 1,
+      "companyName": "compny A",
+      "id": 3
+    }
+  ],
+  "users": [
+    {
+      "FirstName": "joseph",
+      "LastName": "berardi",
+      "email": "admin@gmail.com",
+      "username": "joseph",
+      "password": "12121212",
+      "confirm": "12121212",
+      "agreement": true,
+      "agencyId": 5481091,
+      "companyId": null,
+      "roles": [
+        {
+          "companyId": 0,
+          "name": "agency_owner",
+          "roleId": 1,
+          "type": "agency"
+        }
+      ],
+      "id": 1
+    },
+    {
+      "FirstName": "bilal",
+      "LastName": "dif",
+      "email": "bilal@gg.com",
+      "username": "bilal",
+      "password": "12121212",
+      "roles": [],
+      "agencyId": 5481091,
+      "companyId": null,
+      "id": 2
+    },
+    {
+      "FirstName": "ahmed",
+      "LastName": "dif",
+      "email": "iiii@gmail.com",
+      "username": "ahmed",
+      "password": "12121212",
+      "roles": [
+        {
+          "roleId": 2,
+          "companyId": 0,
+          "type": "agency",
+          "name": "agency_admin",
+          "companyName": null
+        }
+      ],
+      "agencyId": 5481091,
+      "companyId": null,
       "id": 3
     },
     {
-      "name": "manage salles",
-      "permissions": [
-        "manage_dashboard",
-        "manage_Sells"
+      "FirstName": "said",
+      "LastName": "bentchich",
+      "email": "iiii@gmail.com",
+      "username": "said",
+      "password": "12121212",
+      "roles": [
+        {
+          "roleId": 3,
+          "companyId": 1,
+          "type": "company",
+          "name": "agency_owner_A",
+          "companyName": "compny A"
+        }
       ],
-      "agencyId": 999,
-      "companyId": 0,
+      "agencyId": 5481091,
+      "companyId": 1,
       "id": 4
     },
     {
-      "name": "Visitor",
-      "permissions": [
-        "manage_Sells",
-        "manage_dashboard"
+      "FirstName": "oussama",
+      "LastName": "oussama",
+      "email": "oussama@gmail.com",
+      "username": "oussama",
+      "password": "oussamaoussama",
+      "confirm": "oussamaoussama",
+      "agreement": true,
+      "agencyId": 5381661,
+      "companyId": null,
+      "roles": [
+        {
+          "companyId": 0,
+          "name": "agency_owner",
+          "roleId": 1,
+          "type": "agency"
+        }
       ],
-      "agencyId": 123456,
-      "companyId": 0,
+      "id": 5
+    },
+    {
+      "FirstName": "ihab",
+      "LastName": "ihab",
+      "email": "ihab@gg.com",
+      "username": "ihab",
+      "password": "ihabihab",
+      "roles": [],
+      "agencyId": 5381661,
+      "companyId": null,
       "id": 6
+    },
+    {
+      "FirstName": "dfg",
+      "LastName": "dif",
+      "email": "ff@gg.com",
+      "username": "abdo",
+      "password": "gdfgdfgfg",
+      "roles": [
+        {
+          "roleId": 3,
+          "companyId": 1,
+          "type": "company",
+          "name": "agency_owner_A",
+          "companyName": "compny A"
+        }
+      ],
+      "agencyId": 5481091,
+      "companyId": 1,
+      "id": 7
+    }
+  ],
+  "companies": [
+    {
+      "name": "compny A",
+      "agencyId": 5481091,
+      "id": 1
+    },
+    {
+      "name": "compny B",
+      "agencyId": 5481091,
+      "id": 2
     }
   ],
   "permissions": [
@@ -104,6 +218,21 @@
       "name": "manage_inventory",
       "service": "Inventory",
       "id": 7
+    },
+    {
+      "id": 8,
+      "name": "manage_company_roles",
+      "service": "Company/Roles"
+    },
+    {
+      "name": "manage_company_users",
+      "service": "Company/Users",
+      "id": 9
+    },
+    {
+      "name": "jghj",
+      "service": "Dashboard",
+      "id": 10
     }
   ],
   "services": [
@@ -141,110 +270,6 @@
       "id": 6,
       "name": "Inventory",
       "type": "service"
-    }
-  ],
-  "users": [
-    {
-      "id": 1,
-      "name": "bilal",
-      "password": 123,
-      "agencyId": 999,
-      "companyId": 123,
-      "roles": [
-        "agency_admin"
-      ]
-    },
-    {
-      "name": "joseph",
-      "password": "123456",
-      "roles": [
-        "agency_admin"
-      ],
-      "agencyId": 123456,
-      "companyId": null,
-      "id": 9
-    },
-    {
-      "name": "Admin",
-      "password": "123456",
-      "roles": [
-        "Manage_users"
-      ],
-      "agencyId": 123456,
-      "companyId": null,
-      "id": 10
-    },
-    {
-      "name": "dashboard manager",
-      "password": "123",
-      "roles": [
-        "manage dashboard"
-      ],
-      "agencyId": 999,
-      "companyId": null,
-      "id": 11
-    },
-    {
-      "name": "sales manager",
-      "password": "123",
-      "roles": [
-        "manage salles"
-      ],
-      "agencyId": 999,
-      "companyId": null,
-      "id": 12
-    },
-    {
-      "name": "bilal99",
-      "password": "ghgh",
-      "roles": [
-        "Manage_users"
-      ],
-      "agencyId": 123456,
-      "companyId": null,
-      "id": 13
-    },
-    {
-      "name": "Amin",
-      "password": "123",
-      "roles": [
-        "Visitor"
-      ],
-      "agencyId": 123456,
-      "companyId": [],
-      "id": 15
-    }
-  ],
-  "agencies": [
-    {
-      "id": 123456,
-      "name": "Agency One"
-    },
-    {
-      "id": 999,
-      "name": "Agency Alpha"
-    }
-  ],
-  "companies": [
-    {
-      "id": 123,
-      "name": "Company A",
-      "agencyId": 123456
-    },
-    {
-      "id": 456,
-      "name": "Company B",
-      "agencyId": 123456
-    },
-    {
-      "id": 56,
-      "name": "Company C",
-      "agencyId": 999
-    },
-    {
-      "id": 87,
-      "name": "Company D",
-      "agencyId": 999
     }
   ]
 }

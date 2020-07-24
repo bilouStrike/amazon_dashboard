@@ -1,14 +1,12 @@
 import Http from '../../util/Http';
-import { signin, signup } from '../mockEndPoint';
-
+import { getByFieldValue } from '../helpers';
 
 /** Sign in */
 export const signIn = async (usercredentials) => {
   await new Promise((resolve) => {
     setTimeout(resolve, 2000);
   });
-  const { data } = await Http.get(`/users?name=${usercredentials.username}`);
-  //console.log(data);
+  const { data } = await Http.get(`/users?username=${usercredentials.username}`);
   let status, message;
   if ( data.length != 0 ) {
     status = 'success';
@@ -20,10 +18,36 @@ export const signIn = async (usercredentials) => {
 };
 
 /** Sign up */
-export const signUp = async (useData) => {
-  await new Promise((resolve) => {
-    setTimeout(resolve, 2000);
-  });
-  const result = await signup(useData);
-  return result;
+export const signUp = async (userData) => {
+  let status, message;
+  
+  const checkEmail = await getByFieldValue('users', 'email', userData.email)
+  if ( checkEmail.length != 0 ) {
+    return { 
+      status :'error',
+      message :'This email aleady used!'
+    }
+  }
+
+  const checkUsername = await getByFieldValue('users', 'username', userData.username)
+  if ( checkUsername.length != 0 ) {
+    return { 
+      status :'error',
+      message :'This username aleady used!'
+    }
+  }
+
+  const { statusText } = await Http.post(`/users`, userData);
+  if ( statusText === 'Created' ) {
+    status = 'success';
+    message = 'Resgistration success, check you email to activate your account';
+  } else {
+    status = 'error';
+    message = 'Something wrong! Incorrect data';
+  }
+  return { status, message }
 };
+
+
+
+

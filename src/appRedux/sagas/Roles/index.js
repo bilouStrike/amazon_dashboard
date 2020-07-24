@@ -9,7 +9,7 @@ import {
     ADD_ROLE_START
 } from 'constants/ActionTypes';
 
-import { getRoles, addRole } from 'services/roles';
+import { getRolesByAgency, addRole } from 'services/roles';
 import { 
     getRolesSuccess,
     getRolesFailed,
@@ -19,7 +19,7 @@ import {
 
 function* getRolesProccess({payload}) {
     try {
-        const { statusText, data } = yield call(getRoles, payload);
+        const { statusText, data } = yield call(getRolesByAgency, payload);
         yield put(getRolesSuccess(data));
     } catch (error) {
         yield put(getRolesFailed(error.message));

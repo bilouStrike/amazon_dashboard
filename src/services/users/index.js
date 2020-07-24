@@ -13,4 +13,8 @@ export const addUser = async (user) => {
   return { data, status, message };
 }
 
+export const getUsersByAgency = async(agencyId) => {
+  const { data, statusText } = await Http.get(`/users?agencyId=${agencyId}`);
+  return { data }
+}
 

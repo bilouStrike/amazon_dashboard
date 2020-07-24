@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import AddRole from './addRole';
 import UpdateRolePermissions from 'components/Permissions/updateRolePermissions';
 import { AddKeyToArrayOfObject } from 'helpers/dataFormat';
-import { getRolesByField } from 'services/roles';
+import { getCompanyRoles } from 'services/company';
+import { getRolesByAgency } from 'services/roles';
 
 const columns = [
   {
@@ -40,12 +41,29 @@ const columns = [
   }
 ];
 
-const Home = () => {
-    const { roles } = useSelector(state => state.roles);
+const Home = ({match}) => {
+    const [roles, setRoles] = useState([]);
+    const { currentCompany } = useSelector(state => state.companies);
+    const { agencyId } = useSelector(state => state.auth);
+    const companyId = currentCompany ? currentCompany.id : null;
+
+    useEffect(() => {
+          const getRoles = async () => {
+          if (match.path === '/company/roles') {
+            const { data } = await getCompanyRoles(companyId);
+            setRoles(data);
+          } else {
+            const { data } = await getRolesByAgency(agencyId);
+            setRoles(data);
+          }
+        }
+        getRoles();
+    }, [currentCompany, roles]);
+
     const dataview = AddKeyToArrayOfObject(roles);
     return (
       <>
-        <AddRole />
+        <AddRole {...match}/>
         <Card title="Roles List">
           <Table className="gx-table-responsive" columns={columns} dataSource={dataview}/>
         </Card> 

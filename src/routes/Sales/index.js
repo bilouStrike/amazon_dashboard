@@ -6,7 +6,7 @@ const Sales = () => {
   return (
     <div>
       <div className="gx-d-flex justify-content-center">
-      <h4> Datas services fro company :  {currentCompany} </h4>
+      <h4> Datas services fro company :  {currentCompany ? currentCompany.name : null} </h4>
       </div>
     </div>
   );

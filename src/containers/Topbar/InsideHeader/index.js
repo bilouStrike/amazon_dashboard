@@ -1,23 +1,19 @@
-import React,{useEffect, useState} from "react";
-import { Layout, Popover, List, Select, Menu, Dropdown } from 'antd';
-import {connect, useDispatch, useSelector} from "react-redux";
+import React,{ useEffect, useState } from "react";
+import { Layout, Popover, List, Menu, Dropdown } from 'antd';
+import { connect, useDispatch, useSelector } from "react-redux";
 import UserInfo from "components/UserInfo";
 import AppNotification from "components/AppNotification";
 import HorizontalNav from "../HorizontalNav";
-import CustomScrollbars from "util/CustomScrollbars";
-import {Link} from "react-router-dom";
-import {switchLanguage, toggleCollapsedSideNav} from "../../../appRedux/actions/Setting";
-import { getCompaniesAgency } from 'services/company';
+import { Link } from "react-router-dom";
+import { switchLanguage, toggleCollapsedSideNav } from "../../../appRedux/actions/Setting";
+import { getCompaniesByAgency } from 'services/company';
 import { setCurrentCompany } from 'appRedux/actions/Companies';
 import { DownOutlined } from '@ant-design/icons';
 
-
 const {Header} = Layout;
-const { Option } = Select;
 
 const InsideHeader = () => {
 
-  const { user } = useSelector(state => state.auth);
   const data = [
     {
       title: 'Manage companies',
@@ -33,11 +29,11 @@ const InsideHeader = () => {
     },
     {
       title: 'Manage Users',
-      link: '/users',
+      link: '/company/users',
     },
     {
       title: 'Manage roles',
-      link: '/roles',
+      link: '/company/roles',
     },
     {
       title: 'Manage Permissions',
@@ -48,40 +44,58 @@ const InsideHeader = () => {
 
   const navCollapsed = useSelector(({settings}) => settings.navCollapsed);
   const [companies, setcompanies] = useState([]);
-  const { agencyId } = useSelector(state => state.auth);
-
-  useEffect(() => {
-    const getCompanies = async () => {
-      const { data } = await getCompaniesAgency(agencyId);
-      setcompanies(data);
-      if (data[0]) {
-        dispatch(setCurrentCompany(data[0].name))
-      }
-    }
-    getCompanies();
-  }, []);
-
   const { currentCompany } = useSelector(state => state.companies);
+  const { userRoles, companyId, agencyId, isAuthenticated } = useSelector(state => state.auth);
+  
+  useEffect(() => {
+    if ( companyId === null ) {
+      const getCompanies = async () => {
+        const { data } = await getCompaniesByAgency(agencyId);
+        setcompanies(data);
+        if (data[0]) {
+          dispatch(setCurrentCompany(data[0]))
+        }
+      }
+      getCompanies();
+    } else {
+      dispatch(setCurrentCompany({id:userRoles[0].companyId, name:userRoles[0].companyName}));
+    }
+  }, [isAuthenticated]);
+
   const menu = (
     <Menu>
-       { companies.map(company =>
-          <Menu.Item className="gx-media gx-pointer" key={company.id} onClick={(e) =>
-            dispatch(setCurrentCompany(company.name))
+       {
+        companyId === null ? 
+        companies ? companies.map((company) => 
+            <Menu.Item className="gx-media gx-pointer" key={company.id} onClick={(e) => {
+                const comp = {id:company.id, name:company.name};
+                dispatch(setCurrentCompany(comp))
+            }
+            }>
+              {company.name}
+            </Menu.Item>
+          ) : null        
+        :
+        userRoles.map((role) => {
+          return (
+          <Menu.Item className="gx-media gx-pointer" key={role.companyId} onClick={(e) =>
+            dispatch(setCurrentCompany({id:role.companyId, name:role.companyName}))
           }>
-            {company.name}
-          </Menu.Item>
-        )}
+            {role.companyName}
+          </Menu.Item>)
+          }
+        )
+      }
     </Menu>
   );
-  console.log(companies);
-
+  const spacer = isAuthenticated === false ? { justifyContent: 'space-between'} : null;
   return (
     <div className="gx-header-horizontal gx-header-horizontal-dark gx-inside-header-horizontal">
       <Header
         className="gx-header-horizontal-main">
         <div className="gx-container gx-wide-width">
-          <div className="gx-header-horizontal-main-flex">
-            <div className="gx-d-block gx-d-lg-none gx-linebar gx-mr-xs-3 6e">
+          <div className="gx-header-horizontal-main-flex" style={spacer}>
+            <div className="gx-d-block gx-d-lg-none gx-linebar gx-mr-xs-3 6e" >
               <i className="gx-icon-btn icon icon-menu"
                  onClick={() => {
                    dispatch(toggleCollapsedSideNav(!navCollapsed));
@@ -92,15 +106,18 @@ const InsideHeader = () => {
               <img alt="" src={require("assets/images/w-logo.png")}/></Link>
             <Link to="/" className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo">
               <img alt="" src={require("assets/images/logo.png")}/></Link>
-
+            { 
+            isAuthenticated ? <>   
             <div className="gx-header-horizontal-nav gx-header-horizontal-nav-curve gx-d-none gx-d-lg-block">
               <HorizontalNav/>
             </div>
+            
             <ul className="gx-header-notifications gx-ml-auto">
               <li>
                 <Dropdown overlay={menu} trigger={['click']}>
                   <a className="ant-dropdown-link" onClick={e => e.preventDefault()} style={{fontSize: '16px'}}>
-                    { currentCompany ? currentCompany : <span> No company </span> } <DownOutlined />
+                    <span>{ currentCompany ? currentCompany.name : 'No company selcted'}</span>
+                    <DownOutlined />
                   </a>
                 </Dropdown>
               </li>
@@ -130,8 +147,13 @@ const InsideHeader = () => {
                   <span className="gx-pointer gx-d-block"><i className="icon icon-notification"/></span>
                 </Popover>
               </li>
-              <li className="gx-user-nav"><UserInfo/></li>
-            </ul>
+             <li className="gx-user-nav"><UserInfo/></li>
+            </ul> </>  : 
+            <Menu mode="horizontal" style={{float: 'right'}}>
+              <Menu.Item key="1"><Link to='/home/signin'>SignIn</Link></Menu.Item>
+              <Menu.Item key="2"><Link to='/home/signup'>SignUp</Link></Menu.Item>
+            </Menu>
+            }
           </div>
         </div>
       </Header>
