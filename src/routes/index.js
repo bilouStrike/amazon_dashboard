@@ -6,7 +6,6 @@ import { RouteMiddlware } from 'middlware';
 
 const App = ({match}) => {
   const { userRoles } = useSelector(state => state.auth);
-  //const { roles } = useSelector(state => state.roles);
 
   return (
   <div className="gx-main-content-wrapper">

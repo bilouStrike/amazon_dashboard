@@ -60,7 +60,7 @@ export const RestrictedRoute = ({component: Component, isAuthenticated, ...rest}
         ? <Component {...props} />
         : <Redirect
           to={{
-            pathname: '/signin',
+            pathname: '/home/signin',
           }}
         />}
 />;

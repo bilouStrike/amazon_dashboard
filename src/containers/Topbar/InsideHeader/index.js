@@ -45,7 +45,7 @@ const InsideHeader = () => {
   const navCollapsed = useSelector(({settings}) => settings.navCollapsed);
   const [companies, setcompanies] = useState([]);
   const { currentCompany } = useSelector(state => state.companies);
-  const { userRoles, companyId, agencyId } = useSelector(state => state.auth);
+  const { userRoles, companyId, agencyId, isAuthenticated } = useSelector(state => state.auth);
   
   useEffect(() => {
     if ( companyId === null ) {
@@ -60,7 +60,7 @@ const InsideHeader = () => {
     } else {
       dispatch(setCurrentCompany({id:userRoles[0].companyId, name:userRoles[0].companyName}));
     }
-  }, []);
+  }, [isAuthenticated]);
 
   const menu = (
     <Menu>
@@ -88,14 +88,14 @@ const InsideHeader = () => {
       }
     </Menu>
   );
-
+  const spacer = isAuthenticated === false ? { justifyContent: 'space-between'} : null;
   return (
     <div className="gx-header-horizontal gx-header-horizontal-dark gx-inside-header-horizontal">
       <Header
         className="gx-header-horizontal-main">
         <div className="gx-container gx-wide-width">
-          <div className="gx-header-horizontal-main-flex">
-            <div className="gx-d-block gx-d-lg-none gx-linebar gx-mr-xs-3 6e">
+          <div className="gx-header-horizontal-main-flex" style={spacer}>
+            <div className="gx-d-block gx-d-lg-none gx-linebar gx-mr-xs-3 6e" >
               <i className="gx-icon-btn icon icon-menu"
                  onClick={() => {
                    dispatch(toggleCollapsedSideNav(!navCollapsed));
@@ -106,10 +106,12 @@ const InsideHeader = () => {
               <img alt="" src={require("assets/images/w-logo.png")}/></Link>
             <Link to="/" className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo">
               <img alt="" src={require("assets/images/logo.png")}/></Link>
-
+            { 
+            isAuthenticated ? <>   
             <div className="gx-header-horizontal-nav gx-header-horizontal-nav-curve gx-d-none gx-d-lg-block">
               <HorizontalNav/>
             </div>
+            
             <ul className="gx-header-notifications gx-ml-auto">
               <li>
                 <Dropdown overlay={menu} trigger={['click']}>
@@ -145,8 +147,13 @@ const InsideHeader = () => {
                   <span className="gx-pointer gx-d-block"><i className="icon icon-notification"/></span>
                 </Popover>
               </li>
-              <li className="gx-user-nav"><UserInfo/></li>
-            </ul>
+             <li className="gx-user-nav"><UserInfo/></li>
+            </ul> </>  : 
+            <Menu mode="horizontal" style={{float: 'right'}}>
+              <Menu.Item key="1"><Link to='/home/signin'>SignIn</Link></Menu.Item>
+              <Menu.Item key="2"><Link to='/home/signup'>SignUp</Link></Menu.Item>
+            </Menu>
+            }
           </div>
         </div>
       </Header>
