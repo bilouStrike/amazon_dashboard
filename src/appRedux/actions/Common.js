@@ -1,4 +1,11 @@
-import {FETCH_ERROR, FETCH_START, FETCH_SUCCESS, HIDE_MESSAGE, SHOW_MESSAGE} from "../../constants/ActionTypes";
+import {
+  FETCH_ERROR,
+  FETCH_START,
+  FETCH_SUCCESS,
+  HIDE_MESSAGE,
+  SHOW_MESSAGE,
+  DO_SIGNAL
+} from "../../constants/ActionTypes";
 
 export const fetchStart = () => {
   return {
@@ -32,7 +39,9 @@ export const hideMessage = () => {
   }
 };
 
-
+export const do_signal = () => ({
+  type: DO_SIGNAL
+});
 
 
 

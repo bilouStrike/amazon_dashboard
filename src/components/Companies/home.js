@@ -14,6 +14,7 @@ const columns = [
 ];
 
 const Home = () => {
+
     const { agencyId } = useSelector(state => state.auth);
     const [companies, setCompanies] = useState([]);
 

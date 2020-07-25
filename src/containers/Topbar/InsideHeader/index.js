@@ -38,7 +38,8 @@ const InsideHeader = () => {
   const [companies, setcompanies] = useState([]);
   const { currentCompany } = useSelector(state => state.companies);
   const { userRoles, companyId, agencyId, isAuthenticated } = useSelector(state => state.auth);
-  
+  const { signal } = useSelector(state => state.commonData);
+
   useEffect(() => {
     if ( !isAuthenticated ) {
       return;
@@ -55,7 +56,7 @@ const InsideHeader = () => {
     } else if( userRoles[0] !== undefined ) {
       dispatch(setCurrentCompany({id:userRoles[0].companyId, name:userRoles[0].companyName}));
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, signal]);
 
   const menu = (
     <Menu>

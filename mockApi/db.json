@@ -188,6 +188,26 @@
       "agencyId": 5884176,
       "companyId": 1,
       "id": 7
+    },
+    {
+      "FirstName": "mourad",
+      "LastName": "fgfgfg",
+      "email": "mourad@gmail.com",
+      "username": "mourad",
+      "password": "fgfgfgfg",
+      "confirm": "fgfgfgfg",
+      "agreement": true,
+      "agencyId": 1492362,
+      "companyId": null,
+      "roles": [
+        {
+          "companyId": 0,
+          "name": "agency_owner",
+          "roleId": 1,
+          "type": "agency"
+        }
+      ],
+      "id": 8
     }
   ],
   "companies": [
@@ -200,6 +220,26 @@
       "name": "compny B",
       "agencyId": 5884176,
       "id": 2
+    },
+    {
+      "name": "compny C",
+      "agencyId": 5884176,
+      "id": 3
+    },
+    {
+      "name": "compny D",
+      "agencyId": 5884176,
+      "id": 4
+    },
+    {
+      "name": "compny A mourad",
+      "agencyId": 1492362,
+      "id": 5
+    },
+    {
+      "name": "vxcvxcv",
+      "agencyId": 1492362,
+      "id": 6
     }
   ],
   "permissions": [

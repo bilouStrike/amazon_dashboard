@@ -11,7 +11,7 @@ export const SHOW_MESSAGE = 'SHOW_MESSAGE';
 export const HIDE_MESSAGE = 'HIDE_MESSAGE';
 export const ON_SHOW_LOADER = 'ON_SHOW_LOADER';
 export const ON_HIDE_LOADER = 'ON_HIDE_LOADER';
-
+export const DO_SIGNAL = 'DO_SIGNAL';
 //Auth const
 export const SIGNIN_START = 'SIGNIN_START';
 export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS';

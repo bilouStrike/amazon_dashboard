@@ -3,6 +3,7 @@ import { Button, Modal, Form, Input, Alert } from 'antd';
 import { useDispatch } from 'react-redux';
 import { addCompany } from 'services/company';
 import { useSelector } from 'react-redux';
+import { do_signal } from 'appRedux/actions/Common';
 
 const FormItem = Form.Item;
 
@@ -35,10 +36,10 @@ const AddCompany = () =>  {
     const { status, message, data } = await addCompany(companyData);
     setLoading(false);
     setResponseData({...responseData, status, message });
-    /*if ( status === 'success') {
-      dispatch(addRoleSuccess(data));
+    if ( status === 'success') {
+      dispatch(do_signal());
       return;
-    } */
+    }
   }
 
   return (

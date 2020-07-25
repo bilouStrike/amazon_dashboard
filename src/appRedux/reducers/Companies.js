@@ -3,7 +3,7 @@ import {
 } from '../../constants/ActionTypes';
  
 const INITIAL_STATE = {
-   currentCompany: null
+  currentCompany: null,
 };
 
 const companiesReducer = (state = INITIAL_STATE, action) => {
