@@ -86,7 +86,7 @@ const SignUp = () => {
                     { required: true, message: 'Please input your Password!'},
                     { min: 8 , message: 'The string must contain at least 8 numeric character'}]}  
                 >
-                    <Input.Password placeholder="Password" className="amazon-tool-home-input"/>
+                    <Input type="password" placeholder="Password" className="amazon-tool-home-input"/>
                 </Form.Item>
                 <Form.Item
                   name="confirm"
@@ -106,7 +106,7 @@ const SignUp = () => {
                     }),
                   ]}
                 >
-                  <Input.Password placeholder="Confirm password" className="amazon-tool-home-input"/>
+                  <Input type="password" placeholder="Confirm password" className="amazon-tool-home-input"/>
                 </Form.Item>
                 <Form.Item
                   name="agreement"

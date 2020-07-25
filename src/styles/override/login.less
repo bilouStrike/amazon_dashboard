@@ -6,8 +6,13 @@
     border-bottom: 0.5px solid #e8dcdc;
     padding-left:0px ;
     padding-right:0px ;
-    & ::placeholder{
-        color: @primary-color;
+    & :focus {
+        border: none;
+        border-bottom: 0.5px solid #e8dcdc;
+    }
+    & input:not(:focus) {
+        border: none;
+        border-bottom: 0.5px solid #e8dcdc;
     }
 } 
 .ant-form-item-control-input ::placeholder {
