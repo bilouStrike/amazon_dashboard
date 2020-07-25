@@ -24,20 +24,12 @@ const InsideHeader = () => {
       link: '/',
     },
     {
-      title: 'Agency settings',
-      link: '/',
-    },
-    {
       title: 'Manage Users',
       link: '/company/users',
     },
     {
       title: 'Manage roles',
       link: '/company/roles',
-    },
-    {
-      title: 'Manage Permissions',
-      link: '/permissions',
     }
   ];
   const dispatch = useDispatch();
@@ -48,16 +40,19 @@ const InsideHeader = () => {
   const { userRoles, companyId, agencyId, isAuthenticated } = useSelector(state => state.auth);
   
   useEffect(() => {
+    if ( !isAuthenticated ) {
+      return;
+    }
     if ( companyId === null ) {
       const getCompanies = async () => {
         const { data } = await getCompaniesByAgency(agencyId);
-        setcompanies(data);
-        if (data[0]) {
-          dispatch(setCurrentCompany(data[0]))
+          setcompanies(data);
+          if (data[0]) {
+            dispatch(setCurrentCompany(data[0]))
+          }
         }
-      }
       getCompanies();
-    } else {
+    } else if( userRoles[0] !== undefined ) {
       dispatch(setCurrentCompany({id:userRoles[0].companyId, name:userRoles[0].companyName}));
     }
   }, [isAuthenticated]);
