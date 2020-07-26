@@ -8,7 +8,6 @@ export const getCompanyOfUsers = async (userId) => {
 export const addCompany = async (companyData) => {
     let message, status;
     const { data, statusText } = await Http.post('/companies', companyData);
-    console.log(data);
     if( statusText === 'Created' ) {
       status = 'success';
       message = 'Role created';

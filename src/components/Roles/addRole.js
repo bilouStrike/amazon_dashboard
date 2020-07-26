@@ -6,7 +6,7 @@ import { addRoleSuccess } from '../../appRedux/actions/Roles';
 
 const FormItem = Form.Item;
 
-const AddRole = ({path}) =>  {
+const AddRole = ({path, updateList}) =>  {
   const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
   const { permissions } = useSelector(state => state.permissions);
@@ -39,6 +39,7 @@ const AddRole = ({path}) =>  {
     setLoading(false);
     setResponseData({...responseData, status, message });
     if ( status === 'success') {
+      updateList();
       dispatch(addRoleSuccess(data));
       return;
     }

@@ -17,6 +17,7 @@ const Home = () => {
 
     const { agencyId } = useSelector(state => state.auth);
     const [companies, setCompanies] = useState([]);
+    const [update, setUpdate] = useState(false);
 
     useEffect(() => {
       const getCompanies = async() => {
@@ -24,12 +25,13 @@ const Home = () => {
         setCompanies(data)
       }
       getCompanies();
-    }, [companies]);
+    }, [update]);
 
+    const doUpdate = () => setUpdate(!update);
     const DataView = AddKeyToArrayOfObject(companies);
     return (
       <>
-        <AddCompany />
+        <AddCompany updateList={doUpdate}/>
         <Card title="Companies List">
           <Table className="gx-table-responsive" columns={columns} dataSource={DataView}/>
         </Card> 

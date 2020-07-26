@@ -56,7 +56,8 @@ const columns = [
 
 const Home = ({match}) => {
 
-    const [users, setUsers] = useState([]);  
+    const [users, setUsers] = useState([]); 
+    const [update, setUpdate] = useState(false);
     const { currentCompany } = useSelector(state => state.companies);
     const { agencyId } = useSelector(state => state.auth);
     const companyId = currentCompany ? currentCompany.id : null;
@@ -71,12 +72,13 @@ const Home = ({match}) => {
           setUsers(data);
         }
         getUsers();
-    }, [currentCompany, users]);
-
+    }, [currentCompany, update]);
+    
+    const doUpdate = () => setUpdate(!update);
     const dataview = AddKeyToArrayOfObject(users);
     return (
       <>
-        <AddUser {...match}/>
+        <AddUser {...match} updateList={doUpdate}/>
         <Card title="Users List">
           <Table className="gx-table-responsive" columns={columns} dataSource={dataview}/>
         </Card> 

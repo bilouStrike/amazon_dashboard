@@ -76,6 +76,18 @@
       "companyId": 1,
       "companyName": "compny A",
       "id": 5
+    },
+    {
+      "name": "gfdggdfgfdg",
+      "permissions": [
+        "manage_permissions",
+        "manage_roles",
+        "manage_dashboard"
+      ],
+      "agencyId": 5884176,
+      "companyId": 1,
+      "companyName": "compny A",
+      "id": 6
     }
   ],
   "users": [
@@ -119,95 +131,30 @@
       "id": 2
     },
     {
-      "FirstName": "ihab",
-      "LastName": "selt",
-      "email": "iiii@gmail.com",
-      "username": "ihab",
-      "password": "12121212",
+      "FirstName": "ahmed",
+      "LastName": "dif",
+      "email": "ahmed@gmail.com",
+      "username": "ahmed",
+      "password": "fdfdfdfdf",
       "roles": [
+        {
+          "roleId": 5,
+          "companyId": 1,
+          "type": "agency",
+          "name": "client",
+          "companyName": "compny A"
+        },
         {
           "roleId": 4,
           "companyId": 1,
-          "type": "company",
+          "type": "agency",
           "name": "ownerA",
           "companyName": "compny A"
         }
       ],
       "agencyId": 5884176,
-      "companyId": 1,
+      "companyId": null,
       "id": 3
-    },
-    {
-      "FirstName": "abdreahman",
-      "LastName": "dif",
-      "email": "ff@gg.com",
-      "username": "abdreahman",
-      "password": "dfdfdfdf",
-      "roles": [
-        {
-          "roleId": 5,
-          "companyId": 1,
-          "type": "company",
-          "name": "client",
-          "companyName": "compny A"
-        }
-      ],
-      "agencyId": 5884176,
-      "companyId": 1,
-      "id": 4
-    },
-    {
-      "FirstName": "hhhh",
-      "LastName": "hhhh",
-      "email": "ff@gg.com",
-      "username": "hhhh",
-      "password": "hhhhhhhh",
-      "roles": [],
-      "agencyId": 5884176,
-      "companyId": null,
-      "id": 5
-    },
-    {
-      "FirstName": "kkkk",
-      "LastName": "dif",
-      "email": "ff@gg.com",
-      "username": "kkkk",
-      "password": "kkkkkkkk",
-      "roles": [],
-      "agencyId": 5884176,
-      "companyId": 2,
-      "id": 6
-    },
-    {
-      "FirstName": "lmlm",
-      "LastName": "lmlm",
-      "email": "ff@gg.com",
-      "username": "lmlm",
-      "password": "lmlmlmlm",
-      "roles": [],
-      "agencyId": 5884176,
-      "companyId": 1,
-      "id": 7
-    },
-    {
-      "FirstName": "mourad",
-      "LastName": "fgfgfg",
-      "email": "mourad@gmail.com",
-      "username": "mourad",
-      "password": "fgfgfgfg",
-      "confirm": "fgfgfgfg",
-      "agreement": true,
-      "agencyId": 1492362,
-      "companyId": null,
-      "roles": [
-        {
-          "companyId": 0,
-          "name": "agency_owner",
-          "roleId": 1,
-          "type": "agency"
-        }
-      ],
-      "id": 8
     }
   ],
   "companies": [
@@ -240,6 +187,11 @@
       "name": "vxcvxcv",
       "agencyId": 1492362,
       "id": 6
+    },
+    {
+      "name": "compny amazon",
+      "agencyId": 5884176,
+      "id": 7
     }
   ],
   "permissions": [

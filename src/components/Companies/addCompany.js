@@ -7,7 +7,7 @@ import { do_signal } from 'appRedux/actions/Common';
 
 const FormItem = Form.Item;
 
-const AddCompany = () =>  {
+const AddCompany = ({updateList}) =>  {
   const { agencyId } = useSelector(state => state.auth);
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -37,6 +37,7 @@ const AddCompany = () =>  {
     setLoading(false);
     setResponseData({...responseData, status, message });
     if ( status === 'success') {
+      updateList();
       dispatch(do_signal());
       return;
     }

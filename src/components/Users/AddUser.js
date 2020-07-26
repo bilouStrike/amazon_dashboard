@@ -5,7 +5,7 @@ import { addUser } from 'services/users';
 
 const FormItem = Form.Item;
 
-const AddUser = ({path}) =>  {
+const AddUser = ({path, updateList}) =>  {
   const [visible, setVisible] = useState(false);
   const [ loading, setLoading ] = useState(false);
   const [ responseData, setResponseData ] = useState({
@@ -50,6 +50,7 @@ const AddUser = ({path}) =>  {
     const user = { ...values, agencyId, companyId: userCompany, roles: userRoles };
     const { status, message, data } = await addUser(user);
     setLoading(false);
+    updateList();
     setResponseData({...responseData, status, message });
   }
 
