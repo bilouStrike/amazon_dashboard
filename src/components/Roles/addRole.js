@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import { Button, Modal, Form, Input, Checkbox, Row, Col, Alert } from 'antd';
+import { Button, Form, Input, Checkbox, Row, Col, Alert } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { addRole } from 'services/roles';
 import { addRoleSuccess } from '../../appRedux/actions/Roles';
+import FullScreenModel from 'components/FullScreenModel';
 
 const FormItem = Form.Item;
 
 const AddRole = ({path, updateList}) =>  {
-  const [visible, setVisible] = useState(false);
   const dispatch = useDispatch();
   const { permissions } = useSelector(state => state.permissions);
   const { agencyId } = useSelector(state => state.auth);
@@ -17,19 +17,7 @@ const AddRole = ({path, updateList}) =>  {
     status: null,
     message: null
   });
-
-  const showModal = () => {
-    setVisible(true);
-  };
-
-  const handleOk = (e) => {
-    setVisible(false);
-  };
-
-  const handleCancel = (e) => {
-    setVisible(false);
-  };
-
+ 
   const handleAddRole = async (values) => {
     setLoading(true);
     const companyId = path === '/company/roles' ? currentCompany.id : 0;
@@ -47,13 +35,10 @@ const AddRole = ({path, updateList}) =>  {
 
   return (
     <>
-        <Button type="primary" onClick={showModal}>Add new role</Button>
-        <Modal
+        <FullScreenModel
+            buttonType="primary"
+            buttonTitle="New role"
             title="Add new role"
-            visible={visible}
-            onOk={handleOk}
-            onCancel={handleCancel}
-            footer={null}
         >
             <Form 
                 initialValues={{ remember: true }}
@@ -100,13 +85,14 @@ const AddRole = ({path, updateList}) =>  {
                     </Button>
                 </FormItem>
             </Form>
+                                           
             { responseData.status !== null ? <Alert
                 message={responseData.status}
                 description={responseData.message}
                 type={responseData.status}
                 showIcon
               /> : null }
-        </Modal>
+        </FullScreenModel>
     </>
     );
 }

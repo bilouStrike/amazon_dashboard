@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
-import { Button, Modal, Form, Input, Checkbox, Row, Col, Alert } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
+import { Button, Form, Input, Checkbox, Row, Col, Alert } from 'antd';
+import { useSelector } from 'react-redux';
 import { addUser } from 'services/users';
+import FullScreenModel from 'components/FullScreenModel';
 
 const FormItem = Form.Item;
 
 const AddUser = ({path, updateList}) =>  {
-  const [visible, setVisible] = useState(false);
   const [ loading, setLoading ] = useState(false);
   const [ responseData, setResponseData ] = useState({
     status: null,
@@ -17,17 +17,6 @@ const AddUser = ({path, updateList}) =>  {
   const { currentCompany } = useSelector(state => state.companies);
   const { agencyId, companyId } = useSelector(state => state.auth);
   let rolesList;
-  const showModal = () => {
-    setVisible(true);
-  };
-
-  const handleOk = (e) => {
-    setVisible(false);
-  };
-
-  const handleCancel = (e) => {
-    setVisible(false);
-  };
 
   if( path === '/company/users' ) {
     rolesList = roles && currentCompany ? roles.filter((role) => role.companyId === currentCompany.id) : [];
@@ -56,13 +45,10 @@ const AddUser = ({path, updateList}) =>  {
 
   return (
     <>
-        <Button type="primary" onClick={showModal}>New User</Button>
-        <Modal
-            title="New User"
-            visible={visible}
-            onOk={handleOk}
-            onCancel={handleCancel}
-            footer={null}
+        <FullScreenModel
+           buttonType="primary"
+           buttonTitle="New user"
+           title="Add new user"
         >
             <Form 
                 initialValues={{ remember: true }}
@@ -140,7 +126,7 @@ const AddUser = ({path, updateList}) =>  {
                 type={responseData.status}
                 showIcon
               /> : null }
-        </Modal>
+        </FullScreenModel>
     </>
     );
 }

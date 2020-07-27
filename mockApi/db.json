@@ -88,6 +88,51 @@
       "companyId": 1,
       "companyName": "compny A",
       "id": 6
+    },
+    {
+      "name": "Comany_A_manager",
+      "permissions": [
+        "manage_Sells",
+        "manage_dashboard",
+        "manage_permissions",
+        "manage_roles",
+        "manage_users"
+      ],
+      "agencyId": 5884176,
+      "companyId": 1,
+      "companyName": "compny A",
+      "id": 7
+    },
+    {
+      "name": "fdsfsdfdsf",
+      "permissions": [
+        "manage_Sells",
+        "manage_dashboard",
+        "manage_permissions",
+        "manage_roles"
+      ],
+      "agencyId": 5884176,
+      "companyId": 1,
+      "companyName": "compny A",
+      "id": 8
+    },
+    {
+      "agencyId": 5884176,
+      "companyId": 1,
+      "companyName": "compny A",
+      "id": 9
+    },
+    {
+      "agencyId": 5884176,
+      "companyId": 1,
+      "companyName": "compny A",
+      "id": 10
+    },
+    {
+      "agencyId": 5884176,
+      "companyId": 1,
+      "companyName": "compny A",
+      "id": 11
     }
   ],
   "users": [
@@ -155,6 +200,39 @@
       "agencyId": 5884176,
       "companyId": null,
       "id": 3
+    },
+    {
+      "FirstName": "fdsfdsf",
+      "LastName": "dif",
+      "email": "ff@gg.com",
+      "username": "abdo",
+      "password": "dfsdfsdfsdfdsf",
+      "roles": [
+        {
+          "roleId": 4,
+          "companyId": 1,
+          "type": "company",
+          "name": "ownerA",
+          "companyName": "compny A"
+        },
+        {
+          "roleId": 5,
+          "companyId": 1,
+          "type": "company",
+          "name": "client",
+          "companyName": "compny A"
+        },
+        {
+          "roleId": 6,
+          "companyId": 1,
+          "type": "company",
+          "name": "gfdggdfgfdg",
+          "companyName": "compny A"
+        }
+      ],
+      "agencyId": 5884176,
+      "companyId": 1,
+      "id": 4
     }
   ],
   "companies": [
