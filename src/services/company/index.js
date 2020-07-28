@@ -10,7 +10,7 @@ export const addCompany = async (companyData) => {
     const { data, statusText } = await Http.post('/companies', companyData);
     if( statusText === 'Created' ) {
       status = 'success';
-      message = 'Role created';
+      message = 'Company created';
     } else {
       status = 'error';
       message = 'Something wrong';

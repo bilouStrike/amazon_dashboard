@@ -133,6 +133,21 @@
       "companyId": 1,
       "companyName": "compny A",
       "id": 11
+    },
+    {
+      "name": "amazon_Owner",
+      "permissions": [
+        "manage_Sells",
+        "manage_dashboard",
+        "manage_permissions",
+        "manage_inventory",
+        "manage_company_roles",
+        "manage_company_users"
+      ],
+      "agencyId": 5884176,
+      "companyId": 7,
+      "companyName": "compny amazon",
+      "id": 12
     }
   ],
   "users": [
@@ -233,6 +248,25 @@
       "agencyId": 5884176,
       "companyId": 1,
       "id": 4
+    },
+    {
+      "FirstName": "amazon",
+      "LastName": "amazon",
+      "email": "famazonf@gg.com",
+      "username": "amazon",
+      "password": "amazonamazon",
+      "roles": [
+        {
+          "roleId": 12,
+          "companyId": 7,
+          "type": "company",
+          "name": "amazon_Owner",
+          "companyName": "compny amazon"
+        }
+      ],
+      "agencyId": 5884176,
+      "companyId": 7,
+      "id": 5
     }
   ],
   "companies": [

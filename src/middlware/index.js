@@ -1,9 +1,9 @@
 import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import INITAPP from 'components/InitApp';
+import INITAPP from '../components/InitApp';
 
-function isAuth(servicePermissions, rolePermissions) {
+export function isAuth(servicePermissions, rolePermissions) {
   let bool = false;
   if ( servicePermissions != null ) {
     servicePermissions.map((perm) => {
@@ -15,11 +15,12 @@ function isAuth(servicePermissions, rolePermissions) {
         return;
       }
     })
-  return bool;
+    return bool;
   }
+  return bool;
 }
 
-function CheckPermission (services, permissions, userRoles, roles, service, currentCompany, companyId) {
+export function CheckPermission (permissions, userRoles, roles, service, currentCompany, companyId) {
   let auth = true;
   let rolePermissions = [];
   if( roles != null ) {
@@ -33,7 +34,7 @@ function CheckPermission (services, permissions, userRoles, roles, service, curr
         })
       });
     } else {
-      const rolesOfCurrentCompany = currentCompany ? userRoles.filter( (item) => item.companyId === currentCompany.id ) : [];
+      const rolesOfCurrentCompany = companyRoles(currentCompany, userRoles);
       rolesOfCurrentCompany.map((userrole) => {
         Object.values(roles).map((role) => {
           if ( role.name === userrole.name ) {
@@ -44,12 +45,20 @@ function CheckPermission (services, permissions, userRoles, roles, service, curr
     }   
   }
 
-  const servicePermissions =  permissions != null ? permissions.filter((itm) => 
-  itm.service == service
-  ): null;
+  const servicePermissions =  getServicePermissions(permissions, service);
 
   auth = isAuth( servicePermissions, rolePermissions );
   return auth;
+}
+
+export const getServicePermissions = (permissions, service) => {
+  return permissions != null ? permissions.filter((itm) => 
+  itm.service == service
+  ): null;
+}
+
+export const companyRoles = (currentCompany, userRoles) => {
+  return currentCompany ? userRoles.filter( (item) => item.companyId === currentCompany.id ) : [];
 }
 
 export const RestrictedRoute = ({component: Component, isAuthenticated, ...rest}) =>
@@ -71,7 +80,7 @@ export const RouteMiddlware = ({component: Component, userRoles, service, ...res
     const { currentCompany } = useSelector(state => state.companies);
     const { permissions } = useSelector(state => state.permissions);
     const { companyId } = useSelector(state => state.auth);
-    let isAuthorised = userRoles.length > 0 && userRoles[0].roleId === 1 ? true : CheckPermission(services, permissions, userRoles, roles, service, currentCompany, companyId);
+    let isAuthorised = userRoles.length > 0 && userRoles[0].roleId === 1 ? true : CheckPermission(permissions, userRoles, roles, service, currentCompany, companyId);
     return (
         <Route
             {...rest}
