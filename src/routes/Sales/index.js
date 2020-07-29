@@ -1,14 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
+import asyncComponent from 'util/asyncComponent';
 
-const Sales = () => {
-  const { currentCompany } = useSelector(state => state.companies);
+const Sales = ({match}) => {
+ console.log(`${match.url}/marketpalces`);
   return (
-    <div>
-      <div className="gx-d-flex justify-content-center">
-      <h4> Datas services fro company :  {currentCompany ? currentCompany.name : null} </h4>
-      </div>
-    </div>
+    <Switch>
+      <Route path={`${match.url}/marketpalces`} exact component={asyncComponent(() => import('components/Sales/marketPlaces'))}/>
+      <Route path={`${match.url}pricing-activity`} exact component={asyncComponent(() => import('components/Sales/marketPlaces'))}/>
+      <Route path={`${match.url}pricing-strategies`} exact component={asyncComponent(() => import('components/Sales/marketPlaces'))}/>
+    </Switch>
   );
 };
 

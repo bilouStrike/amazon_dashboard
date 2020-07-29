@@ -47,10 +47,11 @@ const HorizontalNav = () => {
         title={<><span><IntlMessages id="sidebar.sales"/></span> <DownOutlined /></> }
       >
         <Menu.Item key="sales">
-          <Link to="/sales"><i className="icon icon-shopping-cart"/>
-            <IntlMessages id="sidebar.sales"/></Link>
+          <Link to="/sales/marketpalces">
+            <IntlMessages id="sidebar.marketpalces"/></Link>
         </Menu.Item>
       </SubMenu>
+
       <SubMenu className={getNavStyleSubMenuClass(navStyle)} key="inventory"
         title={<><span><IntlMessages id="sidebar.inventory"/></span><DownOutlined style={{ marginLeft: '5px' }} /></>}>
         <Menu.Item key="inventory">
@@ -58,6 +59,7 @@ const HorizontalNav = () => {
             <IntlMessages id="sidebar.inventory"/></Link>
         </Menu.Item>
       </SubMenu>
+
     </Menu>
   );
 };
