@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import { Modal, Button } from 'antd';
 import useWindowDimensions from 'util/windowDimentions';
 
@@ -36,7 +36,7 @@ const FullScreenModel = ({
             onCancel={handleCancel}
             width="100%"
             maskStyle={{top:'0px'}}
-            bodyStyle={{ padding: '25px 150px' ,background:'#eee', minHeight: `${height - 70}px`, paddingBottom: '80px'}}
+            bodyStyle={{ padding: '25px 150px', minHeight: `${height - 70}px`, paddingBottom: '80px'}}
             style={{top:'0px'}}
             className="amazon-tool-model"
             forceRender={true}

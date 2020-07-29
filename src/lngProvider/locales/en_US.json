@@ -1,9 +1,6 @@
 {
   "app.announced": "A new version will be released on December 25th. Stay tuned!",
   "sidebar.main": "Main",
-  "sidebar.sales": "Sales",
-  "sidebar.inventory": "Inventory",
-  "sidebar.dashboard": "Dashboard",
   "sidebar.dashboard.crm": "Crm",
   "sidebar.components": "Components",
   "sidebar.components.general": "General",
@@ -304,5 +301,12 @@
   "sidebar.map.weather": "Weather map",
   "sidebar.extensions.shuffle": "Shuffle",
   "sidebar.extensions.profile": "Profile",
-  "sidebar.social": "Social Apps"
+  "sidebar.social": "Social Apps",
+  "sidebar.sales": "Sales",
+  "sidebar.inventory": "Inventory",
+  "sidebar.dashboard": "Dashboard",
+  "sidebar.marketpalces": "Marketplace",
+  "sidebar.pricingActivity": "Pricing Activity",
+  "sidebar.pricingStrategy": "Pricing Strategy",
+  "sidebar.reports":"Reports"
 }
