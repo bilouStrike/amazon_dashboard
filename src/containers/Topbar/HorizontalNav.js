@@ -43,20 +43,36 @@ const HorizontalNav = () => {
       selectedKeys={[selectedKeys]}
       mode="horizontal">
 
-      <SubMenu className={getNavStyleSubMenuClass(navStyle)} key="sales"
+      <SubMenu  key="sales"
         title={<><span><IntlMessages id="sidebar.sales"/></span> <DownOutlined /></> }
       >
         <Menu.Item key="sales">
           <Link to="/sales/marketpalces">
             <IntlMessages id="sidebar.marketpalces"/></Link>
         </Menu.Item>
+        <Menu.Item key="sales">
+          <Link to="/sales/pricing-activity">
+            <IntlMessages id="sidebar.pricingActivity"/></Link>
+        </Menu.Item>
+        <Menu.Item key="sales">
+          <Link to="/sales/pricing-strategy">
+            <IntlMessages id="sidebar.pricingStrategy"/></Link>
+        </Menu.Item>
       </SubMenu>
 
       <SubMenu className={getNavStyleSubMenuClass(navStyle)} key="inventory"
         title={<><span><IntlMessages id="sidebar.inventory"/></span><DownOutlined style={{ marginLeft: '5px' }} /></>}>
         <Menu.Item key="inventory">
-          <Link to="/inventory"><i className="icon icon-shopping-cart"/>
+          <Link to="/inventory">
             <IntlMessages id="sidebar.inventory"/></Link>
+        </Menu.Item>
+      </SubMenu>
+
+      <SubMenu className={getNavStyleSubMenuClass(navStyle)} key="reports"
+        title={<><span><IntlMessages id="sidebar.reports"/></span><DownOutlined style={{ marginLeft: '5px' }} /></>}>
+        <Menu.Item key="reports">
+          <Link to="/reports">
+            <IntlMessages id="sidebar.reports"/></Link>
         </Menu.Item>
       </SubMenu>
 

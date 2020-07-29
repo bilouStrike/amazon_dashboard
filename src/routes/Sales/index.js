@@ -7,8 +7,8 @@ const Sales = ({match}) => {
   return (
     <Switch>
       <Route path={`${match.url}/marketpalces`} exact component={asyncComponent(() => import('components/Sales/marketPlaces'))}/>
-      <Route path={`${match.url}pricing-activity`} exact component={asyncComponent(() => import('components/Sales/marketPlaces'))}/>
-      <Route path={`${match.url}pricing-strategies`} exact component={asyncComponent(() => import('components/Sales/marketPlaces'))}/>
+      <Route path={`${match.url}/pricing-activity`} exact component={asyncComponent(() => import('components/Sales/pricingActivity'))}/>
+      <Route path={`${match.url}/pricing-strategy`} exact component={asyncComponent(() => import('components/Sales/pricingStrategy'))}/>
     </Switch>
   );
 };

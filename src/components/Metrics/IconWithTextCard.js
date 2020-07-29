@@ -15,12 +15,20 @@ const IconWithTextCard = (props) => {
     <Widget>
       <div className="gx-media gx-align-items-center gx-flex-nowrap">
         <div className="gx-mr-lg-4 gx-mr-3">
-          <i className={`icon icon-${icon} gx-fs-xlxl gx-text-${iconColor} gx-d-flex`}
+          <i className={`icon icon-orders gx-fs-xlxl gx-text-${iconColor} gx-d-flex`}
              style={{fontSize: 45}}/>
         </div>
         <div className="gx-media-body">
-          <h1 className="gx-fs-xxxl gx-font-weight-medium gx-mb-1">{title}</h1>
-          <p className="gx-text-grey gx-mb-0">{subTitle}</p>
+          <h1 className="gx-fs-xxl gx-font-medium gx-mb-1">177</h1>
+          <p className="gx-text-grey gx-mb-0">Open Shipments</p>
+        </div>
+        <div className="gx-media-body">
+          <h1 className="gx-fs-xxl gx-font-medium gx-mb-1">$3,480</h1>
+          <p className="gx-text-grey gx-mb-0">Outstanding Cost</p>
+        </div>
+        <div className="gx-media-body">
+          <h1 className="gx-fs-xxl gx-font-medium gx-mb-1">$1,328</h1>
+          <p className="gx-text-grey gx-mb-0">Action Needed</p>
         </div>
       </div>
     </Widget>

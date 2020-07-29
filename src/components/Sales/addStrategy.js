@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { Button, Input, Col, Row, Form, Card } from 'antd';
 import FullScreenModel from 'components/FullScreenModel';
 
-const AddMarketplace = () =>  {
+const AddStrategy = () =>  {
 
     const [expand, setExpand] = useState(false);
     const [form] = Form.useForm();
@@ -41,13 +41,13 @@ const AddMarketplace = () =>  {
     <>
         <FullScreenModel
             buttonType="primary"
-            buttonTitle="+ Add Marketplace"
-            title="Add Marketplace"
+            buttonTitle="+ New Strategy"
+            title="New Strategy"
         >
-           <Card className="gx-card" title="Add Marketplace">
+           <Card className="gx-card" title="New Strategy">
                 <Form
                     form={form}
-                    name="Add Marketplace"
+                    name="New Strategy"
                     className="ant-advanced-search-form"
                     onFinish={onFinish}
                 >
@@ -72,4 +72,4 @@ const AddMarketplace = () =>  {
     </>
     );
 }
-export default AddMarketplace;
+export default AddStrategy;
