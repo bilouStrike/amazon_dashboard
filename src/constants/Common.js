@@ -1,1 +1,1 @@
-export const BASE_API_URL = 'http://localhost:3004';
+export const BASE_API_URL = 'https://amazon-tool-mockapi.herokuapp.com';
