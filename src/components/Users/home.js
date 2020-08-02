@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 import { AddKeyToArrayOfObject } from 'helpers/dataFormat';
 import AddUser from './AddUser';
 import UpdateUserRoles from 'components/Roles/updateUserRoles';
-import FullScreenModel from 'components/FullScreenModel';
 
 const columns = [
   {

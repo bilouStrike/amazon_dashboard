@@ -24,6 +24,7 @@ const AddRole = ({path, updateList}) =>  {
     const companyName = path === '/company/roles' ? currentCompany.name : null;
     const role = {...values, agencyId, companyId, companyName};
     const { status, message, data } = await addRole(role);
+    
     setLoading(false);
     setResponseData({...responseData, status, message });
     if ( status === 'success') {
