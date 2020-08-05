@@ -3,18 +3,20 @@ import { getByFieldValue } from '../helpers';
 
 /** Sign in */
 export const signIn = async (usercredentials) => {
-  await new Promise((resolve) => {
-    setTimeout(resolve, 2000);
-  });
-  const { data } = await Http.get(`/users?username=${usercredentials.username}`);
-  let status, message;
-  if ( data.length != 0 ) {
-    status = 'success';
-  } else {
-    status = 'error';
-    message = 'Incorrect data';
+  try {
+    const { data } = await Http.get(`/users?username=${usercredentials.username}`);
+    let status, message;
+    if ( data.length != 0 ) {
+      status = 'success';
+      message = 'Sign in success';
+    } else {
+      status = 'error';
+      message = 'Incorrect data';
+    }
+    return { data, status, message }
+  } catch (error) {
+    return 'Network Error';
   }
-  return { data, status, message }
 };
 
 /** Sign up */
@@ -36,16 +38,21 @@ export const signUp = async (userData) => {
       message :'This username aleady used!'
     }
   }
-
-  const { statusText } = await Http.post(`/users`, userData);
-  if ( statusText === 'Created' ) {
-    status = 'success';
-    message = 'Resgistration success, check you email to activate your account';
-  } else {
-    status = 'error';
-    message = 'Something wrong! Incorrect data';
+  
+  try {
+    const { statusText } = await Http.post(`/users`, userData);
+    if ( statusText === 'Created' ) {
+      status = 'success';
+      message = 'Resgistration success, check you email to activate your account';
+    } else {
+      status = 'error';
+      message = 'Something wrong! Incorrect data';
+    }
+    return { status, message }
+  } catch (error) {
+    return 'Network Error';
   }
-  return { status, message }
+
 };
 
 

@@ -61,6 +61,7 @@ const Home = ({match}) => {
     const { currentCompany } = useSelector(state => state.companies);
     const { agencyId } = useSelector(state => state.auth);
     const companyId = currentCompany ? currentCompany.id : null;
+
     useEffect(() => {
         const getUsers = async () => {
           if ( match.path === '/company/users' ) {
@@ -69,6 +70,7 @@ const Home = ({match}) => {
             return;
           } 
           const { data } = await getUsersByAgency(agencyId);
+          console.log(data);
           setUsers(data);
         }
         getUsers();

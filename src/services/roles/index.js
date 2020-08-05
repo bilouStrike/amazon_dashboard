@@ -2,8 +2,8 @@ import Http from '../../util/Http';
 
 /** Get all roles */
 export const getRolesByAgency = async (agencyId) => {
-  const { data, statusText } = await Http.get(`/roles?agencyId=${agencyId}`);
-  return { data, statusText };
+  const { data } = await Http.get(`/roles?agencyId=${agencyId}`);
+  return { data };
 };
 
 export const getRolesByField = async (field, value) => {
