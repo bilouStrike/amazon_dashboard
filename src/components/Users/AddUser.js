@@ -3,16 +3,12 @@ import { Button, Form, Input, Checkbox, Row, Col, Alert } from 'antd';
 import { useSelector } from 'react-redux';
 import { addUser } from 'services/users';
 import FullScreenModel from 'components/FullScreenModel';
+import PopNotification from 'util/PopNotification';
 
 const FormItem = Form.Item;
 
 const AddUser = ({path, updateList}) =>  {
   const [ loading, setLoading ] = useState(false);
-  const [ responseData, setResponseData ] = useState({
-    status: null,
-    message: null
-  });
-
   const { roles } = useSelector(state => state.roles);
   const { currentCompany } = useSelector(state => state.companies);
   const { agencyId, companyId } = useSelector(state => state.auth);
@@ -40,7 +36,7 @@ const AddUser = ({path, updateList}) =>  {
     const { status, message, data } = await addUser(user);
     setLoading(false);
     updateList();
-    setResponseData({...responseData, status, message });
+    PopNotification(status, message);
   }
 
   return (
@@ -120,12 +116,6 @@ const AddUser = ({path, updateList}) =>  {
                     </Button>
                 </FormItem>
             </Form>
-            { responseData.status !== null ? <Alert
-                message={responseData.status}
-                description={responseData.message}
-                type={responseData.status}
-                showIcon
-              /> : null }
         </FullScreenModel>
     </>
     );

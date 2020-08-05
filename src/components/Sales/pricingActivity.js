@@ -61,7 +61,7 @@ const columns = [
         date: 'June 8th 2020 9:18:47 PM',
     },
     {
-        key: 1,
+        key: 2,
         sku: 1033392714,
         listing: '9-Jl8kmrBe',
         marketplace_id: 'fd1546',
@@ -71,7 +71,7 @@ const columns = [
         date: 'June 8th 2020 9:18:47 PM',
     },
     {
-        key: 1,
+        key: 3,
         sku: 1033392714,
         listing: '9-Jl8kmrBe',
         marketplace_id: 'fd1546',
@@ -81,7 +81,7 @@ const columns = [
         date: 'June 8th 2020 9:18:47 PM',
     },
     {
-        key: 1,
+        key: 4,
         sku: 1033392714,
         listing: '9-Jl8kmrBe',
         marketplace_id: 'fd1546',

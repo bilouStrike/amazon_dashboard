@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addRole } from 'services/roles';
 import { addRoleSuccess } from '../../appRedux/actions/Roles';
 import FullScreenModel from 'components/FullScreenModel';
+import PopNotification from 'util/PopNotification';
 
 const FormItem = Form.Item;
 
@@ -13,10 +14,6 @@ const AddRole = ({path, updateList}) =>  {
   const { agencyId } = useSelector(state => state.auth);
   const { currentCompany } = useSelector(state => state.companies);
   const [ loading, setLoading ] = useState(false);
-  const [ responseData, setResponseData ] = useState({
-    status: null,
-    message: null
-  });
  
   const handleAddRole = async (values) => {
     setLoading(true);
@@ -26,12 +23,11 @@ const AddRole = ({path, updateList}) =>  {
     const { status, message, data } = await addRole(role);
     
     setLoading(false);
-    setResponseData({...responseData, status, message });
     if ( status === 'success') {
       updateList();
       dispatch(addRoleSuccess(data));
-      return;
     }
+    PopNotification(status, message);
   }
 
   return (
@@ -86,13 +82,6 @@ const AddRole = ({path, updateList}) =>  {
                     </Button>
                 </FormItem>
             </Form>
-                                           
-            { responseData.status !== null ? <Alert
-                message={responseData.status}
-                description={responseData.message}
-                type={responseData.status}
-                showIcon
-              /> : null }
         </FullScreenModel>
     </>
     );

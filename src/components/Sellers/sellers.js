@@ -45,7 +45,7 @@ const columns = [
         period_change: '100%'
     },
     {
-        key: 1,
+        key: 2,
         N : '1',
         sku: '1033392714',
         detail:'',
@@ -53,7 +53,7 @@ const columns = [
         period_change: '100%'
     },
     {
-        key: 1,
+        key: 3,
         N : '1',
         sku: '1033392714',
         detail:'',
@@ -61,7 +61,7 @@ const columns = [
         period_change: '100%'
     },
     {
-        key: 1,
+        key: 4,
         N : '1',
         sku: '1033392714',
         detail:'',
@@ -69,7 +69,7 @@ const columns = [
         period_change: '100%'
     },
     {
-        key: 1,
+        key: 5,
         N : '1',
         sku: '1033392714',
         detail:'',
@@ -77,7 +77,7 @@ const columns = [
         period_change: '100%'
     },
     {
-        key: 1,
+        key: 6,
         N : '1',
         sku: '1033392714',
         detail:'',

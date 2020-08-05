@@ -1,7 +1,8 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { Layout, Row, Col } from 'antd';
-import asyncComponent from 'util/asyncComponent';
+import { Row, Col } from 'antd';
+import SignIn from 'containers/SignIn';
+import SignUp from 'containers/SignUp';
 
 const Home = ({match}) => {
     return (
@@ -12,8 +13,8 @@ const Home = ({match}) => {
                 </Col>
                 <Col lg={10} md={10} sm={24} xs={24}>
                     <Switch>
-                        <Route path={`${match.url}/signin`} component={asyncComponent(() => import('../SignIn'))}/>
-                        <Route path={`${match.url}/signup`} component={asyncComponent(() => import('../SignUp'))}/>
+                        <Route path={`${match.url}/signin`} component={SignIn}/>
+                        <Route path={`${match.url}/signup`} component={SignUp}/>
                     </Switch>
                 </Col>
             </Row>

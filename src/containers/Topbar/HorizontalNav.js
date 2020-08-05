@@ -46,15 +46,15 @@ const HorizontalNav = () => {
       <SubMenu  key="sales"
         title={<><span><IntlMessages id="sidebar.sales"/></span> <DownOutlined /></> }
       >
-        <Menu.Item key="sales">
+        <Menu.Item key="sales1">
           <Link to="/sales/marketpalces">
             <IntlMessages id="sidebar.marketpalces"/></Link>
         </Menu.Item>
-        <Menu.Item key="sales">
+        <Menu.Item key="sales2">
           <Link to="/sales/pricing-activity">
             <IntlMessages id="sidebar.pricingActivity"/></Link>
         </Menu.Item>
-        <Menu.Item key="sales">
+        <Menu.Item key="sales3">
           <Link to="/sales/pricing-strategy">
             <IntlMessages id="sidebar.pricingStrategy"/></Link>
         </Menu.Item>

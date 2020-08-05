@@ -1,20 +1,16 @@
 import React, { useState } from "react";
-import { Button, Checkbox, Input, Alert, Form } from "antd";
+import { Button, Checkbox, Input, Form } from "antd";
 import IntlMessages from "util/IntlMessages";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { signUp } from 'services/auth';
 import { randomInteger } from 'helpers';
+import PopNotification from 'util/PopNotification';
 
 const SignUp = () => {
 
     const { isAuthenticated } = useSelector(state => state.auth)  
     const [ loadStart, setLoadStart ] = useState(false);
-
-    const [ responseData, setResponseData ] = useState({
-      status: null,
-      message: null
-    });
 
     const onSignUp = async (values) => {
       const agencyId = randomInteger(9999, 9999999); // agencyId should generte from the server
@@ -31,7 +27,7 @@ const SignUp = () => {
       setLoadStart(true);
       const { status, message } = await signUp(userData);
       setLoadStart(false);
-      setResponseData({...responseData, status, message });
+      PopNotification(status, message)
     }
 
     if (isAuthenticated) {
@@ -127,12 +123,6 @@ const SignUp = () => {
                   </Button>
                 </Form.Item>
               </Form>
-              { responseData.status !== null ? <Alert
-                message={responseData.status}
-                description={responseData.message}
-                type={responseData.status}
-                showIcon
-              /> : null }
             </div>
           </div>
         </div>

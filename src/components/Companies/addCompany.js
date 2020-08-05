@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addCompany } from 'services/company';
 import { useSelector } from 'react-redux';
 import { do_signal } from 'appRedux/actions/Common';
+import PopNotification from 'util/PopNotification';
 
 const FormItem = Form.Item;
 
@@ -11,10 +12,7 @@ const AddCompany = ({updateList}) =>  {
   const { agencyId } = useSelector(state => state.auth);
   const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [ responseData, setResponseData ] = useState({
-    status: null,
-    message: null
-  });
+
 
   const dispatch = useDispatch();
 
@@ -35,12 +33,11 @@ const AddCompany = ({updateList}) =>  {
     const companyData = agencyId != 0 ? {...values, agencyId:agencyId } : null ;
     const { status, message, data } = await addCompany(companyData);
     setLoading(false);
-    setResponseData({...responseData, status, message });
     if ( status === 'success') {
       updateList();
       dispatch(do_signal());
-      return;
     }
+    PopNotification(status, message);
   }
 
   return (
@@ -80,12 +77,6 @@ const AddCompany = ({updateList}) =>  {
                     </Button>
                 </FormItem>
             </Form>
-            { responseData.status !== null ? <Alert
-                message={responseData.status}
-                description={responseData.message}
-                type={responseData.status}
-                showIcon
-              /> : null }
         </Modal>
     </>
     );

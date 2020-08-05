@@ -47,7 +47,7 @@ const columns = [
         listings_asigned: '312 Listings'
     },
     {
-        key: 1,
+        key: 2,
         marketplace: 'Amazon US',
         strategy_name: 'r1W3CaqjS',
         strategy_type: 'Custom Amazon Strate',
@@ -56,7 +56,7 @@ const columns = [
         listings_asigned: '312 Listings'
     },
     {
-        key: 1,
+        key: 3,
         marketplace: 'Amazon US',
         strategy_name: 'r1W3CaqjS',
         strategy_type: 'Custom Amazon Strate',
@@ -65,7 +65,7 @@ const columns = [
         listings_asigned: '312 Listings'
     },
     {
-        key: 1,
+        key: 4,
         marketplace: 'Amazon US',
         strategy_name: 'r1W3CaqjS',
         strategy_type: 'Custom Amazon Strate',

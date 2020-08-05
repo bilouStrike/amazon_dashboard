@@ -1,20 +1,18 @@
-import React, {useState} from "react";
-import {Button, Input, Alert, Checkbox, Form} from "antd";
+import React, {useState, useEffect} from "react";
+import {Button, Input, Checkbox, Form} from "antd";
 import IntlMessages from "util/IntlMessages";
 import { signInSuccess } from 'appRedux/actions/Auth';
 import { setCurrentCompany } from 'appRedux/actions/Companies';
 import { Redirect, Link } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { signIn } from 'services/auth';
+import PopNotification from 'util/PopNotification';
 
-const SignIn =()=> {
+const SignIn = () => {
     const dispatch = useDispatch();
     const [ loadStart, setLoadStart ] = useState(false);
-    const [ responseData, setResponseData ] = useState({
-      status: null,
-      message: null
-    });
-    const { isAuthenticated } = useSelector(state => state.auth)
+    const { isAuthenticated } = useSelector(state => state.auth);
+
     const onSignIn = async (values) => {
       setLoadStart(true);
       const { status, message, data } = await signIn(values);
@@ -28,7 +26,8 @@ const SignIn =()=> {
         }
         return;
       }
-      setResponseData({...responseData, status, message });
+      
+      PopNotification(status, message)
     }
 
     if (isAuthenticated) {
@@ -65,14 +64,7 @@ const SignIn =()=> {
                     <IntlMessages id="app.userAuth.signIn"/>
                   </Button>
                 </Form.Item>
-              </Form>
-              { responseData.status == 'error' ? <Alert
-                message="Failed"
-                description={responseData.message}
-                type="error"
-                showIcon
-              /> : null }
-              
+              </Form>   
             </div>
           </div>
         </div>
