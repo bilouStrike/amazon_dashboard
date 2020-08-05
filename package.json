@@ -72,7 +72,10 @@
     "extends": "react-app"
   },
   "jest": {
-    "verbose": true
+    "verbose": true,
+    "moduleNameMapper": {
+      "src(.*)$": "<rootDir>/src$1"
+    }
   },
   "browserslist": {
     "production": [

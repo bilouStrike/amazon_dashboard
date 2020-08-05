@@ -209,8 +209,8 @@ describe('Testing CheckPermission function', () => {
         expect(CheckPermission(permissions, userRoles, roles, service, currentCompany, companyId)).toBeFalsy();
     });
 
-    it('Should return False user have no role', () => {
-        currentCompany = { id:5, companyName:'company A' };
+    it('Should return False for user have no role', () => {
+        currentCompany = null;
         service = 'Users';
         companyId = 5;
         userRoles = [];
