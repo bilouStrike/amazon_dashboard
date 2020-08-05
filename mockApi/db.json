@@ -33,7 +33,8 @@
       "agencyId": 9856698,
       "companyId": 0,
       "companyName": null,
-      "id": 2
+      "id": 2,
+      "description": "This role allow to managing all the Agency services"
     },
     {
       "name": "Comany_A_Owner",
@@ -47,7 +48,8 @@
       "agencyId": 9856698,
       "companyId": 1,
       "companyName": "compny A",
-      "id": 3
+      "id": 3,
+      "description": "This role allow to managing all the company A services"
     },
     {
       "name": "visitor",
@@ -57,22 +59,23 @@
       "agencyId": 9856698,
       "companyId": 1,
       "companyName": "compny A",
-      "id": 4
+      "id": 4,
+      "description": "This role allow to users to see products"
     },
     {
-      "name": "gdfgdfgfdg",
+      "name": "bilal manager",
+      "description": "This role allow to managing all the company A services",
       "permissions": [
-        "manage_permissions",
+        "manage_company_roles",
+        "manage_company_users",
         "manage_dashboard",
         "manage_Sells",
-        "manage_roles",
-        "manage_users",
-        "manage_companies"
+        "manage_permissions"
       ],
       "agencyId": 9856698,
       "companyId": 0,
       "companyName": null,
-      "id": 5
+      "id": 6
     }
   ],
   "users": [

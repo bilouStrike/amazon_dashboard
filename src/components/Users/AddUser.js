@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { Button, Form, Input, Checkbox, Row, Col, Alert } from 'antd';
+import { Button, Form, Input, Checkbox, Row, Col, Popover } from 'antd';
+import { InfoCircleOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { addUser } from 'services/users';
 import FullScreenModel from 'components/FullScreenModel';
@@ -99,8 +100,12 @@ const AddUser = ({path, updateList}) =>  {
                                     lineHeight: '32px',
                                     }}
                                 >
-                                    {role.name}
+                                    {role.name} : 
                                 </Checkbox>
+                                <Popover content={role.description} trigger="hover">
+                                  <InfoCircleOutlined />
+                                </Popover>
+                                
                             </Col>
                         )) : null}
                     </Row>

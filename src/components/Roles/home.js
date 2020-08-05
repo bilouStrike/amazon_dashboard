@@ -14,6 +14,11 @@ const columns = [
     key: 'name',
   },
   {
+    title: 'Role Description',
+    dataIndex: 'description',
+    key: 'description',
+  },
+  {
     title: 'Permissions',
     dataIndex: 'permissions',
     key: 'permissions',

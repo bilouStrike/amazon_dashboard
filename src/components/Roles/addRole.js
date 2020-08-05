@@ -54,6 +54,9 @@ const AddRole = ({path, updateList}) =>  {
                 >
                     <Input />
                 </Form.Item>
+                <Form.Item name="description" label="Description:">
+                    <Input.TextArea />
+                </Form.Item>
                 <Form.Item name="permissions" label="Permissions:">
                     <Checkbox.Group style={{width:'100%'}}>
                     <Row>
