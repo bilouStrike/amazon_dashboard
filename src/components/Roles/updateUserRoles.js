@@ -1,19 +1,16 @@
 import React, {useState} from 'react';
-import { Button, Modal, Form, Input, Checkbox, Row, Col, Alert } from 'antd';
+import { Button, Modal, Form, Checkbox, Row, Col, Alert, Popover } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { SettingOutlined } from '@ant-design/icons';
 import { updateRole } from 'services/roles';
 import { editRoleSuccess } from 'appRedux/actions/Roles';
+import { InfoCircleOutlined } from '@ant-design/icons';
 
 const FormItem = Form.Item;
 
 const UpdateUserRoles = ({userId, userName, rolesList}) =>  {
   const [visible, setVisible] = useState(false);
   const [ loading, setLoading ] = useState(false);
-  const [ responseData, setResponseData ] = useState({
-    status: null,
-    message: null
-  });
 
   const { roles } = useSelector(state => state.roles)
   const showModal = () => {
@@ -68,16 +65,21 @@ const UpdateUserRoles = ({userId, userName, rolesList}) =>  {
                     <Checkbox.Group style={{width:'100%'}}>
                     <Row>
                         { roles != null ? roles.map(role => (
-                            <Col span={24} key={role.id}>
-                                <Checkbox
-                                    value={role.name}
-                                    style={{
-                                    lineHeight: '32px',
-                                    }}
-                                >
-                                    {role.name}
-                                </Checkbox>
-                            </Col>
+                            <>
+                                <Col span={24} key={role.id}>
+                                    <Checkbox
+                                        value={role.name}
+                                        style={{
+                                        lineHeight: '32px',
+                                        }}
+                                    >
+                                        {role.name}
+                                    </Checkbox>
+                                    <Popover content={role.description} trigger="hover">
+                                        <InfoCircleOutlined />
+                                    </Popover>
+                                </Col>
+                            </>
                         )) : null}
                     </Row>
                     </Checkbox.Group>
@@ -92,12 +94,6 @@ const UpdateUserRoles = ({userId, userName, rolesList}) =>  {
                     </Button>
                 </FormItem>
             </Form>
-            { responseData.status !== null ? <Alert
-                message={responseData.status}
-                description={responseData.message}
-                type={responseData.status}
-                showIcon
-              /> : null }
         </Modal>
     </>
     );
