@@ -76,6 +76,34 @@
       "companyId": 0,
       "companyName": null,
       "id": 6
+    },
+    {
+      "name": "jone manager",
+      "description": "jone manager",
+      "permissions": [
+        "manage_Sells",
+        "manage_dashboard",
+        "manage_permissions"
+      ],
+      "slug": null,
+      "agencyId": 9856698,
+      "companyId": 0,
+      "companyName": null,
+      "id": 7
+    },
+    {
+      "name": "fds hjk kjhfdskj ffkjsdh f hfdjs489 7498fs 7f",
+      "description": "dsqdsqdqsd",
+      "permissions": [
+        "manage_Sells",
+        "manage_dashboard",
+        "manage_permissions"
+      ],
+      "slug": "fds-hjk-kjhfdskj-ffkjsdh-f-hfdjs489-7498fs-7f",
+      "agencyId": 9856698,
+      "companyId": 0,
+      "companyName": null,
+      "id": 8
     }
   ],
   "users": [

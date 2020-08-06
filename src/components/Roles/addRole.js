@@ -5,6 +5,7 @@ import { addRole } from 'services/roles';
 import { addRoleSuccess } from '../../appRedux/actions/Roles';
 import FullScreenModel from 'components/FullScreenModel';
 import PopNotification from 'util/PopNotification';
+import { slugify } from 'helpers';
 
 const FormItem = Form.Item;
 
@@ -14,12 +15,14 @@ const AddRole = ({path, updateList}) =>  {
   const { agencyId } = useSelector(state => state.auth);
   const { currentCompany } = useSelector(state => state.companies);
   const [ loading, setLoading ] = useState(false);
+  //const [ slug, setSlug ] = useState(null);
  
   const handleAddRole = async (values) => {
     setLoading(true);
+    const slug = slugify(values.name);   
     const companyId = path === '/company/roles' ? currentCompany.id : 0;
     const companyName = path === '/company/roles' ? currentCompany.name : null;
-    const role = {...values, agencyId, companyId, companyName};
+    const role = {...values, slug, agencyId, companyId, companyName};
     const { status, message, data } = await addRole(role);
     
     setLoading(false);
@@ -29,6 +32,11 @@ const AddRole = ({path, updateList}) =>  {
     }
     PopNotification(status, message);
   }
+
+ /* const generate_slug = (e) => {
+    let slug_value = slugify(e.target.value);   
+    setSlug(slug_value);
+  }*/
 
   return (
     <>
@@ -46,10 +54,8 @@ const AddRole = ({path, updateList}) =>  {
                     name="name"
                     label="Role Name"
                     rules={[
-                        {
-                            required: true,
-                            message: 'Please input the role name!',
-                        },
+                        { required: true, message: 'Please input the role name!' },
+                        { pattern: new RegExp(/^[a-zA-Z0-9 ]+$/), message: 'Characters allowed a-z and 0-9.'}
                     ]}
                 >
                     <Input />
