@@ -308,5 +308,7 @@
   "sidebar.marketpalces": "Marketplace",
   "sidebar.pricingActivity": "Pricing Activity",
   "sidebar.pricingStrategy": "Pricing Strategy",
-  "sidebar.reports":"Reports"
+  "sidebar.reports":"Reports",
+  "app.userAuth.NextStep": "Next Step",
+  "app.userAuth.NextStepStartTrial": "Start You Free Trial"
 }
