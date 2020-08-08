@@ -11,6 +11,7 @@ import { BASE_API_URL } from 'constants/Common';
 const SignUpStepTwo = ({stepOneValues, setStepOneValues, stepTwoValues, setStepTwoValues,  setStep}) => {
 
     const [load, setLoad] = useState(false);
+    
     const prevStep = () => {
         setStepOneValues(stepOneValues);
         setStep(1);
@@ -93,7 +94,7 @@ const SignUpStepTwo = ({stepOneValues, setStepOneValues, stepTwoValues, setStepT
 
             <Form.Item
                 name="Agency Logo"
-                label="Upload"
+                label="Logo"
                 valuePropName="fileList"
                 getValueFromEvent={normFile}
                 extra="Logo format: JPG,PNG"
@@ -104,9 +105,9 @@ const SignUpStepTwo = ({stepOneValues, setStepOneValues, stepTwoValues, setStepT
                     </Button>
                 </Upload>
             </Form.Item>
-
+            <a onClick={prevStep}> Previous Step </a>  
             <Form.Item>
-                  <Button type="primary" className="gx-mb-0" style={{height:'48px'}} size="large" block htmlType="submit">
+                  <Button type="primary" className="gx-mb-0 amz-top-margin-20" style={{height:'48px'}} size="large" loading={load} block htmlType="submit">
                     <IntlMessages id="app.userAuth.NextStepStartTrial"/>
                   </Button>
             </Form.Item>
