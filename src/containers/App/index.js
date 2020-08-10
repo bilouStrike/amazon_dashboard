@@ -9,8 +9,6 @@ import InsideHeader from "../Topbar/InsideHeader/index";
 import Topbar from "../Topbar/index";
 import AppLocale from "lngProvider";
 import MainApp from "./MainApp";
-import SignIn from '../SignIn';
-import SignUp from "../SignUp";
 import Home from './Home';
 
 import { 
