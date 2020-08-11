@@ -3,8 +3,7 @@ import {
   FETCH_START,
   FETCH_SUCCESS,
   HIDE_MESSAGE,
-  SHOW_MESSAGE,
-  DO_SIGNAL
+  SHOW_MESSAGE
 } from '../../constants/ActionTypes'
 
 const INIT_STATE = {
@@ -30,9 +29,6 @@ export default (state = INIT_STATE, action) => {
     }
     case HIDE_MESSAGE: {
       return {...state, loading: false, error: '', message: ''};
-    }
-    case DO_SIGNAL: {
-      return {...state, signal: !state.signal};
     }
 
     default:

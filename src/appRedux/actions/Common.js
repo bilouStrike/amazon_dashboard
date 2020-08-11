@@ -3,8 +3,7 @@ import {
   FETCH_START,
   FETCH_SUCCESS,
   HIDE_MESSAGE,
-  SHOW_MESSAGE,
-  DO_SIGNAL
+  SHOW_MESSAGE
 } from "../../constants/ActionTypes";
 
 export const fetchStart = () => {
@@ -39,9 +38,6 @@ export const hideMessage = () => {
   }
 };
 
-export const do_signal = () => ({
-  type: DO_SIGNAL
-});
 
 
 

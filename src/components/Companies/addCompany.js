@@ -3,7 +3,6 @@ import { Button, Modal, Form, Input, Alert } from 'antd';
 import { useDispatch } from 'react-redux';
 import { addCompany } from 'services/company';
 import { useSelector } from 'react-redux';
-import { do_signal } from 'appRedux/actions/Common';
 import PopNotification from 'util/PopNotification';
 
 const FormItem = Form.Item;
@@ -35,7 +34,6 @@ const AddCompany = ({updateList}) =>  {
     setLoading(false);
     if ( status === 'success') {
       updateList();
-      dispatch(do_signal());
     }
     PopNotification(status, message);
   }
