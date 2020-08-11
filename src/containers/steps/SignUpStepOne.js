@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Input, Form } from "antd";
+import IntlMessages from "../../util/IntlMessages";
 
 const SignUpStepOne = ({ setStep, setStepOneValues, stepOneValues }) => {
 
@@ -89,7 +90,7 @@ const SignUpStepOne = ({ setStep, setStepOneValues, stepOneValues }) => {
 
                 <Form.Item>
                   <Button type="primary" className="gx-mb-0" style={{height:'48px'}} size="large" block htmlType="submit">
-                    NextStep
+                    <IntlMessages id="app.userAuth.NextStep"/>
                   </Button>
                 </Form.Item>
             </Form>

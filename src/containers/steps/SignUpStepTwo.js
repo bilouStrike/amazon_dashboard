@@ -2,11 +2,11 @@ import React, {useState} from "react";
 import { Button, Checkbox, Upload, Input, Form } from "antd";
 import { UploadOutlined } from '@ant-design/icons';
 
-import IntlMessages from "util/IntlMessages";
-import { signUp } from 'services/auth';
-import { randomInteger } from 'helpers';
-import PopNotification from 'util/PopNotification';
-import { BASE_API_URL } from 'constants/Common';
+import { signUp } from '../../services/auth';
+import { randomInteger } from '../../helpers';
+import PopNotification from '../../util/PopNotification';
+import { BASE_API_URL } from '../../constants/Common';
+import IntlMessages from "../../util/IntlMessages";
 
 const SignUpStepTwo = ({stepOneValues, setStepOneValues, stepTwoValues, setStepTwoValues,  setStep}) => {
 

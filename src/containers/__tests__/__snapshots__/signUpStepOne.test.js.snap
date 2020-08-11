@@ -161,9 +161,7 @@ exports[`should render signinstepOne component 1`] = `
               style="height: 48px;"
               type="submit"
             >
-              <span>
-                NextStep
-              </span>
+              app.userAuth.NextStep
             </button>
           </div>
         </div>
