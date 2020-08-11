@@ -23,6 +23,7 @@ import NoHeaderNotification from "../Topbar/NoHeaderNotification/index";
 import { getRolesStart } from 'appRedux/actions/Roles';
 import { getPermissionsStart } from 'appRedux/actions/Permissions';
 import { getServicesStart } from 'appRedux/actions/Services';
+import { getCompaniesStart } from 'appRedux/actions/Companies';
 
 const {Content, Footer} = Layout;
 
@@ -84,6 +85,7 @@ const MainApp = (props) => {
     dispatch(getRolesStart(agencyId));
     dispatch(getPermissionsStart());
     dispatch(getServicesStart());
+    dispatch(getCompaniesStart(agencyId));
   }, []);
 
   const {match} = props;

@@ -13,7 +13,6 @@ const INITIAL_STATE = {
   error: null,
   agencyId: null,
   companyId: null,
-  companies: [],
   loading: false,
 };
 
@@ -39,7 +38,6 @@ const authReducer = (state = INITIAL_STATE, action) => {
         companyId: action.payload[0].companyId,
         isAuthenticated: true,
         error: null,
-        companies: action.payload[0].companies,
         id: action.payload[0].id,
         loading: false,
       };
