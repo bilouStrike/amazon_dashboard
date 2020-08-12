@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {Button, Input, Checkbox, Form} from "antd";
+
 import IntlMessages from "util/IntlMessages";
 import { signInSuccess } from 'appRedux/actions/Auth';
 import { setCurrentCompany } from 'appRedux/actions/Companies';
@@ -12,6 +13,7 @@ const SignIn = () => {
     const dispatch = useDispatch();
     const [ loadStart, setLoadStart ] = useState(false);
     const { isAuthenticated } = useSelector(state => state.auth);
+    const { companies } = useSelector(state => state.companies);
 
     const onSignIn = async (values) => {
       setLoadStart(true);
@@ -33,6 +35,10 @@ const SignIn = () => {
     if (isAuthenticated) {
       return <Redirect to='/' />;
     }
+
+    /*if ( companies && companies.length > 1 ) {
+      return <Redirect to='/companies' />;
+    }*/
 
     return (
       <div className="gx-app-login-wrap">

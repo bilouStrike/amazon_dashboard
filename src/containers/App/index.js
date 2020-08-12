@@ -1,10 +1,16 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, {useEffect} from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import { ConfigProvider, Layout, Menu } from 'antd';
+import { ConfigProvider, Layout } from 'antd';
 import { IntlProvider } from "react-intl";
 import Sidebar from "../Sidebar/index";
 import InsideHeader from "../Topbar/InsideHeader/index";
+
+// Initialise roles, permission and services of the system
+import { getRolesStart } from 'appRedux/actions/Roles';
+import { getPermissionsStart } from 'appRedux/actions/Permissions';
+import { getServicesStart } from 'appRedux/actions/Services';
+import { getCompaniesStart } from 'appRedux/actions/Companies';
 
 import Topbar from "../Topbar/index";
 import AppLocale from "lngProvider";
@@ -29,7 +35,7 @@ import NoHeaderNotification from "../Topbar/NoHeaderNotification/index";
 
 import { RestrictedRoute } from 'middlware';
 
-const App = (props) => {
+const App = () => {
 
   const width = useSelector(({settings}) => settings.width);
   const { isAuthenticated } = useSelector(state => state.auth)
@@ -69,14 +75,7 @@ const App = (props) => {
   if (themeType === THEME_TYPE_DARK) {
     document.body.classList.add('dark-theme');
   }
-  const getContainerClass = (navStyle) => {
-    switch (navStyle) {
-      case NAV_STYLE_INSIDE_HEADER_HORIZONTAL:
-        return "gx-container-wrap";
-      default :
-        return ""
-    }
-  };
+
   const getNavStyles = (navStyle) => {
     switch (navStyle) {
       case NAV_STYLE_INSIDE_HEADER_HORIZONTAL :
@@ -119,8 +118,18 @@ const App = (props) => {
 
   setNavStyle(navStyle);
 
+  const dispatch = useDispatch();
+  const { agencyId } = useSelector(state => state.auth);
+
+  useEffect(() => {
+    dispatch(getRolesStart(agencyId));
+    dispatch(getPermissionsStart());
+    dispatch(getServicesStart());
+    dispatch(getCompaniesStart(agencyId));
+  }, []);
+
   const currentAppLocale = AppLocale[locale.locale];
-  const { Header, Content, Footer } = Layout;
+
   return (
     <ConfigProvider locale={currentAppLocale.antd}>
       <IntlProvider

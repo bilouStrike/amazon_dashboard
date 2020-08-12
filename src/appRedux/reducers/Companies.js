@@ -1,7 +1,8 @@
 import {
   SET_CURRENT_COMPANY,
   GET_COMPANIES_SUCCESS,
-  GET_COMPANIES_FAILED
+  GET_COMPANIES_FAILED,
+  SET_COMPANIES
 } from '../../constants/ActionTypes';
  
 const INITIAL_STATE = {
@@ -26,6 +27,11 @@ const companiesReducer = (state = INITIAL_STATE, action) => {
           ...state,
           companies: action.payload
         }
+      case SET_COMPANIES:
+        return {
+          ...state,
+          companies: action.payload
+      }
       default:
        return state;
    }

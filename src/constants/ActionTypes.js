@@ -48,7 +48,7 @@ export const GET_COMPANIES_START = 'GET_COMPANIES_START';
 export const GET_COMPANIES_SUCCESS = 'GET_COMPANIES_SUCCESS';
 export const GET_COMPANIES_FAILED = 'GET_COMPANIES_FAILED';
 export const SET_CURRENT_COMPANY = 'SET_CURRENT_COMPANY';
-
+export const SET_COMPANIES = 'SET_COMPANIES';
 //
 export const USER_DATA = 'user_data';
 export const USER_TOKEN_SET = 'user_token_set';
