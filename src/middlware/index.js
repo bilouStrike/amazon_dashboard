@@ -20,28 +20,29 @@ export function isAuth(servicePermissions, rolePermissions) {
   return bool;
 }
 
+export function getRolePermissions(userRoles, roles) {
+  let rolePermissions = [];
+  userRoles.map((userrole) => {
+    Object.values(roles).map((role) => {
+      if ( role.name === userrole.name ) {
+        rolePermissions.push.apply(rolePermissions, role.permissions);
+      }
+    })
+  });
+  return rolePermissions;
+}
+
 export function CheckPermission (permissions, userRoles, roles, service, currentCompany, companyId) {
   let auth = true;
   let rolePermissions = [];
   if( roles != null ) {
-
     if( companyId === null ) {
-      userRoles.map((userrole) => {
-        Object.values(roles).map((role) => {
-          if ( role.name === userrole.name ) {
-            rolePermissions.push.apply(rolePermissions, role.permissions);
-          }
-        })
-      });
+      /// userRoles + if there is company roles 
+      rolePermissions = getRolePermissions(userRoles, roles);
     } else {
       const rolesOfCurrentCompany = companyRoles(currentCompany, userRoles);
-      rolesOfCurrentCompany.map((userrole) => {
-        Object.values(roles).map((role) => {
-          if ( role.name === userrole.name ) {
-            rolePermissions.push.apply(rolePermissions, role.permissions);
-          }
-        })
-      });
+      rolePermissions = getRolePermissions(rolesOfCurrentCompany, roles);
+      console.log(rolePermissions);
     }   
   }
 

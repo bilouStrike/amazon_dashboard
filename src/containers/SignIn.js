@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from "react";
-import {Button, Input, Checkbox, Form} from "antd";
+import React, { useState } from "react";
+import { Button, Input, Checkbox, Form } from "antd";
 
 import IntlMessages from "util/IntlMessages";
 import { signInSuccess } from 'appRedux/actions/Auth';
@@ -13,32 +13,28 @@ const SignIn = () => {
     const dispatch = useDispatch();
     const [ loadStart, setLoadStart ] = useState(false);
     const { isAuthenticated } = useSelector(state => state.auth);
-    const { companies } = useSelector(state => state.companies);
 
     const onSignIn = async (values) => {
       setLoadStart(true);
       const { status, message, data } = await signIn(values);
       setLoadStart(false);
       if ( status == 'success') {
-        dispatch(signInSuccess(data));
-        if (data[0].roles.length > 0 && data[0].roles[0].companyName) {
-          dispatch(setCurrentCompany({id:data[0].roles[0].companyId, name:data[0].roles[0].companyName }));
-        } else {
-          dispatch(setCurrentCompany(null));
+        if( data[0].companyId != null ) {
+          dispatch(setCurrentCompany({id:data[0].companyId, name:data[0].companyName }));
         }
+        dispatch(signInSuccess(data));
+
+        console.log(data[0].companyId);
+       
+        // dispatch(signInSuccess(data)); get companies of current user 
         return;
-      }
-      
+      }     
       PopNotification(status, message)
     }
 
     if (isAuthenticated) {
       return <Redirect to='/' />;
     }
-
-    /*if ( companies && companies.length > 1 ) {
-      return <Redirect to='/companies' />;
-    }*/
 
     return (
       <div className="gx-app-login-wrap">

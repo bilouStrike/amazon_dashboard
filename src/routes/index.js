@@ -1,20 +1,38 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import asyncComponent from 'util/asyncComponent';
 import { RouteMiddlware } from 'middlware';
+import INITAPP from 'components/InitApp';
 
 const App = ({match}) => {
   const { userRoles } = useSelector(state => state.auth);
-
+  const { currentCompany, companies } = useSelector(state => state.companies);
+ 
   return (
   <div className="gx-main-content-wrapper">
     <Switch>
-      <RouteMiddlware 
+      <Route
         path={`${match.url}`}
+        render={() => {
+          if (companies.length > 0) {
+            if (currentCompany && companies[0] !== 'no-data') {
+              return <Redirect to='/dashboard' /> 
+            }
+            if (companies[0] === 'no-data') {
+              return <Redirect to='/companies' />
+            }
+            return <Redirect to='/companies' />
+          } else {
+            return <INITAPP />
+          }
+        }}
+        exact
+      />
+      <RouteMiddlware 
+        path={`${match.url}dashboard`}
         component={asyncComponent(() => import('./Dashboard'))}
         userRoles={userRoles}
-        exact
         service='Dashboard'
       />
       <RouteMiddlware 

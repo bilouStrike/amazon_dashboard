@@ -9,8 +9,7 @@ import {
 const INIT_STATE = {
   error: "",
   loading: false,
-  message: '',
-  signal: false
+  message: ''
 };
 
 export default (state = INIT_STATE, action) => {

@@ -5,7 +5,7 @@ const showMessahe = (status, response) => {
     message.destroy();
     let config = {
         content:response,
-        duration: 5,
+        duration: 2,
         style: { padding:'120px', marginTop:'5%' }
     }
 

@@ -19,7 +19,7 @@ const Home = ({match}) => {
                 </Col>
             </Row>
         </div>
-    )
+    ) 
 };
 
 export default Home;

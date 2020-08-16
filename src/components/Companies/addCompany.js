@@ -4,28 +4,13 @@ import { useDispatch } from 'react-redux';
 import { addCompany } from 'services/company';
 import { useSelector } from 'react-redux';
 import PopNotification from 'util/PopNotification';
+import FullScreenModel from 'components/FullScreenModel';
 
 const FormItem = Form.Item;
 
 const AddCompany = ({updateList}) =>  {
   const { agencyId } = useSelector(state => state.auth);
-  const [visible, setVisible] = useState(false);
   const [loading, setLoading] = useState(false);
-
-
-  const dispatch = useDispatch();
-
-  const showModal = () => {
-    setVisible(true);
-  };
-
-  const handleOk = (e) => {
-    setVisible(false);
-  };
-
-  const handleCancel = (e) => {
-    setVisible(false);
-  };
 
   const handleAddRole = async (values) => {
     setLoading(true);
@@ -40,13 +25,10 @@ const AddCompany = ({updateList}) =>  {
 
   return (
     <>
-        <Button type="primary" onClick={showModal}>New company</Button>
-        <Modal
-            title="Create new company"
-            visible={visible}
-            onOk={handleOk}
-            onCancel={handleCancel}
-            footer={null}
+        <FullScreenModel
+            buttonType="primary"
+            buttonTitle="+ Add Company"
+            title="Add New Company"
         >
             <Form 
                 initialValues={{ remember: true }}
@@ -65,6 +47,30 @@ const AddCompany = ({updateList}) =>  {
                 >
                     <Input />
                 </Form.Item>
+                <Form.Item
+                    name="address"
+                    label="Address"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input the address!',
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
+                <Form.Item
+                    name="phone"
+                    label="Phone"
+                    rules={[
+                        {
+                            required: true,
+                            message: 'Please input the company phone!',
+                        },
+                    ]}
+                >
+                    <Input />
+                </Form.Item>
                 <FormItem>
                     <Button className="gx-mb-0"
                         type="primary"
@@ -75,7 +81,7 @@ const AddCompany = ({updateList}) =>  {
                     </Button>
                 </FormItem>
             </Form>
-        </Modal>
+        </FullScreenModel>
     </>
     );
 }

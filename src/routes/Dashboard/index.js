@@ -1,7 +1,5 @@
 import React from 'react';
 import {Col, Row} from "antd";
-import { useSelector } from 'react-redux';
-
 import BalanceHistory from "components/dashboard/BalanceHistory";
 import IconWithTextCard from "components/Metrics/IconWithTextCard";
 import Sellers from "components/Sellers/sellers";
@@ -9,7 +7,6 @@ import Sellers from "components/Sellers/sellers";
 import Auxiliary from "util/Auxiliary";
 
 const Dashboard = () => {
-  const { currentCompany } = useSelector(state => state.companies);
   return (
     <Auxiliary>
       <Row>

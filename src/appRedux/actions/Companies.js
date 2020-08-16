@@ -11,9 +11,9 @@ export const setCurrentCompany = (company) => ({
     payload: company,
 });
 
-export const getCompaniesStart = (agencyId) => ({
+export const getCompaniesStart = (agencyId, companyId) => ({
     type: GET_COMPANIES_START,
-    payload: agencyId
+    payload: {agencyId, companyId}
 });
 
 export const getCompaniesSuccess = (companies) => ({

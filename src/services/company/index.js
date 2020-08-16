@@ -33,3 +33,8 @@ export const getCompaniesByAgency = async(agencyId) => {
   return { data }
 }
 
+export const getCompanyById = async(id) => {
+  const { data, statusText } = await Http.get(`/companies?id=${id}`);
+  return { data }
+}
+

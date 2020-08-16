@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 import asyncComponent from 'util/asyncComponent';
 
 const Sales = ({match}) => {
- console.log(`${match.url}/marketpalces`);
   return (
     <Switch>
       <Route path={`${match.url}/marketpalces`} exact component={asyncComponent(() => import('components/Sales/marketPlaces'))}/>

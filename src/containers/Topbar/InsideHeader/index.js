@@ -1,4 +1,4 @@
-import React,{ useEffect, useState } from "react";
+import React,{ useEffect } from "react";
 import { Layout, Popover, List, Menu, Dropdown } from 'antd';
 import { connect, useDispatch, useSelector } from "react-redux";
 import UserInfo from "components/UserInfo";
@@ -6,7 +6,6 @@ import AppNotification from "components/AppNotification";
 import HorizontalNav from "../HorizontalNav";
 import { Link } from "react-router-dom";
 import { switchLanguage, toggleCollapsedSideNav } from "../../../appRedux/actions/Setting";
-import { getCompaniesByAgency } from 'services/company';
 import { setCurrentCompany } from 'appRedux/actions/Companies';
 import { DownOutlined } from '@ant-design/icons';
 
@@ -32,37 +31,25 @@ const InsideHeader = () => {
       link: '/company/roles',
     }
   ];
+
   const dispatch = useDispatch();
-
   const navCollapsed = useSelector(({settings}) => settings.navCollapsed);
-  const [companies, setcompanies] = useState([]);
-  const { currentCompany } = useSelector(state => state.companies);
-  const { userRoles, companyId, agencyId, isAuthenticated } = useSelector(state => state.auth);
-  const { signal } = useSelector(state => state.commonData);
-
+  const { currentCompany, companies } = useSelector(state => state.companies);
+  const { userRoles, companyId, isAuthenticated } = useSelector(state => state.auth);
   useEffect(() => {
     if ( !isAuthenticated ) {
       return;
     }
-    if ( companyId === null ) {
-      const getCompanies = async () => {
-        const { data } = await getCompaniesByAgency(agencyId);
-          setcompanies(data);
-          if (data[0]) {
-            dispatch(setCurrentCompany(data[0]))
-          }
-        }
-      getCompanies();
-    } else if( userRoles[0] !== undefined ) {
-      dispatch(setCurrentCompany({id:userRoles[0].companyId, name:userRoles[0].companyName}));
+    if ( Array.isArray(companies) && companies.length === 1 ) {
+      dispatch(setCurrentCompany({id:companies[0].id, name:companies[0].name}));
     }
-  }, [isAuthenticated, signal]);
-
+  }, [isAuthenticated, companies]);
+ 
   const menu = (
     <Menu>
        {
         companyId === null ? 
-        companies ? companies.map((company) => 
+        Array.isArray(companies) && companies && companies[0] !== 'no-data' ? companies.map((company) => 
             <Menu.Item className="gx-media gx-pointer" key={company.id} onClick={(e) => {
                 const comp = {id:company.id, name:company.name};
                 dispatch(setCurrentCompany(comp))
@@ -112,7 +99,7 @@ const InsideHeader = () => {
               <li>
                 <Dropdown overlay={menu} trigger={['click']}>
                   <a className="ant-dropdown-link" onClick={e => e.preventDefault()} style={{fontSize: '16px'}}>
-                    <span>{ currentCompany ? currentCompany.name : 'No company selcted'}</span>
+                    <span>{ currentCompany ? currentCompany.name : 'Switch to company'}</span>
                     <DownOutlined />
                   </a>
                 </Dropdown>
