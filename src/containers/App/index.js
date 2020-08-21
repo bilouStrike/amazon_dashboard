@@ -28,7 +28,6 @@ import {
 import NoHeaderNotification from "../Topbar/NoHeaderNotification/index";
 
 import { RestrictedRoute } from 'middlware';
-
 const App = () => {
 
   const width = useSelector(({settings}) => settings.width);
@@ -119,21 +118,21 @@ const App = () => {
       <IntlProvider
         locale={currentAppLocale.locale}
         messages={currentAppLocale.messages}>
-        <Layout className="gx-app-layout">
+        <Layout className="gx-app-layout" style={{background:'#fff'}}>
         {getSidebar(navStyle, width)}
           <Layout>
             {getNavStyles(navStyle)}
-            <Switch>
-              <Route 
-                path='/home'
-                component={Home}
-              />             
-              <RestrictedRoute 
-                path='/'
-                isAuthenticated={isAuthenticated}
-                component={MainApp}
-              />      
-            </Switch>
+              <Switch>
+                <Route 
+                  path='/home'
+                  component={Home}
+                />             
+                <RestrictedRoute 
+                  path='/'
+                  isAuthenticated={isAuthenticated}
+                  component={MainApp}
+                />      
+              </Switch>
           </Layout>
         </Layout>
       </IntlProvider>

@@ -78,13 +78,13 @@ const InsideHeader = () => {
         className="gx-header-horizontal-main">
         <div className="gx-container gx-wide-width">
           <div className="gx-header-horizontal-main-flex" style={spacer}>
-            <div className="gx-d-block gx-d-lg-none gx-linebar gx-mr-xs-3 6e" >
+            { isAuthenticated && <div className="gx-d-block gx-d-lg-none gx-linebar gx-mr-xs-3 6e" >
               <i className="gx-icon-btn icon icon-menu"
                  onClick={() => {
                    dispatch(toggleCollapsedSideNav(!navCollapsed));
                  }}
               />
-            </div>
+            </div>}
             <Link to="/" className="gx-d-block gx-d-lg-none gx-pointer gx-mr-xs-3 gx-pt-xs-1 gx-w-logo">
               <img alt="" src={require("assets/images/w-logo.png")}/></Link>
             <Link to="/" className="gx-d-none gx-d-lg-block gx-pointer gx-mr-xs-5 gx-logo">
