@@ -11,10 +11,10 @@ import {
 } from "../../constants/ThemeSetting";
 
 const initialSettings = {
-  navCollapsed: true,
+  navCollapsed: false,
   navStyle: NAV_STYLE_INSIDE_HEADER_HORIZONTAL,
   layoutType: LAYOUT_TYPE_FULL,
-  themeType: THEME_TYPE_SEMI_DARK,
+  themeType: THEME_TYPE,
   colorSelection: THEME_COLOR_SELECTION_PRESET,
 
   pathname: '',

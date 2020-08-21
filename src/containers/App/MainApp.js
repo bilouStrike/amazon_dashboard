@@ -10,7 +10,7 @@ import { getPermissionsStart } from 'appRedux/actions/Permissions';
 import { getServicesStart } from 'appRedux/actions/Services';
 import { getCompaniesStart } from 'appRedux/actions/Companies';
 
-const { Footer } = Layout;
+const { Footer, Content } = Layout;
 
 const MainApp = (props) => {
 
@@ -27,12 +27,14 @@ const MainApp = (props) => {
 
   return (
     <>
+      <Content className={`gx-layout-content gx-container-wrap`}>
         <App match={match}/>
         <Footer>
           <div className="gx-layout-footer-content">
             {footerText}
           </div>
         </Footer>
+      </Content>
     </>
   )
 };

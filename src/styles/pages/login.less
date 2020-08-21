@@ -21,6 +21,17 @@
   .box-shadow(@gx-card-shadow);
   font-size: 14px;
 
+  & .ant-input {
+    background-color: @grey-3;
+    height: auto;
+    padding: 6px 12px;
+
+    &:focus {
+      box-shadow: none;
+      border-color: @primary-color;
+    }
+  }
+
   & .ant-input-affix-wrapper {
     background-color: @grey-3;
     max-height: none;
@@ -83,13 +94,15 @@
 .@{class-prefix}-app-login-main-content {
   .flex-display(flex, row, wrap);
   background-color: @white-color;
+  .box-shadow(@gx-card-shadow);
+  .border-radius(@border-radius-lg + 2px);
   font-size: 14px;
   overflow: hidden;
 }
 
 .@{class-prefix}-app-login-content {
-  padding: 0px 0px 0px;
-  width: 340px;
+  padding: 35px 35px 20px;
+  width: 60%;
 
   & .ant-input {
     background-color: @grey-3;
@@ -179,19 +192,35 @@
   margin-bottom: auto;
 }
 
+.@{class-prefix}-app-social-block {
+  .flex-display(flex, row, wrap);
+  .align-items(center);
+  .justify-content(space-between);
+
+  & .@{class-prefix}-social-link,
+  & .@{class-prefix}-social-link li {
+    margin: 0;
+  }
+
+  & .@{class-prefix}-social-link span {
+    border: @border-style-base @border-width-base @primary-color;
+    .border-radius(@border-radius-circle);
+    color: @primary-color;
+
+    &:hover,
+    &:focus {
+      color: @white-color;
+      background-color: @primary-color;
+    }
+  }
+
+  & p {
+    margin-bottom: 0;
+  }
+}
+
 .@{class-prefix}-signin-form {
   & .ant-form-item-control-input {
     min-height: 40px;
-  }
-  & :hover {
-    border: none;
-  }
-  & :focus {
-    border: none;
-    border-bottom: 0.5px solid #e8dcdc;
-  }
-  & input:not(:focus) {
-    border: none;
-    border-bottom: 0.5px solid #e8dcdc;
   }
 }

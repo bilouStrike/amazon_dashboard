@@ -3,7 +3,8 @@
     height: 10px;
 }
 .gx-header-horizontal-main .gx-header-notifications > li.gx-user-nav {
-    margin-left: 0px !important;
+    margin-right: 5px !important;
+    font-size: 14px;
 }
 .gx-popover-setting-scroll {
     min-width: 150px;
@@ -11,4 +12,20 @@
 
 .ant-menu-horizontal > .ant-menu-item, .ant-menu-horizontal > .ant-menu-submenu {
     margin: 0 10px !important;
+}
+
+.gx-header-horizontal-nav .ant-menu-submenu-horizontal > .ant-menu-submenu-title {
+    color: #545454;
+}
+
+@media screen and (max-width: @screen-xs-max) {
+    .ant-layout-header .ant-menu-horizontal {
+        line-height: 50px;
+    }
+}
+
+@media screen and (max-width: @screen-xs-max) {
+    .gx-inside-header-horizontal .gx-header-horizontal-main {
+        line-height: 40px;
+    }
 }

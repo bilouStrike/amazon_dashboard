@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Col, Row } from 'antd';
+import { Table, Col, Row, Card } from 'antd';
 import Auxiliary from 'util/Auxiliary';
 import AddStrategy from './addStrategy';
 
@@ -98,6 +98,7 @@ const PricingStrategy = () => {
                         </Col>
                         <AddStrategy />
                     </Row>
+                    <Card style={{border:'none'}}>
                     <Table
                         className="gx-table-responsive"
                         columns={columns} 
@@ -107,6 +108,7 @@ const PricingStrategy = () => {
                             ...rowSelection,
                           }}
                     />
+                    </Card>
                 </Col>
             </Row>
         </Auxiliary>
