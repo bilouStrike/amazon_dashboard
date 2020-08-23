@@ -119,9 +119,9 @@ const App = () => {
         locale={currentAppLocale.locale}
         messages={currentAppLocale.messages}>
         <Layout className="gx-app-layout" style={{background:'#fff'}}>
-        {getSidebar(navStyle, width)}
+        { isAuthenticated && getSidebar(navStyle, width)}
           <Layout>
-            {getNavStyles(navStyle)}
+              {getNavStyles(navStyle)}
               <Switch>
                 <Route 
                   path='/home'

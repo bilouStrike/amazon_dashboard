@@ -4,6 +4,7 @@ import {
   LAYOUT_TYPE_FULL,
   NAV_STYLE,
   NAV_STYLE_INSIDE_HEADER_HORIZONTAL,
+  NAV_STYLE_FIXED,
   THEME_COLOR_SELECTION,
   THEME_COLOR_SELECTION_PRESET,
   THEME_TYPE,
@@ -12,7 +13,7 @@ import {
 
 const initialSettings = {
   navCollapsed: false,
-  navStyle: NAV_STYLE_INSIDE_HEADER_HORIZONTAL,
+  navStyle: NAV_STYLE_FIXED,
   layoutType: LAYOUT_TYPE_FULL,
   themeType: THEME_TYPE,
   colorSelection: THEME_COLOR_SELECTION_PRESET,
