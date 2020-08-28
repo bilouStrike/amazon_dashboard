@@ -23,6 +23,7 @@ const MainApp = (props) => {
     dispatch(getPermissionsStart());
     dispatch(getServicesStart());
     dispatch(getCompaniesStart(agencyId, companyId));
+    console.log('render main App')
   }, []);
 
   return (

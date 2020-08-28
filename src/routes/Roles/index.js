@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import asyncComponent from 'util/asyncComponent';
 
 const Roles = ({match}) => {
-
+  console.log('render roles')
   return (
   <div className="gx-main-content-wrapper">
     <Switch>

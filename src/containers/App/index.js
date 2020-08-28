@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import { ConfigProvider, Layout } from 'antd';
@@ -18,12 +18,7 @@ import {
   NAV_STYLE_MINI_SIDEBAR,
   NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR,
   NAV_STYLE_NO_HEADER_MINI_SIDEBAR,
-  TAB_SIZE,
-  LAYOUT_TYPE_BOXED,
-  LAYOUT_TYPE_FRAMED,
-  LAYOUT_TYPE_FULL,
-  NAV_STYLE_DEFAULT_HORIZONTAL,
-  THEME_TYPE_DARK
+  TAB_SIZE
 } from "../../constants/ThemeSetting";
 import NoHeaderNotification from "../Topbar/NoHeaderNotification/index";
 
@@ -33,43 +28,13 @@ const App = () => {
   const width = useSelector(({settings}) => settings.width);
   const { isAuthenticated } = useSelector(state => state.auth)
   const locale = useSelector(({settings}) => settings.locale);
-  const navStyle = useSelector(({settings}) => settings.navStyle);
   const themeType = useSelector(({settings}) => settings.themeType);
-  const layoutType = useSelector(({settings}) => settings.layoutType);
- 
-  const setLayoutType = (layoutType) => {
-    if (layoutType === LAYOUT_TYPE_FULL) {
-      document.body.classList.remove('boxed-layout');
-      document.body.classList.remove('framed-layout');
-      document.body.classList.add('full-layout');
-    } else if (layoutType === LAYOUT_TYPE_BOXED) {
-      document.body.classList.remove('full-layout');
-      document.body.classList.remove('framed-layout');
-      document.body.classList.add('boxed-layout');
-    } else if (layoutType === LAYOUT_TYPE_FRAMED) {
-      document.body.classList.remove('boxed-layout');
-      document.body.classList.remove('full-layout');
-      document.body.classList.add('framed-layout');
-    }
-  };
 
-  const setNavStyle = (navStyle) => {
-    if (navStyle === NAV_STYLE_DEFAULT_HORIZONTAL ||
-        navStyle === NAV_STYLE_INSIDE_HEADER_HORIZONTAL
-      ) {
-      document.body.classList.add('full-scroll');
-      document.body.classList.add('horizontal-layout');
-    } else {
-      document.body.classList.remove('full-scroll');
-      document.body.classList.remove('horizontal-layout');
-    }
-  };
+  useEffect(() => {
+    console.log('render index')
+  }, [])
 
-  if (themeType === THEME_TYPE_DARK) {
-    document.body.classList.add('dark-theme');
-  }
-
-  const getNavStyles = (navStyle) => {
+   const getNavStyles = (navStyle) => {
     switch (navStyle) {
       case NAV_STYLE_INSIDE_HEADER_HORIZONTAL :
         return <InsideHeader/>;
@@ -87,6 +52,7 @@ const App = () => {
         return null;
     }
   };
+
   const getSidebar = (navStyle, width) => {
     if (width < TAB_SIZE) {
       return <Sidebar/>;
@@ -107,10 +73,6 @@ const App = () => {
     }
   };
 
-  setLayoutType(layoutType);
-
-  setNavStyle(navStyle);
-
   const currentAppLocale = AppLocale[locale.locale];
 
   return (
@@ -119,9 +81,9 @@ const App = () => {
         locale={currentAppLocale.locale}
         messages={currentAppLocale.messages}>
         <Layout className="gx-app-layout" style={{background:'#fff'}}>
-        { isAuthenticated && getSidebar(navStyle, width)}
+          { isAuthenticated && getSidebar(NAV_STYLE_FIXED, width)}
           <Layout>
-              {getNavStyles(navStyle)}
+              {getNavStyles(NAV_STYLE_FIXED)}
               <Switch>
                 <Route 
                   path='/home'
