@@ -1,16 +1,14 @@
 import React from "react";
-import {useSelector} from "react-redux";
-import {Menu} from "antd";
-import {Link} from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Menu, Badge } from "antd";
+import { Link } from "react-router-dom";
 
 import CustomScrollbars from "util/CustomScrollbars";
 import SidebarLogo from "./SidebarLogo";
-import UserProfile from "./UserProfile";
-import AppsNavigation from "./AppsNavigation";
+
 import {
   NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR,
-  NAV_STYLE_NO_HEADER_MINI_SIDEBAR,
-  THEME_TYPE_LITE
+  NAV_STYLE_NO_HEADER_MINI_SIDEBAR
 } from "../../constants/ThemeSetting";
 import IntlMessages from "../../util/IntlMessages";
 
@@ -18,20 +16,8 @@ const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 const SidebarContent = () => {
 
-  let {navStyle, themeType, pathname} = useSelector(({settings}) => settings);
+  let {pathname} = useSelector(({settings}) => settings);
 
-  const getNoHeaderClass = (navStyle) => {
-    if (navStyle === NAV_STYLE_NO_HEADER_MINI_SIDEBAR || navStyle === NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR) {
-      return "gx-no-header-notifications";
-    }
-    return "";
-  };
-  // const getNavStyleSubMenuClass = (navStyle) => {
-  //   if (navStyle === NAV_STYLE_NO_HEADER_MINI_SIDEBAR) {
-  //     return "gx-no-header-submenu-popup";
-  //   }
-  //   return "";
-  // };
   const selectedKeys = pathname.substr(1);
   const defaultOpenKeys = selectedKeys.split('/')[1];
 
@@ -49,7 +35,7 @@ const SidebarContent = () => {
               title={<> <IntlMessages id="sidebar.saleschannel"/></>}>
                 <SubMenu key="amazon"
                         title={<span>
-                          <span><i className="icon icon-data-display"/><IntlMessages id="sidebar.amazon"/></span></span>}>
+                          <span><i className="icon icon-link"/><IntlMessages id="sidebar.amazon"/></span></span>}>
                   <Menu.Item key="saleschannel/amazon/setting">
                     <Link to="/">
                       <span><IntlMessages id="sidebar.amazon.setting"/></span>
@@ -69,7 +55,7 @@ const SidebarContent = () => {
                 </SubMenu>
                 <SubMenu key="ebay"
                         title={<span>
-                          <span><i className="icon icon-data-display"/><IntlMessages id="sidebar.ebay"/></span></span>}>
+                          <span><i className="icon icon-transfer"/><IntlMessages id="sidebar.ebay"/></span></span>}>
                   <Menu.Item key="saleschannel/ebay/setting">
                     <Link to="/">
                       <span><IntlMessages id="sidebar.ebay.setting"/></span>
