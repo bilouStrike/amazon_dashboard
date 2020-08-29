@@ -86,6 +86,12 @@ const App = ({match}) => {
         service='Company/Roles'
         exact
       />
+      <RouteMiddlware 
+        path={`${match.url}salesChannels`}
+        component={asyncComponent(() => import('./Channels'))}
+        userRoles={userRoles}
+        service='Channels'
+      />
       <Route path={`${match.url}notAuthorized`} component={asyncComponent(() => import('components/Error404'))}/>
     </Switch>
   </div>

@@ -12,7 +12,8 @@
         "manage_Sells",
         "manage_users",
         "manage_companies",
-        "manage_inventory"
+        "manage_inventory",
+        "manage_channels"
       ],
       "id": 1,
       "companyId": null
@@ -334,6 +335,11 @@
       "name": "manage_company_users",
       "service": "Company/Users",
       "id": 9
+    },
+    {
+      "name": "manage_channels",
+      "service": "Channels",
+      "id": 10
     }
   ],
   "services": [
@@ -371,6 +377,11 @@
       "id": 6,
       "name": "Inventory",
       "type": "service"
+    },
+    {
+      "id":7,
+      "name": "Channels",
+      "type": "services"
     }
   ],
   "upload": []

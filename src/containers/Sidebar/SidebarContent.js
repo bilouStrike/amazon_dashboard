@@ -1,15 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Menu, Badge } from "antd";
+import { Menu } from "antd";
 import { Link } from "react-router-dom";
 
 import CustomScrollbars from "util/CustomScrollbars";
 import SidebarLogo from "./SidebarLogo";
 
-import {
-  NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR,
-  NAV_STYLE_NO_HEADER_MINI_SIDEBAR
-} from "../../constants/ThemeSetting";
 import IntlMessages from "../../util/IntlMessages";
 
 const SubMenu = Menu.SubMenu;
@@ -51,7 +47,6 @@ const SidebarContent = () => {
                       <span><IntlMessages id="service02"/></span>
                     </Link>
                   </Menu.Item>
-                  
                 </SubMenu>
                 <SubMenu key="ebay"
                         title={<span>
@@ -61,10 +56,13 @@ const SidebarContent = () => {
                       <span><IntlMessages id="sidebar.ebay.setting"/></span>
                     </Link>
                   </Menu.Item>
-                  
                 </SubMenu>
+                <Menu.Item key="channels">
+                  <Link to="/salesChannels"><i className="icon icon-add"/>
+                    <span><IntlMessages id="sidebar.addSalesChannels"/></span>
+                  </Link>
+                </Menu.Item>
             </MenuItemGroup>
-            
           </Menu>
           <Menu
               defaultOpenKeys={[defaultOpenKeys]}
