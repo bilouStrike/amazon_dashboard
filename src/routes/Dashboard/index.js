@@ -10,11 +10,8 @@ const Dashboard = () => {
   return (
     <Auxiliary>
       <Row>
-        <Col xl={18} lg={24} md={24} sm={24} xs={24}>
+        <Col xl={24} lg={24} md={24} sm={24} xs={24}>
           <BalanceHistory/>
-        </Col>
-        <Col xl={6} md={24} sm={24} xs={24}>
-            
         </Col>
         <Col xl={12} lg={12} md={12} sm={24} xs={24} className="gx-col-full">
             <IconWithTextCard icon="visits" iconColor="geekblue" title="2,380" subTitle="Visits this year"/>
