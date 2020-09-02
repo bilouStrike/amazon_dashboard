@@ -22,7 +22,6 @@ const Sidebar = () => {
 
   const {themeType, navCollapsed, width, navStyle} = useSelector(({settings}) => settings);
 
-
   const onToggleCollapsedNav = () => {
     dispatch(toggleCollapsedSideNav(!navCollapsed));
   };

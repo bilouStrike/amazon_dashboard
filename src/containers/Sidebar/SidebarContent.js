@@ -1,74 +1,77 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Menu, Badge } from "antd";
+import { Menu } from "antd";
 import { Link } from "react-router-dom";
 
 import CustomScrollbars from "util/CustomScrollbars";
 import SidebarLogo from "./SidebarLogo";
 
-import {
-  NAV_STYLE_NO_HEADER_EXPANDED_SIDEBAR,
-  NAV_STYLE_NO_HEADER_MINI_SIDEBAR
-} from "../../constants/ThemeSetting";
 import IntlMessages from "../../util/IntlMessages";
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 const SidebarContent = () => {
 
-  let {pathname} = useSelector(({settings}) => settings);
+  const { companies, currentCompany } = useSelector(state => state.companies);
+  const currentCompanyData = currentCompany !== null ? companies.filter((item) => item.id == currentCompany.id) : null ;
+  const channels = currentCompanyData != null ? currentCompanyData[0].channels: [];
+  let channelMenu = [];
 
-  const selectedKeys = pathname.substr(1);
-  const defaultOpenKeys = selectedKeys.split('/')[1];
+  if ( channels.length > 0 ) { channels.map(channel => {
+        if (channel.provider === 'amazon') {
+          channelMenu.push(
+            <SubMenu 
+              key="amazon"
+              title={
+                    <span><i className="icon icon-link"/><IntlMessages id="sidebar.amazon"/></span>}>
+                    <SubMenu key="inventory" title="Inventory">
+                        <Menu.Item key="7">View</Menu.Item>
+                        <Menu.Item key="8">Setting</Menu.Item>
+                    </SubMenu>
+                    <SubMenu key="shipping" title="Shipping">
+                        <Menu.Item key="7">Add shipping</Menu.Item>
+                        <Menu.Item key="8">Setting</Menu.Item>
+                    </SubMenu>
+                    <Menu.Item key="saleschannel/amazon/setting">
+                        <Link to="/">
+                          <span><IntlMessages id="sidebar.amazon.setting"/></span>
+                        </Link>
+                    </Menu.Item>
+              </SubMenu>)
+        }
+        if (channel.provider === 'ebay' ) {
+          channelMenu.push(<SubMenu key="ebay"
+          title={<span>
+          <span><i className="icon icon-transfer"/><IntlMessages id="sidebar.ebay"/></span></span>}>
+          <Menu.Item key="saleschannel/ebay/setting">
+            <Link to="/">
+              <span><IntlMessages id="sidebar.ebay.setting"/></span>
+            </Link>
+          </Menu.Item>
+          </SubMenu>)
+        }
+      } 
+    )}
 
   return (<>
       <SidebarLogo/>
       <div className="gx-sidebar-content">
-        <CustomScrollbars className="gx-layout-sider-scrollbar">
           <Menu
-            defaultOpenKeys={[defaultOpenKeys]}
-            selectedKeys={[selectedKeys]}
             theme='dark'
             mode="inline"
           >
             <MenuItemGroup key="saleschannel" className="gx-menu-group" 
               title={<> <IntlMessages id="sidebar.saleschannel"/></>}>
-                <SubMenu key="amazon"
-                        title={<span>
-                          <span><i className="icon icon-link"/><IntlMessages id="sidebar.amazon"/></span></span>}>
-                  <Menu.Item key="saleschannel/amazon/setting">
-                    <Link to="/">
-                      <span><IntlMessages id="sidebar.amazon.setting"/></span>
+                             {channelMenu}
+
+                  <Menu.Item key="channels">
+                    <Link to="/salesChannels"><i className="icon icon-add"/>
+                      <span><IntlMessages id="sidebar.addSalesChannels"/></span>
                     </Link>
-                  </Menu.Item>
-                  <Menu.Item key="saleschannel/amazon/service01">
-                    <Link to="/">
-                      <span><IntlMessages id="service01"/></span>
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="saleschannel/amazon/service02">
-                    <Link to="/">
-                      <span><IntlMessages id="service02"/></span>
-                    </Link>
-                  </Menu.Item>
-                  
-                </SubMenu>
-                <SubMenu key="ebay"
-                        title={<span>
-                          <span><i className="icon icon-transfer"/><IntlMessages id="sidebar.ebay"/></span></span>}>
-                  <Menu.Item key="saleschannel/ebay/setting">
-                    <Link to="/">
-                      <span><IntlMessages id="sidebar.ebay.setting"/></span>
-                    </Link>
-                  </Menu.Item>
-                  
-                </SubMenu>
+                  </Menu.Item> 
             </MenuItemGroup>
-            
           </Menu>
           <Menu
-              defaultOpenKeys={[defaultOpenKeys]}
-              selectedKeys={[selectedKeys]}
               theme='dark'
               mode="inline"
             >
@@ -90,7 +93,6 @@ const SidebarContent = () => {
                 </Menu.Item>  
               </MenuItemGroup>
           </Menu>
-        </CustomScrollbars>
       </div>
     </>
   );
