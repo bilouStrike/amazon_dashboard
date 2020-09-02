@@ -1,9 +1,10 @@
 import React from 'react';
+import AddChannelForm from './addChannelForm';
 
 const AddSalesChannel = ({match}) => {
-    console.log(match);
+
     return (
-        <h2> Add sales channels </h2>
+       <AddChannelForm {...match}/>
     )
 }
 

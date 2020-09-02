@@ -266,27 +266,34 @@
       "address": "85 N. Westport Street Upper Marlboro, MD 20772",
       "phone": "703-618-8688",
       "agencyId": 1208223,
-      "id": 1
+      "id": 1,
+      "channels": [
+        { "name":"amazon PC", "provider":"amazon", "key": 123654 },
+        { "name":"ebay cloth", "provider":"ebay", "key": 321654 }
+      ]
     },
     {
       "name": "compny amazon",
       "address": "7744 E. Nut Swamp Rd. Falls Church, VA 22041",
       "phone": "804-243-7501",
       "agencyId": 1208223,
-      "id": 2
+      "id": 2,
+      "channels":[]
     },
     {
       "name": "compny C",
       "address": "hassi bah bah",
       "phone": "0794818565",
       "agencyId": 1208223,
-      "id": 3
+      "id": 3,
+      "channels":[]
     },
     {
       "name": "Amazon company 01",
       "address": "7832 High Point Rd. Pittsford, NY 14534",
       "phone": "203-832-7062",
       "agencyId": 8613967,
+      "channels":[],
       "id": 4
     }
   ],

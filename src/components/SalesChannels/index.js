@@ -6,8 +6,7 @@ const SalesChannels = () => {
     
     return (
         <>
-            <h2> Choose sales channel : </h2>
-            <Card title="Availables Sales channels" className="gx-card">
+            <Card title="Choose sales channel :" className="gx-card">
                 <Row className="glyphs css-mapping">
                     <Col xl={6} lg={6} md={6} sm={8} xs={12}>
                         <Link to='/salesChannels/add/@amazon'>
