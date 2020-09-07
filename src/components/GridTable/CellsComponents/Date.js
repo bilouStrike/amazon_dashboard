@@ -1,9 +1,9 @@
 import React from 'react';
 import moment from 'moment';
 import { DatePicker } from 'antd';
-const dateFormat = 'YYYY/MM/DD';
 
-const DateData = ({ date }) => (
-    <DatePicker defaultValue={moment(date, dateFormat)} format={dateFormat} />
-);
+const DateData = ({ value, dateFormat }) => {
+    return (
+    <DatePicker defaultValue={moment(value, dateFormat)} format={dateFormat} />
+)};
 export default DateData;

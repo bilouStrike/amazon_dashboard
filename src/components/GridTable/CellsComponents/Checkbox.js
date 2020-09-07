@@ -1,7 +1,7 @@
 import React from 'react';
 import { Checkbox } from 'antd';
 
-const CheckboxData = (value) => 
+const CheckboxData = ({ value }) => 
     <Checkbox onChange={() => console.log('checked')}>
         {value}
     </Checkbox>

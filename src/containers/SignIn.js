@@ -28,7 +28,8 @@ const SignIn = () => {
        
         // dispatch(signInSuccess(data)); get companies of current user 
         return;
-      }     
+      } 
+      console.log(status +' : ' + message)    ;
       PopNotification(status, message)
     }
 

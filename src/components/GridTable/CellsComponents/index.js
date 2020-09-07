@@ -4,22 +4,32 @@ import DateData from './Date';
 import ComposedText from './ComposedText';
 import CheckboxData from './Checkbox';
 import UrlData from './Url';
+import SelectData from './Select';
+
 
 const RenderData = ({ type, data }) => {
-    let component = <></>;
+    let component;
     switch(type) {
         case 'text':
-            component = <TextData text={data}/>
+            component = <TextData {...data}/>
         break; 
         case 'composedText':
-            component = <ComposedText data={data}/>
+            component = <ComposedText {...data}/>
         break;
         case 'date':
-            component = <DateData date={data}/>
+            component = <DateData {...data}/>
         break;
         case 'url':
-            component = <UrlData url={data}/>
+            component = <UrlData {...data}/>
         break;
+        case 'select':
+            component = <SelectData {...data}/>
+        break;
+        case 'checkbox':
+            component = <CheckboxData {...data}/>
+        break;
+        default:
+            component = <></>
     }
     return component;
 }

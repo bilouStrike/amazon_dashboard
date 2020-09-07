@@ -1,9 +1,15 @@
 import React from 'react';
 import { Table } from 'antd';
-import data from './data';
-import columns from './columns';
+import mockData from './mockApi';
+
+import buildColumns from './columns';
+import buildRows from './rows';
 
 const GridTable = () => {
+
+    const columns = buildColumns(mockData);
+    const data =  buildRows(mockData);
+
     return (
         <Table columns={columns} dataSource={data} />
     );

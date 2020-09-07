@@ -3,8 +3,8 @@ import { Select } from 'antd';
 
 const { Option } = Select;
 
-const SelectData = ( data ) => {
-    const optionsData = Object.entries(data).map(([key, value]) => 
+const SelectData = ({ values }) => {
+    const optionsData = Object.entries(values).map(([key, value]) => 
         <Option value={key}>{value}</Option>
     );
     return (

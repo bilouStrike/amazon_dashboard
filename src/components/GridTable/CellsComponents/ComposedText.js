@@ -1,7 +1,7 @@
 import React from 'react';
 
-const ComposedText = ({ data }) => {
-    const displayData = Object.entries(data).map(([key, value]) => 
+const ComposedText = (props) => {
+    const displayData = Object.entries(props).map(([key, value]) => 
            <h5 key={key}>{key} : {value} </h5>
         );
         return (
