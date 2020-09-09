@@ -1,8 +1,8 @@
 import React from 'react';
 
-const UrlData = ({url}) => {
+const UrlData = ({value}) => {
     return (
-        <a> {url} </a>
+        <a> {value} </a>
     )
 };
 export default UrlData;

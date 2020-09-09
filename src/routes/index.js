@@ -10,7 +10,6 @@ const App = ({match}) => {
   const { currentCompany, companies } = useSelector(state => state.companies);
  
   return (
-  <div className="gx-main-content-wrapper">
     <Switch>
       <Route
         path={`${match.url}`}
@@ -94,7 +93,6 @@ const App = ({match}) => {
       />
       <Route path={`${match.url}notAuthorized`} component={asyncComponent(() => import('components/Error404'))}/>
     </Switch>
-  </div>
 )};
 
 export default App;

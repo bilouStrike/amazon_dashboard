@@ -29,11 +29,6 @@ const MainApp = (props) => {
     <>
       <Content className={`gx-layout-content gx-container-wrap`}>
         <App match={match}/>
-        <Footer>
-          <div className="gx-layout-footer-content">
-            {footerText}
-          </div>
-        </Footer>
       </Content>
     </>
   )

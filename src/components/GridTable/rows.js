@@ -1,9 +1,11 @@
+import { uniqueKey } from 'helpers';
 
 // build rows
 const buildRows = ( data ) => {
     let rows = [];
     data.map((row) => {
-        let cellOfRow = {};
+        const uniqKey = uniqueKey(); 
+        let cellOfRow = { key : uniqKey };
         Object.entries(row).map(([key, value]) => {
             cellOfRow[key] = value
         });
